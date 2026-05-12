@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de" class="brand-viessmann">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viessmann - Gas-Profi Handbuch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-title">VIESSMANN</div>
+    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+</header>
+
+<div class="container">
+    <h1 style="text-align: center;">Technische Dokumentation Viessmann</h1>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <a href="#diagnose" class="nav-item">1. Diagnose & Fehler</a>
+        <a href="#service" class="nav-item">2. Service / Codierung</a>
+        <a href="#gasdruck" class="nav-item">3. Gasdruck / Lambda</a>
+        <a href="#fuehler" class="nav-item">4. NTC & Motoren</a>
+        <a href="#loni" class="nav-item">5. Ioni, Anode & Wasser</a>
+        <a href="#wartung" class="nav-item">6. Wartung (MatriX)</a>
+        <a href="#modelle" class="nav-item">7. Modell-Übersicht</a>
+        <a href="#ersatzteile" class="nav-item">8. Ersatzteile</a>
+    </nav>
+
+    <a href="gas-profi-app.html" class="btn-large" style="margin-bottom: 30px;">⬅ Zurück zur Markenauswahl</a>
+
+    <!-- 1. Diagnose & Fehlercodes -->
+    <section id="diagnose">
+        <h2>1. Diagnose & Fehlercodes</h2>
+        <p>Viessmann nutzt die Vitotronic-Steuerung (HEX-Codes) oder die neue E3-Plattform.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Code</th><th>Bedeutung</th><th>Ursache & Abhilfe</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>06</strong></td><td>Wasserdruck</td><td>Druck < 0.8 bar. Anlage füllen.</td></tr>
+                    <tr><td><strong>10 / 18</strong></td><td>Außentemperatursensor</td><td>Kurzschluss (10) oder Unterbrechung (18).</td></tr>
+                    <tr><td><strong>F2</strong></td><td>STB ausgelöst</td><td>Überhitzung (110°C). Pumpe oder Luft prüfen.</td></tr>
+                    <tr><td><strong>F4</strong></td><td>Kein Flammsignal</td><td>Zündung prüfen, Elektroden reinigen, Gasdruck messen.</td></tr>
+                    <tr><td><strong>F5</strong></td><td>Druckwächter / Gebläse</td><td>Lüfter startet nicht oder Differenzdruck fehlt.</td></tr>
+                    <tr><td><strong>EE / EF</strong></td><td>Flammenausfall</td><td>Gasmangel, Ionisationselektrode defekt, Erdung fehlt.</td></tr>
+                    <tr><td><strong>Eb</strong></td><td>Lambda Pro Fehler</td><td>Wiederholter Flammenabriss. Kalibrierung nötig.</td></tr>
+                    <tr><td><strong>Fd</strong></td><td>Fehler Feuerungsautomat</td><td>Brennersteuergerät defekt. Reset versuchen.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </section>
+
+    <!-- 2. Service-Ebene & Codierung -->
+    <section id="service">
+        <h2>2. Service-Ebene & Codierung</h2>
+        <h3>Zugang zum Menü</h3>
+        <ul>
+            <li><strong>Vitotronic 100/200:</strong> OK + ☰ gleichzeitig 4 Sek. drücken.</li>
+            <li><strong>Vitodens 100-W (B1HF):</strong> ☰ -> Einstellungen -> Spezialisten-Passwort: <code>viservice</code>.</li>
+        </ul>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Adresse</th><th>Beschreibung</th><th>Empfehlung</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>00:1</td><td>Anlagenschema</td><td>Konfiguration Heizkreise/WW.</td></tr>
+                    <tr><td>31:100</td><td>Heizleistung max.</td><td>In % begrenzen zur Taktvermeidung.</td></tr>
+                    <tr><td>90:128</td><td>Dämpfung Außentemp.</td><td>Reaktionszeit auf Wetteränderung.</td></tr>
+                    <tr><td>A5:5</td><td>Frostschutz</td><td>Einschaltschwelle der Umwälzpumpe.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 3. Gasdruck & Lambda Pro -->
+    <section id="gasdruck">
+        <h2>3. Gasdruck & Lambda Pro</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Gasart</th><th>Anschlussdruck (mbar)</th><th>Bereich (mbar)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Erdgas H</td><td>20</td><td>17 – 25</td></tr>
+                    <tr><td>Erdgas L</td><td>20 / 25</td><td>18 – 30</td></tr>
+                    <tr><td>Flüssiggas</td><td>50</td><td>42.5 – 57.5</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>Lambda Pro Control (Brennwert):</strong></p>
+        <ul>
+            <li>CO2-Wert (Erdgas): 8.7 % (Bereich 7.5 - 9.5 %)</li>
+            <li>CO2-Wert (Flüssiggas): 10.5 % (Bereich 10.0 - 12.0 %)</li>
+        </ul>
+        
+    </section>
+
+    <!-- 4. Fühlerkennwerte & Motoren -->
+    <section id="fuehler">
+        <h2>4. Fühlerkennwerte & Motoren</h2>
+        <p><strong>NTC 10 kΩ Tabelle:</strong></p>
+        <div class="table-container">
+            <table>
+                <tr><td>0°C: 28.5 kΩ</td><td>25°C: 10.0 kΩ</td><td>50°C: 3.6 kΩ</td></tr>
+                <tr><td>10°C: 19.8 kΩ</td><td>30°C: 8.0 kΩ</td><td>90°C: 0.9 kΩ</td></tr>
+            </table>
+        </div>
+        <p><strong>Pumpen & Ventilatoren:</strong></p>
+        <ul>
+            <li><strong>HE-Pumpen:</strong> Steuerung via PWM-Signal. Spannungsversorgung 230V separat prüfen.</li>
+            <li><strong>Lüfter (MatriX):</strong> RG128/RG148. Bei F9 Leichtgängigkeit prüfen.</li>
+        </ul>
+    </section>
+
+    <!-- 5. Ioni, Anode & Wasser -->
+    <section id="loni">
+        <h2>5. Ionisation, Anode & Wasser</h2>
+        <ul>
+            <li><strong>Ionisationsstrom:</strong> Min. 5 µA, Normal 15 – 50 µA.</li>
+            <li><strong>Erdung (PE):</strong> Spannung N-PE < 1.5V. Wichtig für Fehler F4/EE!</li>
+            <li><strong>Magnesiumanode:</strong> Prüfstrom > 0.3 mA DC.</li>
+            <li><strong>Wasser (VDI 2035):</strong> pH-Wert 8.2 – 9.5. Härte < 3.0 mol/m³.</li>
+        </ul>
+    </section>
+
+    <!-- 6. Wartung (MatriX) -->
+    <section id="wartung">
+        <h2>6. Wartung (MatriX)</h2>
+        <ol>
+            <li>Fehlerspeicher auslesen.</li>
+            <li><strong>Brenner MatriX:</strong> Ausbauen, nur Druckluft/weiche Bürste (keine Drahtbürste!).</li>
+            <li><strong>Inox-Radial:</strong> Mit Wasser spülen, Kondensatablauf prüfen.</li>
+            <li><strong>Siphon:</strong> Reinigen и auffüllen.</li>
+            <li><strong>Graphitdichtung:</strong> Bei Rissen zwingend tauschen!</li>
+        </ol>
+        
+    </section>
+
+    <!-- 7. Modell-Übersicht -->
+    <section id="modelle">
+        <h2>7. Modell-Übersicht</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Serie</th><th>Bezeichnung</th><th>Typ</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Vitodens 100-W</td><td>B1HF / B1KF</td><td>Wand, Brennwert, Lambda Pro.</td></tr>
+                    <tr><td>Vitodens 200-W</td><td>B2HE / B2HF</td><td>Wand, Premium, WLAN integriert.</td></tr>
+                    <tr><td>Vitopend 100-W</td><td>A1HB / A1JB</td><td>Wand, Heizwert (klassisch).</td></tr>
+                    <tr><td>Vitocrossal 300</td><td>CU3A</td><td>Boden, Brennwert (Inox-Crossal).</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 8. Ersatzteile -->
+    <section id="ersatzteile">
+        <h2>8. Ersatzteile & Art.-Nr.</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Bezeichnung</th><th>Artikel-Nr.</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Elektrodensatz Vitodens 100</td><td>7826559</td></tr>
+                    <tr><td>Graphitdichtung Brenner</td><td>7826526</td></tr>
+                    <tr><td>NTC Tauchfühler (10k)</td><td>7819967</td></tr>
+                    <tr><td>Hocheffizienzpumpe Wilo</td><td>7828732</td></tr>
+                    <tr><td>3-Wege-Ventil Motor</td><td>7824532</td></tr>
+                    <tr><td>Wärmetauscher (12 Pl.)</td><td>7828044</td></tr>
+                    <tr><td>Gasarmatur (SIT 845)</td><td>7826453</td></tr>
+                    <tr><td>Lüfter RG128</td><td>7826501</td></tr>
+                    <tr><td>Zündtransformator</td><td>7826553</td></tr>
+                    <tr><td>Drucksensor digital</td><td>7838536</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<button id="backToTop" title="Nach oben">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

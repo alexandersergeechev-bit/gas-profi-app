@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas-Profi | Rechner & Konverter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1 style="text-align: center;">Einheitenrechner & Kalkulatoren</h1>
+    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+</header>
+
+<div class="container">
+    <!-- Навигация по калькуляторам -->
+    <nav class="nav-menu">
+        <a href="#druck" class="nav-item">Druck</a>
+        <a href="#mag" class="nav-item">MAG / Statik</a>
+        <a href="#leistung" class="nav-item">Gasdurchsatz</a>
+        <a href="#wasser" class="nav-item">Wasserhärte</a>
+        <a href="#ntc" class="nav-item">NTC-Werte</a>
+    </nav>
+	
+	<a href="gas-profi-app.html" class="btn-large" style="border-color: #ccc; margin-bottom: 30px;">⬅ Zurück zur Auswahl</a>
+
+    <!-- 1. Druck-Konverter -->
+    <section id="druck">
+        <h2 style="text-align: center;">1. Druck-Konverter</h2>
+        <div class="nav-menu" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+            <input type="number" id="pressInput" placeholder="Wert eingeben" style="width: 100%; padding: 15px; font-size: 1.2rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);">
+            <select id="pressUnit" style="width: 100%; padding: 15px; font-size: 1.1rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);">
+                <option value="mbar">mbar</option>
+                <option value="bar">bar</option>
+                <option value="pa">Pa (Pascal)</option>
+                <option value="hpa">hPa</option>
+            </select>
+            <div id="pressResult" style="width: 100%; padding: 15px; background: var(--card-bg); border-radius: 8px; border: 1px solid var(--accent-color); font-weight: bold;">
+                Ergebnis erscheint hier...
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. MAG Berechnung -->
+    <section id="mag" style="margin-top: 40px;">
+        <h2 style="text-align: center;">2. MAG-Vordruck & Statik</h2>
+        <div class="nav-menu" style="display: flex; flex-direction: column; gap: 15px;">
+            <label>Statische Höhe der Anlage (Meter):</label>
+            <input type="number" id="statHeight" placeholder="z.B. 10" style="padding: 15px; font-size: 1.2rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);">
+            <button class="btn-large" onclick="calcMAG()">Berechnen</button>
+            <div id="magResult" style="padding: 15px; background: var(--card-bg); border-radius: 8px; border: 1px solid var(--accent-color); font-weight: bold;">
+                P0 (Vordruck) и Pa (Fülldruck)...
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Gasdurchsatz / Leistung -->
+    <section id="leistung" style="margin-top: 40px;">
+        <h2 style="text-align: center;">3. Leistung über Gasdurchsatz</h2>
+        <div class="nav-menu" style="display: flex; flex-direction: column; gap: 15px;">
+            <label>Gemessene Liter (am Gaszähler):</label>
+            <input type="number" id="gasLit" placeholder="Liter" style="padding: 15px; font-size: 1.2rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);">
+            <label>Messzeit (Sekunden):</label>
+            <input type="number" id="gasSec" value="36" style="padding: 15px; font-size: 1.2rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);">
+            <button class="btn-large" onclick="calcGas()">Leistung (kW) berechnen</button>
+            <div id="gasResult" style="padding: 15px; background: var(--card-bg); border-radius: 8px; border: 1px solid var(--accent-color); font-weight: bold;">
+                Belastung in kW...
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Wasserhärte -->
+    <section id="wasser" style="margin-top: 40px;">
+        <h2 style="text-align: center;">4. Wasserhärte Konverter</h2>
+        <div class="nav-menu" style="display: flex; flex-direction: column; gap: 15px;">
+            <input type="number" id="waterInput" placeholder="Wert in °dH" style="padding: 15px; font-size: 1.2rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);">
+            <div id="waterResult" style="padding: 15px; background: var(--card-bg); border-radius: 8px; border: 1px solid var(--accent-color); font-weight: bold;">
+                mmol/l, fH, ppm...
+            </div>
+        </div>
+    </section>
+
+    <!-- Кнопка назад -->
+    <a href="gas-profi-app.html" class="btn-large" style="background: var(--primary-color); color: white; margin-top: 50px;">Zurück zur Hauptseite</a>
+</div>
+
+<button id="backToTop">↑</button>
+
+<script src="script.js"></script>
+<script>
+    // Локальная логика калькуляторов для страницы rechner.html
+    
+    // 1. Конвертер давления
+    const pressInput = document.getElementById('pressInput');
+    const pressUnit = document.getElementById('pressUnit');
+    const pressResult = document.getElementById('pressResult');
+
+    function updatePressure() {
+        let val = parseFloat(pressInput.value);
+        if (isNaN(val)) return;
+        let mbar;
+        if (pressUnit.value === 'mbar') mbar = val;
+        if (pressUnit.value === 'bar') mbar = val * 1000;
+        if (pressUnit.value === 'pa') mbar = val / 100;
+        if (pressUnit.value === 'hpa') mbar = val;
+
+        pressResult.innerHTML = `
+            ${mbar.toFixed(2)} mbar<br>
+            ${(mbar/1000).toFixed(4)} bar<br>
+            ${(mbar*100).toFixed(0)} Pa<br>
+            ${mbar.toFixed(2)} hPa
+        `;
+    }
+    pressInput.addEventListener('input', updatePressure);
+    pressUnit.addEventListener('change', updatePressure);
+
+    // 2. MAG
+    function calcMAG() {
+        const h = parseFloat(document.getElementById('statHeight').value);
+        if (isNaN(h)) return;
+        let p0 = (h / 10) + 0.3; // Vordruck
+        let pa = p0 + 0.3;       // Fülldruck
+        document.getElementById('magResult').innerHTML = `
+            Mindest-Vordruck (P0): ${p0.toFixed(1)} bar<br>
+            Empfohlener Fülldruck (Pa): ${pa.toFixed(1)} bar
+        `;
+    }
+
+    // 3. Gasleistung (H-Gas Durchschnittswert 10.4 kWh/m3)
+    function calcGas() {
+        const lit = parseFloat(document.getElementById('gasLit').value);
+        const sec = parseFloat(document.getElementById('gasSec').value);
+        if (isNaN(lit) || isNaN(sec)) return;
+        // Формула: (Liter / Sekunden) * 3600 * Hu (10.4 для H-Gas) / 1000
+        let kw = (lit / sec) * 3600 * 10.4 / 1000;
+        document.getElementById('gasResult').innerHTML = `
+            Momentane Belastung: ${kw.toFixed(2)} kW<br>
+            <small>(Basis: H-Gas Hi ≈ 10.4 kWh/m³)</small>
+        `;
+    }
+
+    // 4. Wasserhärte
+    document.getElementById('waterInput').addEventListener('input', function() {
+        let dh = parseFloat(this.value);
+        if (isNaN(dh)) return;
+        document.getElementById('waterResult').innerHTML = `
+            ${(dh * 0.1783).toFixed(2)} mmol/l<br>
+            ${(dh * 1.78).toFixed(1)} °fH (Französisch)<br>
+            ${(dh * 17.8).toFixed(0)} ppm
+        `;
+    });
+</script>
+
+</body>
+</html>

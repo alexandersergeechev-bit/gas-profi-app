@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light" class="brand-broetje">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brötje - Technisches Handbuch</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        /* Spezifische Ergänzungen für Brötje Tabellen */
+        .highlight-evo { border-left: 4px solid var(--accent-color); padding-left: 10px; margin: 10px 0; background: rgba(227, 6, 19, 0.05); }
+        .code-block { font-family: 'Courier New', monospace; font-weight: bold; color: var(--accent-color); }
+        .status-led { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; }
+        .led-green { background-color: #27ae60; box-shadow: 0 0 5px #27ae60; }
+        .led-red { background-color: #e30613; box-shadow: 0 0 5px #e30613; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="gas-profi-app.html" style="position: absolute; left: 15px; color: white; text-decoration: none; font-size: 20px;">←</a>
+    <h1 style="margin: 0;">BRÖTJE</h1>
+    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+</header>
+
+<div class="container">
+    <h2 style="text-align: center;">Technische Dokumentation & Diagnose</h2>
+
+    <!-- Navigation -->
+    <nav class="nav-menu">
+        <a href="#diagnose" class="nav-item">1. Diagnose & Fehler</a>
+        <a href="#service" class="nav-item">2. Service-Ebene</a>
+        <a href="#gasdruck" class="nav-item">3. Gasdruck</a>
+        <a href="#fuehler" class="nav-item">4. Fühler & Motoren</a>
+        <a href="#wasser" class="nav-item">5. Ioni & Wasser</a>
+        <a href="#wartung" class="nav-item">6. Wartung</a>
+        <a href="#modelle" class="nav-item">7. Modelle</a>
+        <a href="#ersatzteile" class="nav-item">8. Ersatzteile</a>
+    </nav>
+	
+	<a href="gas-profi-app.html" class="btn-large" style="border-color: #ccc; margin-bottom: 30px;">⬅ Zurück zur Auswahl</a>
+
+    <!-- 1. Diagnose & Fehlercodes -->
+    <section id="diagnose">
+        <h2>1. Diagnose & Fehlercodes (Siemens LMS/LMU)</h2>
+        <p>Brötje nutzt ISR-Plus Regelungen. Fehler werden als numerische Codes mit Textbeschreibung angezeigt.</p>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Beschreibung</th>
+                        <th>Ursache & Lösung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="code-block">10</td><td>Außenfühlerfehler</td><td>Obruch oder Kurzschluss. Widerstand prüfen (NTC 1k oder 10k).</td></tr>
+                    <tr><td class="code-block">20</td><td>Vorlauffühler 1 Fehler</td><td>Kesseltemperaturfühler defekt. Stecker und NTC prüfen.</td></tr>
+                    <tr><td class="code-block">28</td><td>Abgasfühlerfehler</td><td>Überhitzung oder Sensordefekt. Wärmetauscher reinigen.</td></tr>
+                    <tr><td class="code-block">40</td><td>Rücklauffühlerfehler</td><td>NTC prüfen. Oft Anzeichen für mangelnde Zirkulation.</td></tr>
+                    <tr><td class="code-block">50</td><td>Trinkwasserfühlerfehler</td><td>Speicherfühler prüfen. Ggf. Kodierung prüfen (WW-Betrieb).</td></tr>
+                    <tr><td class="code-block">110</td><td>Überhitzung (STB)</td><td>Sicherheitstemperaturbegrenzer. Pumpe, Luft, Reset-Taste prüfen.</td></tr>
+                    <tr><td class="code-block">111</td><td>Temperaturbegrenzung</td><td>Sicherheitsschwelle überschritten. Wärmetauscher verschmutzt.</td></tr>
+                    <tr><td class="code-block">117</td><td>Wasserdruck zu hoch</td><td>Druck > 3.0 bar. Ausdehnungsgefäß und Füllarmatur prüfen.</td></tr>
+                    <tr><td class="code-block">118</td><td>Wasserdruck zu niedrig</td><td>Druck < 0.5-0.8 bar. Wasser nachfüllen, Lecksuche.</td></tr>
+                    <tr><td class="code-block">128</td><td>Flammenabriss im Betrieb</td><td>Ionisation verloren. Gasfließdruck und Elektrode prüfen.</td></tr>
+                    <tr><td class="code-block">131</td><td>Brennerstörung</td><td>Zündfehler. Zündtrafo und Kabel prüfen.</td></tr>
+                    <tr><td class="code-block">132</td><td>Sicherheitsfehler</td><td>Interne Logikstörung oder Kurzschluss im Sicherheitskreis.</td></tr>
+                    <tr><td class="code-block">133</td><td>Keine Flammenbildung</td><td>Kein Gas, Ionisationselektrode defekt oder Siphon verstopft.</td></tr>
+                    <tr><td class="code-block">151</td><td>Interner Reglerfehler</td><td>LMU/LMS Defekt. Reset versuchen, sonst Platinentausch.</td></tr>
+                    <tr><td class="code-block">153</td><td>Verriegelung</td><td>Zu viele Startversuche. Manueller Reset erforderlich.</td></tr>
+                    <tr><td class="code-block">160</td><td>Gebläsefehler</td><td>Solldrehzahl nicht erreicht. Spannungsversorgung und PWM prüfen.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>1.2. EVO System Fehler (WGB Evo)</h3>
+        <div class="highlight-evo">
+            <p><strong>183 / 184:</strong> Kalibrierungsfehler. Gashahn prüfen, Abgassystem auf Rezirkulation prüfen.</p>
+            <p><strong>E154:</strong> Zirkulationsprüfung. Spreizung Vorlauf/Rücklauf zu hoch. Pumpe prüfen.</p>
+        </div>
+
+        <h3>1.3. Status-LED Indikation</h3>
+        <ul>
+            <li><span class="status-led led-green"></span> <strong>Blinkt Grün:</strong> Normalbetrieb, Wärmeanforderung.</li>
+            <li><span class="status-led led-red" style="opacity: 0.5;"></span> <strong>Blinkt Rot:</strong> Vorübergehender Fehler (z.B. Wasserdruck).</li>
+            <li><span class="status-led led-red"></span> <strong>Leuchtet Rot:</strong> Kritische Verriegelung (Reset nötig).</li>
+        </ul>
+    </section>
+
+    <!-- 2. Service-Ebene & Codierung -->
+    <section id="service">
+        <h2>2. Service-Ebene & Codierung</h2>
+        <div class="highlight-evo">
+            <p><strong>Zugang Fachmann-Ebene (ISR Plus):</strong></p>
+            <ol>
+                <li>Taste <strong>OK</strong> ca. 3-5 Sekunden gedrückt halten.</li>
+                <li>Ebene <strong>"Fachmann"</strong> wählen und mit OK bestätigen.</li>
+                <li>Navigation erfolgt über den Drehknopf, Zurück mit <strong>ESC</strong>.</li>
+            </ol>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zeile</th>
+                        <th>Funktion</th>
+                        <th>Standard / Empfehlung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>710</td><td>Komfortsollwert</td><td>Raumtemperaturvorgabe.</td></tr>
+                    <tr><td>720</td><td>Heizkennlinie</td><td>Heizkörper: 1.2–1.5 | FB-Heizung: 0.4–0.8.</td></tr>
+                    <tr><td>2210</td><td>Soll-Leistung Min</td><td>Vermeidung von Taktbetrieb.</td></tr>
+                    <tr><td>2317</td><td>Nenndrehzahl Gebläse</td><td>Einstellung der Max.-Leistung.</td></tr>
+                    <tr><td>2550</td><td>Wartungsintervall</td><td>Einstellung nach Monaten oder Betriebsstunden.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 3. Gasdruck H/L-Gas -->
+    <section id="gasdruck">
+        <h2>3. Gasdruck & $CO_2$ Werte</h2>
+        <h3>3.1. Anschlussdruck</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Gasart</th>
+                        <th>Nominal (mbar)</th>
+                        <th>Bereich (mbar)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Erdgas H (E)</td><td>20</td><td>17 – 25</td></tr>
+                    <tr><td>Erdgas L (LL)</td><td>20 / 25</td><td>18 – 30</td></tr>
+                    <tr><td>Flüssiggas (P)</td><td>50</td><td>42.5 – 57.5</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>3.2. $CO_2$ Einstellung (WGB / BBS / WBS)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Gasart</th>
+                        <th>Vollast (Max)</th>
+                        <th>Teillast (Min)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Erdgas H/L</td><td>8.8% – 9.0%</td><td>8.5% – 8.8%</td></tr>
+                    <tr><td>Flüssiggas P</td><td>10.3% – 10.8%</td><td>10.0% – 10.5%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p><i>Hinweis:</i> Min-Wert muss immer 0.2 - 0.5% unter dem Max-Wert liegen!</p>
+    </section>
+
+    <!-- 4. Fühlerkennwerte & Motoren -->
+    <section id="fuehler">
+        <h2>4. Fühlerkennwerte & Motoren</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Temp. (°C)</th>
+                        <th>NTC 10k (Ω)</th>
+                        <th>QAC34 1k (Ω)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0</td><td>32.500</td><td>570</td></tr>
+                    <tr><td>20</td><td>12.500</td><td>1.000</td></tr>
+                    <tr><td>25</td><td>10.000</td><td>1.100</td></tr>
+                    <tr><td>50</td><td>3.600</td><td>1.600</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>PWM-Pumpen Test:</strong> PWM-Stecker abziehen -> Pumpe muss auf 100% laufen.</p>
+    </section>
+
+    <!-- 5. Ioni, Anode & Wasser -->
+    <section id="wasser">
+        <h2>5. Ionisation, Anode & Wasser (VDI 2035)</h2>
+        <ul>
+            <li><strong>Ionisationsstrom:</strong> Min. 4-5 µA | Normal 15-30 µA.</li>
+            <li><strong>Magnesiumanode:</strong> Schutzstrom > 0.3 mA. Austausch bei < 0.1 mA.</li>
+            <li><strong>pH-Wert (Alu-Si):</strong> 8.2 – 8.5. (Kritisch: < 7.0 oder > 9.0).</li>
+            <li><strong>Leitfähigkeit:</strong> < 100 µS/cm empfohlen.</li>
+        </ul>
+    </section>
+
+    <!-- 6. Wartung (Matrix) -->
+    <section id="wartung">
+        <h2>6. Wartungs-Algorithmus</h2>
+        <div class="highlight-evo">
+            <ol>
+                <li>Fehlerhistorie auslesen (Zeile 8040).</li>
+                <li>Wärmetauscher trocken & nass reinigen (Nur Kunststoffspachtel!).</li>
+                <li>Siphon reinigen (Aluminium-Schlamm entfernen).</li>
+                <li>Brennerdichtung (Graphit) zwingend erneuern.</li>
+                <li>$CO_2$ Messung und ggf. Kalibrierung (i-Evo).</li>
+                <li>Service-Intervall zurücksetzen (Zeile 2551).</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- 7. Modell-Übersicht -->
+    <section id="modelle">
+        <h2>7. Modell-Übersicht</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serie</th>
+                        <th>Leistung</th>
+                        <th>Typ / Anwendung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>WGB (Evo)</td><td>15 – 38 kW</td><td>Wandgerät, Top-Modell, Alu-Si.</td></tr>
+                    <tr><td>BBS (Evo)</td><td>15 – 28 kW</td><td>Bodenstehend mit Schichtladespeicher.</td></tr>
+                    <tr><td>WBS / WBC</td><td>14 – 22 kW</td><td>Kompakt-Klasse (Solo/Combi).</td></tr>
+                    <tr><td>SGB</td><td>20 – 300 kW</td><td>Großkessel für Gewerbe.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 8. Ersatzteile & Art.-Nr. -->
+    <section id="ersatzteile">
+        <h2>8. Ersatzteile & Artikelnummern</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Art.-Nr.</th>
+                        <th>Bezeichnung</th>
+                        <th>Modell</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>7683466</td><td>Wartungsset (Dichtungen/Elek.)</td><td>WGB EVO 15-28</td></tr>
+                    <tr><td>986121</td><td>Brennertürdichtung (Graphit)</td><td>WGB 15-38</td></tr>
+                    <tr><td>7684617</td><td>Ionisationselektrode</td><td>WGB EVO</td></tr>
+                    <tr><td>7684614</td><td>Zündelektrode</td><td>WGB EVO</td></tr>
+                    <tr><td>624533</td><td>Außenfühler QAC34</td><td>Alle ISR</td></tr>
+                    <tr><td>7304627</td><td>Wasserdrucksensor</td><td>WGB / BBS</td></tr>
+                    <tr><td>7702241</td><td>Leiterplatte LMS15</td><td>WGB EVO</td></tr>
+                    <tr><td>626070</td><td>Stellmotor 3-Wege-Ventil</td><td>Wandgeräte</td></tr>
+                    <tr><td>7683935</td><td>Gasregelblock i-EVO</td><td>WGB EVO</td></tr>
+                    <tr><td>626155</td><td>Ausdehnungsgefäß 10L</td><td>WGB / WBS</td></tr>
+                    <!-- Список может быть продолжен до 50 позиций -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<button id="backToTop" title="Nach oben">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

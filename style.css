@@ -1,0 +1,198 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --border-color: #ddd;
+    --header-height: 60px;
+}
+
+[data-theme="dark"] {
+    --primary-color: #1a1a1a;
+    --accent-color: #ff4757;
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --border-color: #333;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header & Theme Switcher */
+header {
+    height: var(--header-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: var(--primary-color);
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.theme-toggle {
+    position: absolute;
+    right: 15px;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Navigation Menu */
+.nav-menu {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+}
+
+.nav-item {
+    background: var(--bg-color);
+    padding: 12px;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9em;
+    border: 1px solid var(--border-color);
+}
+
+/* Buttons and Links */
+.btn-large {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    margin: 15px 0;
+    background: var(--card-bg);
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.1s;
+}
+
+.btn-large:active {
+    transform: scale(0.98);
+}
+
+/* Tables (Technical Data) */
+.table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 12px 10px;
+    text-align: left;
+}
+
+th {
+    background: var(--primary-color);
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: rgba(0,0,0,0.03);
+}
+
+/* Back to Top */
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 999;
+}
+
+/* Responsive fixes */
+@media (max-width: 600px) {
+    .container { padding: 10px; }
+    h1 { font-size: 1.2rem; }
+    .nav-menu { grid-template-columns: 1fr 1fr; }
+}
+
+/* Vaillant Brand Theme */
+.brand-vaillant {
+    --primary-color: #008f7a; /* Vaillant Green */
+    --accent-color: #006b5a;
+}
+
+/* Viessmann Brand Theme */
+.brand-viessmann {
+    --primary-color: #e2001a; /* Viessmann Red */
+    --accent-color: #898989;
+    --dark-bg: #2d2d2d;
+}
+.brand-viessmann header { background-color: var(--primary-color); }
+.brand-viessmann .nav-item { border-left: 4px solid var(--primary-color); }
+
+/* Buderus Brand Theme */
+.brand-buderus {
+    --primary-color: #003366; /* Buderus Blue */
+    --accent-color: #00509d;
+    --light-bg: #f0f4f8;
+}
+.brand-buderus header { background-color: var(--primary-color); }
+.brand-buderus h2 { color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; }
+.brand-buderus .nav-item { border-left: 4px solid var(--accent-color); }
+
+/* Brötje Brand Theme */
+.brand-broetje {
+    --primary-color: #6d6e71; /* Brötje Grey */
+    --accent-color: #e30613;  /* Brötje Red */
+    --light-bg: #f8f9fa;
+}
+.brand-broetje header { background-color: var(--primary-color); border-bottom: 4px solid var(--accent-color); }
+.brand-broetje h2 { color: var(--primary-color); border-left: 5px solid var(--accent-color); padding-left: 15px; }
+.brand-broetje .nav-item { border-bottom: 2px solid transparent; }
+.brand-broetje .nav-item:hover { border-color: var(--accent-color); color: var(--accent-color); }

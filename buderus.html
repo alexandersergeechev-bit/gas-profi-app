@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de" class="brand-buderus">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buderus - Gas-Profi Handbuch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-title">BUDERUS</div>
+    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+</header>
+
+<div class="container">
+    <h1 style="text-align: center;">Technische Dokumentation Buderus</h1>
+
+    <!-- 0. Navigation Menu -->
+    <nav class="nav-menu">
+        <a href="#diagnose" class="nav-item">1. Diagnose & Fehler</a>
+        <a href="#service" class="nav-item">2. Service-Ebene</a>
+        <a href="#gasdruck" class="nav-item">3. Gasdruck / CO2</a>
+        <a href="#fuehler" class="nav-item">4. NTC & Motoren</a>
+        <a href="#loni" class="nav-item">5. Ioni, Anode & Wasser</a>
+        <a href="#wartung" class="nav-item">6. Wartung (Alu-Guss)</a>
+        <a href="#modelle" class="nav-item">7. Modell-Übersicht</a>
+        <a href="#ersatzteile" class="nav-item">8. Ersatzteile</a>
+    </nav>
+
+    <a href="gas-profi-app.html" class="btn-large" style="margin-bottom: 30px; border-color: #003366; color: #003366;">⬅ Zurück zur Markenauswahl</a>
+
+    <!-- 1. Diagnose & Fehlercodes -->
+    <section id="diagnose">
+        <h2>1. Diagnose & Fehlercodes</h2>
+        <p>Buderus nutzt Hauptcodes (z.B. 3C) und Sub-Codes (z.B. 217). Hier die wichtigsten für U072 & Logamax Plus.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Code</th><th>Sub-Code</th><th>Bedeutung</th><th>Maßnahme</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>6A</strong></td><td>227</td><td>Keine Flamme</td><td>Gasdruck, Elektrode und Erdung prüfen.</td></tr>
+                    <tr><td><strong>3C</strong></td><td>217</td><td>Gebläsefehler</td><td>Druckdose, Kabel und Lüfterrad prüfen.</td></tr>
+                    <tr><td><strong>4C</strong></td><td>224</td><td>STB Überhitzung</td><td>Anlagendruck und Pumpe prüfen. Luft im WT.</td></tr>
+                    <tr><td><strong>0Y</strong></td><td>204</td><td>Vorlauftemp. zu hoch</td><td>Zirkulation prüfen (Filter/Pumpenstufe).</td></tr>
+                    <tr><td><strong>2E</strong></td><td>218</td><td>Wassermangel</td><td>Druck auf 1.5 bar erhöhen. Sensor prüfen.</td></tr>
+                    <tr><td><strong>3L</strong></td><td>214</td><td>Lüfterdrehzahl</td><td>PWM-Signal oder Hall-Sensor fehlerhaft.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </section>
+
+    <!-- 2. Service-Ebene & Codierung -->
+    <section id="service">
+        <h2>2. Service-Ebene & Codierung</h2>
+        <h3>Zugang U072</h3>
+        <p>Gleichzeitig <strong>[+]</strong> und <strong>[-]</strong> halten bis <strong>L.1</strong> erscheint. Mit OK bestätigen.</p>
+        <h3>Zugang EMS Plus (RC310)</h3>
+        <p><strong>MENU</strong>-Taste ca. 5 Sek. gedrückt halten. Menü "Service" wählen.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Parameter</th><th>Bedeutung</th><th>Standard/Info</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1.1.A</td><td>Max. Heizleistung</td><td>Einstellung in %.</td></tr>
+                    <tr><td>1.2.F</td><td>Pumpenkennfeld</td><td>1=Nachlauf, 2=Dauer, 3=Auto.</td></tr>
+                    <tr><td>2.1.A</td><td>Max. Vorlauftemp.</td><td>Werkseinstellung meist 82°C.</td></tr>
+                    <tr><td>2.3.d</td><td>Min. Leistung</td><td>Wichtig für Gas-Min-Einstellung.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 3. Gasdruck H/L-Gas -->
+    <section id="gasdruck">
+        <h2>3. Gasdruck H/L-Gas</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Gasart</th><th>Anschlussdruck (mbar)</th><th>Toleranz (mbar)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Erdgas H (E)</td><td>20</td><td>17 – 25</td></tr>
+                    <tr><td>Erdgas L (LL)</td><td>20 / 25</td><td>18 – 30</td></tr>
+                    <tr><td>Flüssiggas (P)</td><td>50</td><td>42.5 – 57.5</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <p><strong>CO2-Werte für Logamax Plus (GB-Serie):</strong></p>
+        <ul>
+            <li><strong>GB072 / 172:</strong> 9.4% ± 0.2 (Vollast)</li>
+            <li><strong>GB162:</strong> 9.2% ± 0.2 (Vollast)</li>
+        </ul>
+    </section>
+
+    <!-- 4. Fühlerkennwerte & Motoren -->
+    <section id="fuehler">
+        <h2>4. Fühlerkennwerte & Motoren</h2>
+        <p><strong>Buderus NTC 10 kΩ (Bosch-Gruppe):</strong></p>
+        <div class="table-container">
+            <table>
+                <tr><td>0°C: 33.5 kΩ</td><td>25°C: 10.0 kΩ</td><td>60°C: 2.4 kΩ</td></tr>
+                <tr><td>10°C: 19.8 kΩ</td><td>30°C: 8.3 kΩ</td><td>90°C: 0.9 kΩ</td></tr>
+            </table>
+        </div>
+        <p><strong>Bauteile:</strong></p>
+        <ul>
+            <li><strong>U072 Pumpe:</strong> ca. 150-280 Ω. Kondensator prüfen (2.5 µF).</li>
+            <li><strong>3-Wege-Ventil (230V):</strong> Widerstand ca. 9-12 kΩ.</li>
+            <li><strong>Lüfter (PWM):</strong> Ohne Signal = 100% Notlauf (bei GB).</li>
+        </ul>
+    </section>
+
+    <!-- 5. Ioni, Anode & Wasser -->
+    <section id="loni">
+        <h2>5. Ionisation, Anode & Wasser</h2>
+        <ul>
+            <li><strong>Ionisationsstrom:</strong> Logamax Plus: 15–40 µA (Vollast). Min: 5 µA.</li>
+            <li><strong>Erdung:</strong> N zu PE < 1.0 V. Phasenempfindlich (L/N nicht tauschen!).</li>
+            <li><strong>Schutzanode:</strong> Prüfstrom > 0.3 mA DC (Logalux Speicher).</li>
+            <li><strong>Wasser (Alu-WT):</strong> pH-Wert <strong>7.5 – 8.5</strong>. Niemals > 9.0!</li>
+        </ul>
+        
+    </section>
+
+    <!-- 6. Wartung (Alu-Guss) -->
+    <section id="wartung">
+        <h2>6. Wartung (Alu-Guss WT)</h2>
+        <blockquote>
+            <strong>Wichtig:</strong> Für Alu-Guss Wärmetauscher (WB5/WB6) keine Stahlbürsten verwenden! Nur Kunststoffwerkzeuge.
+        </blockquote>
+        <ol>
+            <li>Fehlerspeicher prüfen (RC310).</li>
+            <li>Wärmetauscher mechanisch reinigen (Plastikspachtel) und spülen.</li>
+            <li>Siphon reinigen (Bajo-Verschluss).</li>
+            <li>Brennerdichtung (1-Satz) zwingend erneuern.</li>
+            <li>MAG Vordruck prüfen (0.2 bar unter Systemdruck).</li>
+        </ol>
+        
+    </section>
+
+    <!-- 7. Modell-Übersicht -->
+    <section id="modelle">
+        <h2>7. Modell-Übersicht</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Serie</th><th>Typ</th><th>Merkmale</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Logamax U072</td><td>Traditionell</td><td>Robust, Kupfer-WT, Bosch-Identisch.</td></tr>
+                    <tr><td>Logamax GB072</td><td>Brennwert</td><td>Alu-Guss WT WB6, EMS-Bus.</td></tr>
+                    <tr><td>Logamax GB172i</td><td>Brennwert</td><td>Glasfront, Internet ready, Premium.</td></tr>
+                    <tr><td>Logano G234</td><td>Boden (Atmo)</td><td>Gussglieder-Kessel, legendär robust.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 8. Ersatzteile -->
+    <section id="ersatzteile">
+        <h2>8. Ersatzteile & Art.-Nr.</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Teil</th><th>Artikel-Nr.</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Wartungsset GB072/172</td><td>8718600017</td></tr>
+                    <tr><td>Ionisationselektrode GB</td><td>8718107087</td></tr>
+                    <tr><td>Glühzünder U072</td><td>8737601099</td></tr>
+                    <tr><td>Drucksensor digital</td><td>8718641190</td></tr>
+                    <tr><td>NTC Tauchfühler</td><td>8714500071</td></tr>
+                    <tr><td>Umpwälzpumpe Grundfos</td><td>8718648181</td></tr>
+                    <tr><td>3-Wege-Ventil Motor</td><td>8718644562</td></tr>
+                    <tr><td>Lüfter U072</td><td>8737601103</td></tr>
+                    <tr><td>Gasventil (Honeywell)</td><td>8718600021</td></tr>
+                    <tr><td>MAG 8 Liter</td><td>8716105545</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<button id="backToTop" title="Nach oben">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="de" class="brand-vaillant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaillant - Gas-Profi Handbuch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-title">VAILLANT</div>
+    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+</header>
+
+<div class="container">
+    <h1 style="text-align: center;">Technische Dokumentation Vaillant</h1>
+
+    <!-- 0. Navigation Menu -->
+    <nav class="nav-menu">
+        <a href="#diagnose" class="nav-item">1. Diagnose & Fehler</a>
+        <a href="#service" class="nav-item">2. Service-Ebene</a>
+        <a href="#gasdruck" class="nav-item">3. Gasdruck</a>
+        <a href="#fuehler" class="nav-item">4. Fühler & Motoren</a>
+        <a href="#wasser" class="nav-item">5. Ioni & Wasser</a>
+        <a href="#wartung" class="nav-item">6. Wartung</a>
+        <a href="#modelle" class="nav-item">7. Modelle</a>
+        <a href="#ersatzteile" class="nav-item">8. Ersatzteile</a>
+    </nav>
+
+    <a href="gas-profi-app.html" class="btn-large" style="border-color: #ccc; margin-bottom: 30px;">⬅ Zurück zur Auswahl</a>
+
+    <!-- 1. Diagnose & Fehlercodes -->
+    <section id="diagnose">
+        <h2>1. Diagnose & Fehlercodes</h2>
+        <p>Die Fehler werden mit dem Buchstaben „F“ (Fault/Fehler) bezeichnet. Gültig für atmoTEC, turboTEC, ecoTEC, ecoCOMPACT.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Bedeutung</th>
+                        <th>Ursache und Abhilfe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>F.00 / F.01</strong></td><td>Unterbrechung NTC (Vorlauf / Rücklauf)</td><td>NTC defekt, Stecker lose, Kabel beschädigt. Widerstand prüfen.</td></tr>
+                    <tr><td><strong>F.10 / F.11</strong></td><td>Kurzschluss NTC (Vorlauf / Rücklauf)</td><td>Gehäuseschluss oder Kabelbrücke. Sensor austauschen.</td></tr>
+                    <tr><td><strong>F.20</strong></td><td>Sicherheitstemperaturbegrenzer (STB)</td><td>Überhitzung (> 97°C). Pumpe, Wasserstand, Luft im System prüfen.</td></tr>
+                    <tr><td><strong>F.22</strong></td><td>Trockenlauf (Wassermangel)</td><td>Druck < 0.6 bar. Wasser nachfüllen. Drucksensor/Pumpe prüfen.</td></tr>
+                    <tr><td><strong>F.23</strong></td><td>Wassermangel (Spreizung zu groß)</td><td>Zirkulationsproblem, Filter verstopft, Pumpe blockiert.</td></tr>
+                    <tr><td><strong>F.24</strong></td><td>Wassermangel (Temperaturanstieg zu schnell)</td><td>Pumpe blockiert oder Luftpolster im Wärmetauscher.</td></tr>
+                    <tr><td><strong>F.27</strong></td><td>Fremdlicht (Ionisationssignal trotz geschlossenem Gasventil)</td><td>Gasmagnetventil undicht, Elektroden feucht, Elektronik defekt.</td></tr>
+                    <tr><td><strong>F.28</strong></td><td>Zündfehler (Anlauf erfolglos)</td><td>Kein Gas, Luft in Gasleitung, Zündtrafo defekt, Erdungsfehler.</td></tr>
+                    <tr><td><strong>F.29</strong></td><td>Flammenausfall während des Betriebs</td><td>Gasdruck schwankt, Abgasrezirkulation, Kondensatstau (Siphon).</td></tr>
+                    <tr><td><strong>F.32</strong></td><td>Lüfterfehler (turbo/eco)</td><td>Drehzahl unplausibel. Hall-Sensor oder Kabel prüfen.</td></tr>
+                    <tr><td><strong>F.33</strong></td><td>Druckwächterfehler (turboTEC)</td><td>Druckwächter schaltet nicht. Abgassystem/Pitot-Rohre prüfen.</td></tr>
+                    <tr><td><strong>F.36</strong></td><td>Abgasaustritt (atmoTEC)</td><td>Strömungssicherung/Kaminzug prüfen, Zuluft sicherstellen.</td></tr>
+                    <tr><td><strong>F.49</strong></td><td>eBUS-Fehlspannung</td><td>Kurzschluss oder Überlastung am eBUS (Reglerleitung).</td></tr>
+                    <tr><td><strong>F.61 / F.62</strong></td><td>Gasventil / Elektronikfehler</td><td>Ansteuerung Gasventil fehlerhaft. Hauptplatine prüfen.</td></tr>
+                    <tr><td><strong>F.70</strong></td><td>Ungültiger Gerätekennung (DSN)</td><td>DSN-Code in d.93 fehlt oder ist falsch nach Platinentausch.</td></tr>
+                    <tr><td><strong>F.75</strong></td><td>Drucksensor (Kein Drucksprung)</td><td>Pumpe läuft an, aber Sensor misst keinen Druckanstieg. Sensor verstopft.</td></tr>
+                    <tr><td><strong>F.76</strong></td><td>Überhitzung Wärmetauscher (ecoTEC)</td><td>Schmelzsicherung am Wärmetauscher ausgelöst. Austausch nötig.</td></tr>
+                    <tr><td><strong>F.83</strong></td><td>Fehler Temperaturänderung</td><td>NTCs reagieren nicht auf Brennerstart. Zu wenig Wasser.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <blockquote>
+            <strong>Techniker-Tipp:</strong> Reset durch Halten der Taste mit dem durchgestrichenen Flammensymbol (3 Sek.). Bei ecoTEC Modellen bei F.28/F.29 immer erst den <strong>Siphon</strong> prüfen!
+        </blockquote>
+    </section>
+
+    <!-- 2. Service-Ebene & Codierung -->
+    <section id="service">
+        <h2>2. Service-Ebene & Codierung</h2>
+        <h3>Zugang zum Diagnosemenü</h3>
+        <ol>
+            <li>Gleichzeitig <strong>„+“</strong> und <strong>„–“</strong> drücken (d.00 erscheint).</li>
+            <li>Zu <strong>d.97</strong> navigieren.</li>
+            <li>Code <strong>17</strong> eingeben und mit „Ok“ bestätigen.</li>
+        </ol>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Code</th><th>Beschreibung</th><th>Empfehlung</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>d.00</td><td>Heizungsteillast</td><td>An reale Heizlast in kW anpassen.</td></tr>
+                    <tr><td>d.01</td><td>Pumpennachlauf</td><td>Werk: 5 Min. Bei großen Anlagen erhöhen.</td></tr>
+                    <tr><td>d.02</td><td>Brennersperrzeit</td><td>Vermeidung von Takten. Optimal 15–20 Min.</td></tr>
+                    <tr><td>d.33</td><td>Lüfterdrehzahl</td><td>Ist-Wert zur Diagnose der Modulation.</td></tr>
+                    <tr><td>d.44</td><td>Ionisationsstrom</td><td>Digitaler Wert (0-100). Diagnose der Flamme.</td></tr>
+                    <tr><td>d.93</td><td>Gerätekennung (DSN)</td><td>Nach Platinentausch Code vom Typenschild eingeben.</td></tr>
+                    <tr><td>d.96</td><td>Werkseinstellung</td><td>Auf 1 setzen für Reset aller Parameter.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <h3>Prüfprogramme (P-Codes)</h3>
+        <p>Aktivierung: „+“ halten beim Einschalten oder über das Menü.</p>
+        <ul>
+            <li><strong>P.00:</strong> Entlüftungsprogramm (6,5 Min.).</li>
+            <li><strong>P.01:</strong> Maximallast (für Gasdruckmessung/CO2).</li>
+            <li><strong>P.02:</strong> Minimallast (Zündstabilität).</li>
+        </ul>
+    </section>
+
+    <!-- 3. Gasdruck H/L-Gas -->
+    <section id="gasdruck">
+        <h2>3. Gasdruck H/L-Gas</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Gasart</th><th>Anschlussdruck (mbar)</th><th>Zulässiger Bereich (mbar)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Erdgas H (E)</td><td>20</td><td>17 – 25</td></tr>
+                    <tr><td>Erdgas L (LL)</td><td>20 / 25</td><td>18 – 30</td></tr>
+                    <tr><td>Flüssiggas (P/B)</td><td>30 / 50</td><td>Reglerabhängig</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>Brennwertgeräte (ecoTEC) CO2-Werte:</strong></p>
+        <ul>
+            <li>Erdgas H: 9,0 Prozent plus/minus 1,0 Prozent</li>
+            <li>Erdgas L: 8,8 Prozent plus/minus 1,0 Prozent</li>
+        </ul>
+    </section>
+
+    <!-- 4. Fühlerkennwerte & Motoren -->
+    <section id="fuehler">
+        <h2>4. Fühlerkennwerte & Motoren</h2>
+        <p><strong>NTC-Tabelle (10 kOhm bei 25°C):</strong></p>
+        <div class="table-container">
+            <table>
+                <tr><td>0°C: 32.5 kΩ</td><td>25°C: 10.0 kΩ</td><td>60°C: 2.5 kΩ</td></tr>
+                <tr><td>10°C: 19.8 kΩ</td><td>30°C: 8.0 kΩ</td><td>90°C: 0.9 kΩ</td></tr>
+            </table>
+        </div>
+        <p><strong>Pumpen & Lüfter:</strong></p>
+        <ul>
+            <li><strong>Pumpe (230V):</strong> Widerstand ca. 150–350 Ohm. Anlaufkondensator prüfen (2–2.6 µF).</li>
+            <li><strong>Lüfter (ecoTEC):</strong> 24V/325V DC. Niemals 230V direkt anlegen!</li>
+            <li><strong>3-Wege-Ventil:</strong> Prüfung über P.06 oder manuelles Umschalten im Menü.</li>
+        </ul>
+    </section>
+
+    <!-- 5. Ioni, Anode & Wasser -->
+    <section id="wasser">
+        <h2>5. Ionisation, Anode & Wasser</h2>
+        <ul>
+            <li><strong>Ionisationsstrom:</strong> Minimum 1.5 µA, Normal 5 – 20 µA. Bei IoniDetect via d.44 prüfen.</li>
+            <li><strong>Magnesiumanode:</strong> Prüfstrom > 0.3 mA DC. Bei < 0.3 mA tauschen.</li>
+            <li><strong>Wasseraufbereitung (VDI 2035):</strong>
+                <br>pH-Wert (Edelstahl): 8.2 – 9.0
+                <br>Härte: < 0.11 mmol/l (empfohlen für ecoTEC).
+            </li>
+        </ul>
+    </section>
+
+    <!-- 6. Wartung (Matrix) -->
+    <section id="wartung">
+        <h2>6. Wartung (Algorithmus)</h2>
+        <ol>
+            <li>Fehlerspeicher auslesen (d.94).</li>
+            <li>Brenner ausbauen, trocken reinigen (weiche Bürste).</li>
+            <li>Wärmetauscher spülen (ecoTEC) / Lamellen reinigen (atmo/turbo).</li>
+            <li>Elektroden prüfen (Abstand 3.5 mm).</li>
+            <li><strong>Wichtig:</strong> Siphon ausbauen и reinigen.</li>
+            <li>Ausdehnungsgefäß (MAG) Vordruck prüfen (0.75 – 1.0 bar).</li>
+            <li>Abgasanalyse (P.01).</li>
+        </ol>
+    </section>
+
+    <!-- 7. Modell-Übersicht -->
+    <section id="modelle">
+        <h2>7. Modell-Übersicht</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Serie</th><th>Typ</th><th>Merkmale</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>ecoTEC pro</td><td>VCW 236/286</td><td>Basis-Brennwert, Kunststoff-Block.</td></tr>
+                    <tr><td>ecoTEC plus</td><td>VC/VCW 146-326</td><td>Gehobene Klasse, Messing-Hydraulik.</td></tr>
+                    <tr><td>atmoTEC</td><td>VU/VUW ...0</td><td>Schornsteinanschluss (Kamin).</td></tr>
+                    <tr><td>turboTEC</td><td>VU/VUW ...2</td><td>Außenwandanschluss (Gebläse).</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 8. Ersatzteile & Art.-Nr. -->
+    <section id="ersatzteile">
+        <h2>8. Ersatzteile & Art.-Nr.</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Bezeichnung</th><th>Artikel-Nummer</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Wartungssatz ecoTEC plus</td><td>0020133812</td></tr>
+                    <tr><td>Ionisationselektrode ecoTEC</td><td>0020021154</td></tr>
+                    <tr><td>Zündelektrode ecoTEC</td><td>0020021152</td></tr>
+                    <tr><td>NTC-Fühler (Universal)</td><td>193593</td></tr>
+                    <tr><td>Drucksensor (digital)</td><td>0020059717</td></tr>
+                    <tr><td>Pumpe (Grundfos VPM 5)</td><td>0020197507</td></tr>
+                    <tr><td>Vorrangumschaltventil (Motor)</td><td>0020132682</td></tr>
+                    <tr><td>Sicherheitsventil (3 bar)</td><td>190732</td></tr>
+                    <tr><td>Ausdehnungsgefäß (10 l)</td><td>0020223525</td></tr>
+                    <tr><td>Lüfter (turboTEC /3)</td><td>190215</td></tr>
+                    <tr><td>Gasventil (Honeywell ecoTEC)</td><td>0020110998</td></tr>
+                    <tr><td>Platine (Leiterplatte /3)</td><td>0020023216</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<button id="backToTop" title="Nach oben">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
