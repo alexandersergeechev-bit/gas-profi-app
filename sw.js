@@ -1,7 +1,7 @@
 const CACHE_NAME = 'gas-profi-v1';
 const ASSETS = [
   '/',
-  '/gas-profi-app.html',
+  '/index.html',
   '/viessmann.html',
   '/vaillant.html',
   '/buderus.html',

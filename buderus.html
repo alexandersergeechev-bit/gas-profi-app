@@ -14,175 +14,815 @@
 </header>
 
 <div class="container">
-    <h1 style="text-align: center;">Technische Dokumentation Buderus</h1>
+    <h1 style="text-align: center;">Technisches Handbuch für Buderus-Heizsysteme</h1>
+    
+    <p>Dieses Dokument enthält umfassende technische Daten, Diagnoseverfahren, Parameterstrukturen und Ersatzteillisten für Buderus-Heizsysteme (Logamax, Logamax plus, Logano). Optimiert für Manfred Rücker.</p>
 
     <!-- 0. Navigation Menu -->
     <nav class="nav-menu">
-        <a href="#diagnose" class="nav-item">1. Diagnose & Fehler</a>
-        <a href="#service" class="nav-item">2. Service-Ebene</a>
-        <a href="#gasdruck" class="nav-item">3. Gasdruck / CO2</a>
-        <a href="#fuehler" class="nav-item">4. NTC & Motoren</a>
+        <a href="#diagnose" class="nav-item">1. Diagnose & Fehlercodes</a>
+        <a href="#service" class="nav-item">2. Service-Ebene & Codierung</a>
+        <a href="#gasdruck" class="nav-item">3. Gasdruck H/L-Gas</a>
+        <a href="#fuehler" class="nav-item">4. Fühlerkennwerte & Motoren</a>
         <a href="#loni" class="nav-item">5. Ioni, Anode & Wasser</a>
-        <a href="#wartung" class="nav-item">6. Wartung (Alu-Guss)</a>
+        <a href="#wartung" class="nav-item">6. Wartung (Matrix)</a>
         <a href="#modelle" class="nav-item">7. Modell-Übersicht</a>
-        <a href="#ersatzteile" class="nav-item">8. Ersatzteile</a>
+        <a href="#ersatzteile" class="nav-item">8. Ersatzteile & Art.-Nr.</a>
     </nav>
 
-    <a href="gas-profi-app.html" class="btn-large" style="margin-bottom: 30px; border-color: #003366; color: #003366;">⬅ Zurück zur Markenauswahl</a>
+    <a href="index.html" class="btn-large" style="margin-bottom: 30px; border-color: #003366; color: #003366;">⬅ Zurück zur Markenauswahl</a>
 
     <!-- 1. Diagnose & Fehlercodes -->
     <section id="diagnose">
         <h2>1. Diagnose & Fehlercodes</h2>
-        <p>Buderus nutzt Hauptcodes (z.B. 3C) und Sub-Codes (z.B. 217). Hier die wichtigsten für U072 & Logamax Plus.</p>
+        <p>Buderus-Kessel (Bosch Thermotechnik Gruppe) verwenden ein spezifisches Fehlercodierungssystem. Bei modernen Modellen (Baureihe Logamax plus GB) bestehen die Fehler aus einem Hauptcode (z. B. 3C) und einem zusätzlichen dreistelligen Servicecode (z. B. 217), der die Ursache präzisiert. Unten aufgeführt ist die Tabelle der häufigsten und kritischsten Fehler für die populären Produktlinien Logamax U072, GB062, GB072, GB162 und GB172.</p>
+        
+        <h3>1.1. Kritische Fehler (Kesselblockierung)</h3>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Code</th><th>Sub-Code</th><th>Bedeutung</th><th>Maßnahme</th></tr>
+                    <tr>
+                        <th>Code</th>
+                        <th>Servicecode</th>
+                        <th>Bedeutung</th>
+                        <th>Fehlerbehebung</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>6A</strong></td><td>227</td><td>Keine Flamme</td><td>Gasdruck, Elektrode und Erdung prüfen.</td></tr>
-                    <tr><td><strong>3C</strong></td><td>217</td><td>Gebläsefehler</td><td>Druckdose, Kabel und Lüfterrad prüfen.</td></tr>
-                    <tr><td><strong>4C</strong></td><td>224</td><td>STB Überhitzung</td><td>Anlagendruck und Pumpe prüfen. Luft im WT.</td></tr>
-                    <tr><td><strong>0Y</strong></td><td>204</td><td>Vorlauftemp. zu hoch</td><td>Zirkulation prüfen (Filter/Pumpenstufe).</td></tr>
-                    <tr><td><strong>2E</strong></td><td>218</td><td>Wassermangel</td><td>Druck auf 1.5 bar erhöhen. Sensor prüfen.</td></tr>
-                    <tr><td><strong>3L</strong></td><td>214</td><td>Lüfterdrehzahl</td><td>PWM-Signal oder Hall-Sensor fehlerhaft.</td></tr>
+                    <tr>
+                        <td><strong>0Y</strong></td>
+                        <td>204</td>
+                        <td>Vorlauftemperatur über dem Normwert</td>
+                        <td>Zirkulation, Sauberkeit der Filter und Funktion der Pumpe prüfen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2E</strong></td>
+                        <td>218</td>
+                        <td>Systemdruck zu niedrig</td>
+                        <td>Wasser auf 1.5 bar nachfüllen. Drucksensor prüfen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3C</strong></td>
+                        <td>217</td>
+                        <td>Gebläse startet nicht</td>
+                        <td>Spannungsversorgung des Gebläses, Sauberkeit der Pitot-Rohre und Differenzdruckschalter prüfen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4C</strong></td>
+                        <td>224</td>
+                        <td>Sicherheitstemperaturbegrenzer (STB) hat ausgelöst</td>
+                        <td>Überhitzung des Wärmetauschers. Entlüften, Pumpe prüfen. Reset nach Abkühlung durchführen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6A</strong></td>
+                        <td>227</td>
+                        <td>Keine Flamme erkannt</td>
+                        <td>Gasdruck, Ionisationselektrode, Siphon (Kondensatstau) und Erdung prüfen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6C</strong></td>
+                        <td>306</td>
+                        <td>Flamme nach Gasausschaltung</td>
+                        <td>Gasventil auf Dichtheit prüfen, Elektroden trocknen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>9L</strong></td>
+                        <td>234</td>
+                        <td>Fehler der Gasarmatur</td>
+                        <td>Spulen des Gasventils, Steckkontakte auf der Platine prüfen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CL</strong></td>
+                        <td>-</td>
+                        <td>Warmwasser-Temperaturfühler (NTC) defekt</td>
+                        <td>Widerstand des Speicherfühlers prüfen (siehe Punkt 4), bei Unterbrechung austauschen.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-        
+
+        <h3>1.2. Fehler der Baureihe Logamax U072 (Konventionell)</h3>
+        <p>In dieser Serie wird ein vereinfachter alphanumerischer Code verwendet.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Beschreibung</th>
+                        <th>Maßnahme des Technikers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>6A</strong></td>
+                        <td>Keine Ionisation</td>
+                        <td>Phasenlage (L/N), Ionisationsstrom und Gasverfügbarkeit prüfen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3C</strong></td>
+                        <td>Differenzdruckschalter schließt nicht</td>
+                        <td>Gebläse prüfen und sicherstellen, dass das Abgassystem nicht verstopft ist (Eis oder Schmutz).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4C</strong></td>
+                        <td>Überhitzungsthermostat hat ausgelöst</td>
+                        <td>Prüfen, ob die Absperrhähne des Heizkreises geöffnet sind und ob der Hauptwärmetauscher verstopft ist.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ed</strong></td>
+                        <td>Interner Platinenfehler</td>
+                        <td>Reset versuchen. Wenn der Fehler wiederholt auftritt, Elektronik austauschen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FA</strong></td>
+                        <td>Ionisationsstrom nach Ventilschließung</td>
+                        <td>Klebendes Gasventil oder Feuchtigkeit an den Elektroden.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>1.3. Spezifische Fehler der Brennwertkessel GB162 / GB172</h3>
+        <p>Bei diesen Modellen ist der Wärmetauscher aus einer Aluminium-Silizium-Legierung (WB5 / WB6) gefertigt, was besondere Aspekte mit sich bringt:</p>
+        <ul>
+            <li><strong>Code 3L (214):</strong> Gebläse erreicht die erforderliche Drehzahl nicht. Häufig verbunden mit einem schlechten kontakt im PWM-Steuerkabelbaum.</li>
+            <li><strong>Code 4Y (285):</strong> Fehler des Vorlauftemperatufühlers. Ein plötzlicher Temperatursprung deutet auf Luft im Wärmetauscher hin.</li>
+            <li><strong>Code 1C (210):</strong> Abgastemperatur über dem Normwert (üblicherweise &gt; 105°C). Ursache: Starke Verschmutzung des Wärmetauschers auf der Flammenseite oder Beschädigung der internen Isolierung.</li>
+        </ul>
+
+        <h3>1.4. Diagnose über den "Fehlerspeicher"</h3>
+        <p>Für den Zugriff auf die Tiefendiagnose an der Logamatic RC (300/310) Regelung:</p>
+        <ol>
+            <li>Die Taste <strong>MENU</strong> gedrückt halten, bis das Servicemenü erscheint.</li>
+            <li>Den Punkt <strong>Diagnose (Diagnose) -&gt; Fehlerspeicher (Fehlerspeicher)</strong> auswählen.</li>
+            <li>Dort ist nicht nur der Code sichtbar, sondern auch die Bedingungen (Temperatur, Leistung), unter denen die Störung aufgetreten ist.</li>
+        </ol>
+        <p><strong>Empfehlungen zum Zurücksetzen (Reset):</strong></p>
+        <p>Die <strong>RESET</strong>-Taste auf dem Bedienfeld des Kessels 3–5 Sekunden lang gedrückt halten. Wichtig: Wenn der Fehler 6A (keine Zündung) 3–5 Mal hintereinander auftritt, kann sich die Elektronik für einen längeren Zeitraum sperren ("Schutz vor Fehlbedienung"). In diesem Fall muss der Kessel für 30 Minuten vom Netz getrennt werden.</p>
     </section>
 
     <!-- 2. Service-Ebene & Codierung -->
     <section id="service">
         <h2>2. Service-Ebene & Codierung</h2>
-        <h3>Zugang U072</h3>
-        <p>Gleichzeitig <strong>[+]</strong> und <strong>[-]</strong> halten bis <strong>L.1</strong> erscheint. Mit OK bestätigen.</p>
-        <h3>Zugang EMS Plus (RC310)</h3>
-        <p><strong>MENU</strong>-Taste ca. 5 Sek. gedrückt halten. Menü "Service" wählen.</p>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr><th>Parameter</th><th>Bedeutung</th><th>Standard/Info</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>1.1.A</td><td>Max. Heizleistung</td><td>Einstellung in %.</td></tr>
-                    <tr><td>1.2.F</td><td>Pumpenkennfeld</td><td>1=Nachlauf, 2=Dauer, 3=Auto.</td></tr>
-                    <tr><td>2.1.A</td><td>Max. Vorlauftemp.</td><td>Werkseinstellung meist 82°C.</td></tr>
-                    <tr><td>2.3.d</td><td>Min. Leistung</td><td>Wichtig für Gas-Min-Einstellung.</td></tr>
-                </tbody>
-            </table>
-        </div>
+        <p>Der Zugang zum Servicemenü von Buderus hängt von der Art der installierten Regelung ab. Bei modernen Kesseln ist dies entweder das integrierte Bedienfeld (wie beim Logamax U072) oder die externen Regler der Logamatic RC-Serie (RC200, RC300, RC310).</p>
+        
+        <h3>2.1. Logamax U072 (Konventionelle Wandkessel)</h3>
+        <p>Dieses Modell verfügt über ein zweistufiges Servicemenü.</p>
+        <p><strong>Zugang:</strong> Die Tasten <strong>[+]</strong> und <strong>[-]</strong> gleichzeitig gedrückt halten, bis im Display „L.1“ (Servicemenü Ebene 1) erscheint. Mit den Tasten [+] oder [-] kann zwischen den Ebenen L.1, L.2, L.3 gewechselt werden. Die Taste <strong>OK</strong> (oder die Taste mit dem Symbol „Flamme/Reset“) drücken, um die Ebene zu betreten. Zur Änderung eines Parameters [+] und [-] verwenden, zum Speichern OK gedrückt halten, bis die Symbole „[]“ erscheinen.</p>
+        <p><strong>Hauptparameter (Ebene L.1 und L.2):</strong></p>
+        <ul>
+            <li><strong>1.1.A:</strong> Maximale Heizleistung (in %).</li>
+            <li><strong>1.1.b:</strong> Warmwasserleistung.</li>
+            <li><strong>1.2.F:</strong> Pumpenbetriebsart (1 — Nachlauf, 2 — Dauerbetrieb, 3 — intelligenter Modus).</li>
+            <li><strong>2.1.A:</strong> Maximale Vorlauftemperatur.</li>
+            <li><strong>2.3.d:</strong> Minimale Leistung (wichtig für die Einstellung des minimalen Gasdrucks).</li>
+        </ul>
+
+        <h3>2.2. EMS / EMS Plus Plattform (RC200, RC300, RC310)</h3>
+        <p>Dies ist das am weitesten verbreitete System für Brennwertkessel (GB062, GB072, GB162, GB172).</p>
+        <p><strong>Zugang zum Menü (für RC310):</strong> Die Taste <strong>MENU</strong> etwa 5 Sekunden lang gedrückt halten, bis die Anzeige „Servicemenü“ erscheint.</p>
+        <p><strong>Navigation und Schlüsselbereiche:</strong></p>
+        <ul>
+            <li><strong>Inbetriebnahme (Inbetriebnahme):</strong> Assistent für die Schnelleinrichtung (Sprache, Datum, Systemtyp).</li>
+            <li><strong>Heizkreis (Heizkreis):</strong> Hier wird die Heizkurve (Heizkurve), die Auslegungstemperatur und die Gebäudeart (schwer/leicht) eingestellt.</li>
+            <li><strong>Diagnose (Diagnose):</strong>
+                <ul>
+                    <li><strong>Funktionstest (Funktionstest):</strong> Manueller Start von Pumpe, Gebläse, 3-Wege-Ventil.</li>
+                    <li><strong>Monitorwerte (Monitorwerte):</strong> Anzeige der realen Sensorwerte (Temperatur, Ionisationsstrom in µA, Gebläsedrehzahl).</li>
+                    <li><strong>Fehlerspeicher (Fehlerspeicher):</strong> Liste der letzten 20 Störungen mit Systemparametern zum Zeitpunkt des Ausfalls.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>2.3. Codierung (Codierung) und Spezialfunktionen</h3>
+        <p>Bei Buderus sind viele Funktionen hinter Codes verborgen, die eine Anpassung des Kessels an das System ermöglichen.</p>
+        <p><strong>Schornsteinfegerfunktion (Schornsteinfeger):</strong> Aktivierung über die Taste mit dem Rohrsymbol. Der Kessel fährt auf maximale Leistung für die Abgasmessung. Gedrückt halten — der Kessel fährt auf minimale Leistung (wichtig für die CO2-Überprüfung).</p>
+        <p><strong>Werkseinstellung (Reset):</strong> Im Servicemenü gibt es immer den Punkt „Werkseinstellung“. Verwenden Sie diesen, wenn sich die Regelung aufgrund von Codierungsfehlern unlogisch verhält.</p>
+        <p><strong>Empfehlungen für Techniker:</strong></p>
+        <ul>
+            <li><strong>Menüsperre:</strong> Wenn Sie das Menü aufrufen und nur einen Teil der Parameter sehen, prüfen Sie die Einstellung „Zugangsebene“. Manchmal ist die Eingabe eines Zugangscodes erforderlich (standardmäßig ist bei den meisten Buderus-Modellen kein Code erforderlich oder er lautet „0000“).</li>
+            <li><strong>Heizkurve:</strong> Buderus reagiert sehr empfindlich auf die Kurveneinstellung. Wenn sich der Kunde in der Übergangszeit über „Unterversorgung“ beschwert, ändern Sie nicht die Temperatur, sondern die „Parallele Verschiebung“ der Kurve im Servicemenü des Heizkreises.</li>
+            <li><strong>Sommerbetrieb:</strong> Überprüfen Sie den Parameter „Sommer-/Wintergrenze“ (standardmäßig meist 16-17°C). Wenn es draußen warm ist, schaltet der Kessel die Heizung nicht ein, selbst wenn der Drehknopf auf Maximum steht.</li>
+        </ul>
+        <blockquote>
+            <strong>Wichtig:</strong> Nach der Änderung von Parametern im Servicemenü (insbesondere bezüglich Leistung und Gasdruck) immer einen Vermerk im Servicebuch des Kessels machen.
+        </blockquote>
     </section>
 
     <!-- 3. Gasdruck H/L-Gas -->
     <section id="gasdruck">
         <h2>3. Gasdruck H/L-Gas</h2>
+        <p>Die Einstellung des Gasventils bei Buderus-Kesseln (wie bei allen Geräten von Bosch Thermotechnik) ist prinzipiell in zwei Typen unterteilt: Die Einstellung konventioneller Kessel (U072) nach Düsendruck und die Einstellung von Brennwertkessel (GB) nach dem Gas-Luft-Verhältnis (CO2).</p>
+        
+        <h3>3.1. Anschlussdruck (Inlet Gas Pressure)</h3>
+        <p>Wird am Eingangsstutzen des Gasventils bei laufendem Kessel gemessen.</p>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Gasart</th><th>Anschlussdruck (mbar)</th><th>Toleranz (mbar)</th></tr>
+                    <tr>
+                        <th>Gasart</th>
+                        <th>Nennwert (mbar)</th>
+                        <th>Zulässiger Bereich (mbar)</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Erdgas H (E)</td><td>20</td><td>17 – 25</td></tr>
-                    <tr><td>Erdgas L (LL)</td><td>20 / 25</td><td>18 – 30</td></tr>
-                    <tr><td>Flüssiggas (P)</td><td>50</td><td>42.5 – 57.5</td></tr>
+                    <tr>
+                        <td>Erdgas H (E)</td>
+                        <td>20</td>
+                        <td>17 – 25</td>
+                    </tr>
+                    <tr>
+                        <td>Erdgas L (LL)</td>
+                        <td>20 / 25</td>
+                        <td>18 – 30</td>
+                    </tr>
+                    <tr>
+                        <td>Flüssiggas (P)</td>
+                        <td>50</td>
+                        <td>42.5 – 57.5</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-        
-        <p><strong>CO2-Werte für Logamax Plus (GB-Serie):</strong></p>
+        <blockquote>
+            <strong>Kritischer Hinweis:</strong> Wenn der dynamische Druck bei Erdgas unter 17 mbar fällt, kann der Kessel den Fehler 6A (keine Zündung) ausgeben oder beim Start starke Verpuffungen zeigen.
+        </blockquote>
+
+        <h3>3.2. Einstellung Logamax U072 (Konventionelle Kessel)</h3>
+        <p>In dieser Serie wird der Druck mechanisch am Gasventil (SIT Sigma 845 oder ähnlich) eingestellt, indem der Kessel in die Servicemodi für maximale und minimale Leistung versetzt wird.</p>
+        <p>Tabelle der Düsendrücke am Brenner (Typische Werte für 24 kW):</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Gasart</th>
+                        <th>Leistung</th>
+                        <th>Druck (mbar)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Erdgas (H/L)</td>
+                        <td>Maximum (100%)</td>
+                        <td>10.5 – 12.0</td>
+                    </tr>
+                    <tr>
+                        <td>Erdgas (H/L)</td>
+                        <td>Minimum (30%)</td>
+                        <td>1.8 – 2.5</td>
+                    </tr>
+                    <tr>
+                        <td>Flüssiggas (LPG)</td>
+                        <td>Maximum (100%)</td>
+                        <td>32.0 – 35.0</td>
+                    </tr>
+                    <tr>
+                        <td>Flüssiggas (LPG)</td>
+                        <td>Minimum (30%)</td>
+                        <td>6.5 – 7.5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Für die Einstellung müssen die Parameter 2.3.b (Max) und 2.3.d (Min) im Servicemenü der Ebene 2 verwendet werden.</p>
+
+        <h3>3.3. Einstellung Logamax Plus GB (Brennwertkessel)</h3>
+        <p>Bei den Modellen GB062, GB072, GB162, GB172 wird der Druck am Brenner nicht gemessen. Die Einstellung erfolgt nach den Werten des Abgasanalysators durch Regulierung der Versatzschraube (Offset) und der Drossel am Gasventil.</p>
+        <p>CO2-Kontrollwerte bei Volllast:</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Modell</th>
+                        <th>Erdgas H (E)</th>
+                        <th>Flüssiggas (P)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GB062 / 072</td>
+                        <td>9.4% ± 0.2</td>
+                        <td>10.8% ± 0.2</td>
+                    </tr>
+                    <tr>
+                        <td>GB162</td>
+                        <td>9.2% ± 0.2</td>
+                        <td>10.5% ± 0.2</td>
+                    </tr>
+                    <tr>
+                        <td>GB172</td>
+                        <td>9.4% ± 0.2</td>
+                        <td>11.0% ± 0.2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Bei minimaler Leistung sollte der CO2-Wert um 0.3 – 0.5% niedriger sein als bei maximaler Leistung.</p>
+
+        <h3>3.4. Besonderheiten bei der Gasartumstellung</h3>
         <ul>
-            <li><strong>GB072 / 172:</strong> 9.4% ± 0.2 (Vollast)</li>
-            <li><strong>GB162:</strong> 9.2% ± 0.2 (Vollast)</li>
+            <li><strong>Logamax U072:</strong> Erfordert den Austausch der Düсен (Düsensatz) und das Umschalten der Gasart im Servicemenü (2.1.E). Wert "0" — Erdgas, "1" — Flüssiggas.</li>
+            <li><strong>Logamax Plus GB:</strong> Erfordert einen speziellen Umstellsatz (üblicherweise eine Drosselscheibe oder den Austausch des Codiersteckers). Die Einstellung des Ventils ohne Abgasanalysator ist verboten, da dies zu einem schnellen Durchbrennen des Wärmetauschers WB5/WB6 führen kann.</li>
+        </ul>
+        <p><strong>Praktische Tipps für den Serviceingenieur:</strong></p>
+        <ul>
+            <li><strong>Statischer Druck:</strong> Vor dem Start immer den statischen Druck prüfen. Liegt er bei Erdgas über 33 mbar, kann dies auf einen Defekt des Hausdruckreglers hinweisen.</li>
+            <li><strong>Dynamik:</strong> Beträgt die Differenz zwischen Statik und Dynamik mehr als 5 mbar, suchen Sie nach einer Verengung im gasschlauch oder einem verschmutzten Gasfilter (Sieb) am Kesseleingang.</li>
+            <li><strong>Dichtheit:</strong> Nach der Einstellung bei Buderus immer die Messstutzen prüfen. Diese haben eine Besonderheit: Die internen Schrauben verformen sich manchmal, wenn sie zu fest angezogen werden, was zu Mikroleckagen direkt im Kesselgehäuse führt.</li>
+            <li><strong>Leistungsverlust:</strong> Wenn der Kessel den Nenngasverbrauch nicht erreicht, überprüfen Sie den Parameter zur Begrenzung der maximalen Leistung im Servicemenü (1.1.A), möglicherweise wurde er bei der Inbetriebnahme zu niedrig angesetzt.</li>
         </ul>
     </section>
 
     <!-- 4. Fühlerkennwerte & Motoren -->
     <section id="fuehler">
         <h2>4. Fühlerkennwerte & Motoren</h2>
-        <p><strong>Buderus NTC 10 kΩ (Bosch-Gruppe):</strong></p>
+        <p>Die Diagnose von Buderus-Komponenten erfordert das Verständnis, dass die meisten wandhängenden Modelle Standardfühler der Bosch-Gruppe verwenden, jedoch eigene Toleranzen für die Wicklungswiderstände aufweisen, insbesondere in der Brennwertlinie.</p>
+        
+        <h3>4.1. NTC-Temperaturfühler (10 kΩ)</h3>
+        <p>Buderus verwendet klassische NTC-Sensoren mit negativem Temperaturkoeffizienten. Das bedeutet: Höhere Temperatur — niedrigerer Widerstand.</p>
+        <p>Widerstandstabelle für NTC 10 kΩ (Bosch/Buderus):</p>
         <div class="table-container">
             <table>
-                <tr><td>0°C: 33.5 kΩ</td><td>25°C: 10.0 kΩ</td><td>60°C: 2.4 kΩ</td></tr>
-                <tr><td>10°C: 19.8 kΩ</td><td>30°C: 8.3 kΩ</td><td>90°C: 0.9 kΩ</td></tr>
+                <thead>
+                    <tr>
+                        <th>Temperatur (°C)</th>
+                        <th>Widerstand (Ohm)</th>
+                        <th>Temperatur (°C)</th>
+                        <th>Widerstand (Ohm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0</td><td>33 555</td><td>50</td><td>3 488</td></tr>
+                    <tr><td>10</td><td>19 860</td><td>60</td><td>2 431</td></tr>
+                    <tr><td>20</td><td>12 113</td><td>70</td><td>1 730</td></tr>
+                    <tr><td>25</td><td>10 000</td><td>80</td><td>1 251</td></tr>
+                    <tr><td>30</td><td>8 299</td><td>90</td><td>920</td></tr>
+                    <tr><td>40</td><td>5 305</td><td>100</td><td>685</td></tr>
+                </tbody>
             </table>
         </div>
-        <p><strong>Bauteile:</strong></p>
+        <p><strong>Diagnosemethoden:</strong></p>
         <ul>
-            <li><strong>U072 Pumpe:</strong> ca. 150-280 Ω. Kondensator prüfen (2.5 µF).</li>
-            <li><strong>3-Wege-Ventil (230V):</strong> Widerstand ca. 9-12 kΩ.</li>
-            <li><strong>Lüfter (PWM):</strong> Ohne Signal = 100% Notlauf (bei GB).</li>
+            <li><strong>Prüfung „im kalten Zustand“:</strong> Vergleichen Sie am abgekühlten Kessel die Werte des Vorlauffühlers und des Warmwasserfühlers. Beträgt die Differenz mehr als 10%, weicht einer der Fühler ab.</li>
+            <li><strong>Diagnose über das Menü:</strong> In den Reglern RC300/310 auf Diagnose -&gt; Monitorwerte gehen. Sieht der Kessel eine Temperatur von -30°C, liegt eine Leitungsunterbrechung vor. Bei +120°C liegt ein Kurzschluss vor.</li>
+            <li><strong>Besonderheit GB162:</strong> Der Abgastemperaturfühler kann je nach Baujahr andere Eigenschaften haben, prüfen Sie diesen nur in Verbindung mit der Werkstabelle.</li>
         </ul>
+
+        <h3>4.2. Zirkulationspumpen</h3>
+        <p>In Buderus-Kessel finden sich am häufigsten Wilo-Pumpen (in den U072-Serien) und Grundfos-Pumpen (in den GB-Serien).</p>
+        <p><strong>Pumpen 230V (Logamax U072):</strong></p>
+        <ul>
+            <li><strong>Wicklungen:</strong> Der Statorwiderstand beträgt üblicherweise 150–280 Ohm.</li>
+            <li><strong>Kondensator:</strong> Dies ist die schwächste Stelle. Wenn die Pumpe brummt, prüfen Sie die Kapazität (üblicherweise 2.5 µF). Ist die Kapazität auf 1.9 µF oder darunter gefallen, startet die Pumpe nicht.</li>
+        </ul>
+        <p><strong>Energieeffiziente Pumpen (PWM):</strong></p>
+        <ul>
+            <li><strong>Diagnose:</strong> Netzstecker (230V) und Steuerstecker (PWM).</li>
+            <li><strong>Methode:</strong> Wenn sich die Pumpe nicht dreht, ziehen Sie den Steuerstecker ab. Die meisten Pumpen in modernen GB-Modellen gehen bei Verlust des PWM-Signals in den „Notbetrieb“ und arbeiten mit 100% Leistung. Läuft sie an, liegt das Problem an der Platine oder dem Kabel.</li>
+        </ul>
+
+        <h3>4.3. Gebläse (Lüfter)</h3>
+        <p>Buderus-Gebläse unterteilen sich in klassische (230V) und modulierte (mit Controller).</p>
+        <ul>
+            <li><strong>Konventionell (U072):</strong> Normaler Wechselstrommotor. Wicklungswiderstand im Durchschnitt 150–250 Ohm. Häufig fallen die Lager aus (Pfeifen oder Vibration tritt auf).</li>
+            <li><strong>Brennwertkessel (GB072/172):</strong> Versorgung 230V + Steuersignal. Wenn das Gebläse nicht startet (Fehler 3C/3L), die Leichtgängigkeit des Laufrads prüfen.</li>
+            <li><strong>Diagnose der Wicklungen:</strong> Bei bürstenlosen Motoren (DC) ist die Messung des Widerstands mit einem Multimeter aufgrund der integrierten Elektronik schwierig, daher beschränkt sich die Diagnose auf die Überprüfung der Spannungsversorgung und des eingehenden Steuersignals.</li>
+        </ul>
+
+        <h3>4.4. Drei-Wege-Ventil (3-Wege-Ventil)</h3>
+        <p>Buderus verwendet sowohl Schrittmotoren als auch Standard-230V-Antriebe.</p>
+        <p><strong>Antrieb 230V (z. B. Baureihe U072):</strong></p>
+        <ul>
+            <li>Der Widerstand zwischen den Arbeitskontakten beträgt etwa 9–12 kΩ.</li>
+            <li><strong>Prüfung:</strong> Im Servicemenü (Funktionstest) den Modus umschalten. Wenn am Antrieb 230V anliegen und sich die Stange nicht bewegt — Antrieb austauschen.</li>
+            <li><strong>Mechanischer Teil:</strong> Sehr oft „verklebt“ die Ventilstange in einer Position. Versuchen Sie beim Ausbau des Antriebs, die Stange manuell hineinzudrücken — sie sollte sich leichtgängig bewegen und durch Federkraft zurückkehren.</li>
+        </ul>
+
+        <h3>4.5. Druckschalter und Drucksensoren (Drucksensor)</h3>
+        <ul>
+            <li>Im U072 is ein normaler Druckschalter (Trockenkontakt) verbaut. Wird per Durchgangsprüfung bei einem Systemdruck von 1.5 bar geprüft.</li>
+            <li>Im GB172/162 sind Sensoren verbaut, die eine Spannung (VDC) ausgeben. Die Ausgangsspannung sollte linear von 0.5V (0 bar) bis 2.5–3.5V (3 bar) ansteigen.</li>
+        </ul>
+        <blockquote>
+            <strong>Hinweis für Techniker:</strong> Wenn der Buderus-Kessel einen Fehler bezüglich des Sensors ausgibt, der NTC-Widerstand jedoch korrekt ist — prüfen Sie den Stecker auf der Steuerplatine. Bei den GB-Modellen oxidieren die Kontakte häufig aufgrund hoher Feuchtigkeit im Gehäuse bei schlechter Raumlüftung.
+        </blockquote>
     </section>
 
     <!-- 5. Ioni, Anode & Wasser -->
     <section id="loni">
         <h2>5. Ionisation, Anode & Wasser</h2>
-        <ul>
-            <li><strong>Ionisationsstrom:</strong> Logamax Plus: 15–40 µA (Vollast). Min: 5 µA.</li>
-            <li><strong>Erdung:</strong> N zu PE < 1.0 V. Phasenempfindlich (L/N nicht tauschen!).</li>
-            <li><strong>Schutzanode:</strong> Prüfstrom > 0.3 mA DC (Logalux Speicher).</li>
-            <li><strong>Wasser (Alu-WT):</strong> pH-Wert <strong>7.5 – 8.5</strong>. Niemals > 9.0!</li>
-        </ul>
+        <p>Für den Buderus-Serviceingenieur ist es von kritischer Bedeutung, die Spezifikationen der Wärmetauscher WB5 und WB6 (Aluminium-Silizium) zu verstehen, die extrem anspruchsvoll bezüglich des pH-Werts sind. Ein Fehler in der Wasseraufbereitung führt hier wesentlich schneller zu Lochfraß als bei Edelstahl.</p>
         
+        <h3>5.1. Ionisationsstrom (Ionisierung)</h3>
+        <p>Buderus nutzt den Ionisationsstrom zur Überwachung der Flammenstabilität. Bei Brennwertmodellen (GB) sind die Werte üblicherweise höher als bei konventionellen Kesseln.</p>
+        <p><strong>Normwerte:</strong></p>
+        <ul>
+            <li><strong>Logamax U072:</strong> Zündung ab 1.5 µA, stabiler Betrieb 5–15 µA.</li>
+            <li><strong>Logamax plus GB:</strong> Zündung ab 5 µA, stabiler Betrieb 15–40 µA.</li>
+        </ul>
+        <p><strong>Prüfmethode:</strong> Multimeter in Reihe in den Kreis der Ionisationselektrode schalten (Modus µA DC). Wenn der Strom bei sauberer Elektrode unter 2 µA fällt, prüfen Sie den Gasdruck im Minimum oder den Zustand des Keramikisolators (Mikrorisse).</p>
+        <blockquote>
+            <strong>Wichtig:</strong> Bei Kesseln der Baureihe GB162/172 is die Ionisationselektrode ein Verschleißteil und muss bei jeder großen Wartung (alle 2 Jahre) ausgetauscht werden, da sie in einer Hochtemperaturzone arbeitet.
+        </blockquote>
+
+        <h3>5.2. Erdung und Phasenlage (Erdung)</h3>
+        <p>Buderus-Kessel (insbesondere die Serie U072) reagieren extrem empfindlich auf die Phasenlage und das Potenzial auf der Erde.</p>
+        <ul>
+            <li><strong>Phasenlage:</strong> U072 ist ein phasenabhängiger Kessel. Wenn L und N vertauscht werden, gibt der Kessel direkt nach der Zündung den Fehler 6A aus.</li>
+            <li><strong>Potenzial:</strong> Die Spannung zwischen N (Neutralleiter) und PE (Erde) muss &lt; 1.0 V betragen. Liegt der Wert über 2–3 V, arbeitet die Ionisation instabil.</li>
+            <li><strong>Empfehlung:</strong> Installieren Sie immer eine Isolierverschraubung (dielektrische Muffe) an der Gasleitung. Buderus „fängt“ häufig Streuströme über das Gasrohr ein, was die Steuerplatine stört.</li>
+        </ul>
+
+        <h3>5.3. Magnesiumanode (Schutzanode)</h3>
+        <p>In Speichern der Logalux-Serie (SU, ST) erfolgt der Behälterschutz durch eine Magnesiumanode.</p>
+        <p><strong>Prüfung ohne Ausbau:</strong></p>
+        <ol>
+            <li>Trennen Sie die Erdungsleitung der Anode (üblicherweise oben auf dem Speicher unter der Abdeckung).</li>
+            <li>Messen Sie den Strom zwischen dem Kabel und der Anode (Modus mA DC).</li>
+            <li><strong>Norm:</strong> Strom &gt; 0.3 mA. Liegt der Strom darunter, ist die Anode passiviert oder verbraucht.</li>
+        </ol>
+        <p><strong>Visuelle Kontrolle:</strong> Bei der Wartung muss die Anode ausgebaut werden. Wenn ihr Durchmesser um mehr als 50% des ursprünglichen Wertes abgenommen hat, ist ein Austausch zwingend erforderlich.</p>
+
+        <h3>5.4. Chemical Wasseraufbereitung (VDI 2035)</h3>
+        <p>Für Buderus-Brennwertkessel mit Aluminium-Wärmetauschern ist dies der wichtigste Punkt.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Wert (WB5 / WB6)</th>
+                        <th>Kommentar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>pH-Wert</strong></td>
+                        <td>7.5 – 8.5</td>
+                        <td>Kritisch! Im Gegensatz zu Edelstahl löst sich Aluminium bei einem pH-Wert &gt; 9.0 auf.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Härte</strong></td>
+                        <td>&lt; 3.0 °dH</td>
+                        <td>Bei hoher Härte bildet sich Kalk, der zu lokalen Überhitzungen führt.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Leitfähigkeit</strong></td>
+                        <td>&lt; 100 µS/cm</td>
+                        <td>Es wird empfohlen, vollentsalztes Wasser (VE-Wasser) zu verwenden.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chloride</strong></td>
+                        <td>&lt; 20 mg/l</td>
+                        <td>Überschreitungen führen zu Lochfraßkorrosion.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>Besonderheiten bei Buderus:</strong></p>
+        <ul>
+            <li><strong>Alkali-Verbot:</strong> Wenn Sie es gewohnt sind, den pH-Wert auf 9.5 anzuheben (wie bei Viessmann), beschädigen Sie den Buderus-Wärmetauscher innerhalb weniger Jahre. Aluminium erfordert eine neutrale oder schwach alkalische Umgebung.</li>
+            <li><strong>Spülung:</strong> Nach dem Einsatz von chemischen Spülmitteln muss das System so lange gespült werden, bis sich der pH-Wert im Bereich von 7.5–8.2 stabilisiert hat.</li>
+        </ul>
+
+        <h3>5.5. Druck im Expansionsgefäß (MAG)</h3>
+        <p>Buderus-Kessel sind häufig mit Gefäßen von 8–12 Litern ausgestattet.</p>
+        <ul>
+            <li><strong>Prüfung:</strong> Der Luftdruck im Gefäß (bei leerem Kessel) muss 0.2 bar unter dem statischen Druck des Heizsystems liegen (üblicherweise 1.0–1.2 bar).</li>
+            <li><strong>Symptom:</strong> Wenn der Druck am Manometer beim Aufheizen von 1.5 auf 3.0 bar springt, ist das Gefäß leer oder die Membran gerissen.</li>
+        </ul>
+        <blockquote>
+            <strong>Praktischer Tipp für Techniker:</strong> Wenn der Kessel Buderus GB häufig den Fehler 4C (Überhitzung) ausgibt und die Pumpe intakt ist — prüfen Sie den automatischen Entlüfter an der Pumpe. Bei diesen Modellen verstopft er häufig; im Wärmetauscher sammelt sich Luft, was die normale Wärmeabfuhr von den Aluminiumrippen verhindert.
+        </blockquote>
     </section>
 
-    <!-- 6. Wartung (Alu-Guss) -->
+    <!-- 6. Wartung (Matrix) -->
     <section id="wartung">
-        <h2>6. Wartung (Alu-Guss WT)</h2>
-        <blockquote>
-            <strong>Wichtig:</strong> Für Alu-Guss Wärmetauscher (WB5/WB6) keine Stahlbürsten verwenden! Nur Kunststoffwerkzeuge.
-        </blockquote>
-        <ol>
-            <li>Fehlerspeicher prüfen (RC310).</li>
-            <li>Wärmetauscher mechanisch reinigen (Plastikspachtel) und spülen.</li>
-            <li>Siphon reinigen (Bajo-Verschluss).</li>
-            <li>Brennerdichtung (1-Satz) zwingend erneuern.</li>
-            <li>MAG Vordruck prüfen (0.2 bar unter Systemdruck).</li>
-        </ol>
+        <h2>6. Wartung (Matrix)</h2>
+        <p>Die Wartung von Buderus erfordert besondere Aufmerksamkeit bei den Aluminium-Silizium-Wärmetauschern (Alu-Guss). Im Gegensatz zu Edelstahl dürfen hier keine aggressiven Metallbürsten verwendet werden, und die Reinigung muss regelmäßig erfolgen, da die Oxidationsprodukte des Aluminiums die engen Kanäle vollständig zusetzen können.</p>
         
+        <h3>6.1. Algorithmus der jährlichen Wartung</h3>
+        <p><strong>Betriebsanalyse (Status-Check):</strong></p>
+        <ol>
+            <li>Prüfen Sie den Fehlerspeicher im Menü des RC310 (Punkt „Fehlerspeicher“).</li>
+            <li>Starten Sie den Kessel bei maximaler Leistung (Modus „Schornsteinfeger“) und messen Sie die Abgaszusammensetzung (CO2, CO, Abgastemperatur).</li>
+        </ol>
+        <p><strong>Öffnen der Brennkammer:</strong></p>
+        <ol>
+            <li>Gas und Strom abschalten. Demontieren Sie das Gebläse komplett mit der Mischeinrichtung (bei den Modellen GB072/172 ist dies eine Einheit auf Clipsen oder Bolzen).</li>
+            <li><strong>Achtung:</strong> Seien Sie vorsichtig mit der internen Isolierung des Brennerdeckels. Wenn sie tiefe Risse aufweist oder bröckelt, ist ein Austausch zwingend erforderlich, da sonst das Gehäuse durchbrennt.</li>
+        </ol>
+        <p><strong>Besonderheiten der Wärmetauscherreinigung (WB5/WB6):</strong></p>
+        <ul>
+            <li><strong>Trockenreinigung:</strong> Verwenden Sie einen Kunststoffspachtel oder die spezielle Buderus-Reinigungsbürste. Reinigen Sie die Kanäle zwischen den Rippen.</li>
+            <li><strong>Nassreinigung:</strong> Spülen Sie den Wärmetauscher mit Wasser aus. Bei starken Verschmutzungen nur zugelassene Mittel verwenden (z. B. Logamax Cleaner).</li>
+            <li><strong>Verbot:</strong> Keine Stahlbürsten verwenden! Sie verkratzen die Schutzschicht des Aluminiums, was die Korrosion beschleunigt.</li>
+        </ul>
+        <p><strong>Prüfung des Brenners:</strong> Inspectieren Sie den zylindrischen Brenner. Bei einer Verformung des Gewebes oder Rußablagerungen reinigen Sie diesen vorsichtig mit einem weichen Pinsel oder Druckluft.</p>
+        <p><strong>Siphon und Kondensatablauf:</strong> Bauen Sie den Siphon aus (bei Buderus ist er oft mit einem Bajonettverschluss fixiert). Reinigen Sie ihn von Aluminiumschlamm. Wenn sehr viel Schlamm (weiße Flocken) vorhanden ist, ist dies ein Zeichen für einen falschen pH-Wert des Wassers (siehe Punkt 5).</p>
+        <p><strong>Elektroden:</strong> Reinigen Sie die Ionisations- und Zündelektrode mit feinem Schleifpapier. Prüfen Sie den Abstand: Zwischen den Zündelektroden muss er 3.5 – 4.0 mm betragen.</p>
+
+        <h3>6.2. Matrix der regelmäßigen Prüfungen (Matrix)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bauteil</th>
+                        <th>Maßnahme</th>
+                        <th>Kriterium / Werkzeug</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Wärmetauscher</strong></td>
+                        <td>Visuelle Prüfung und Spülung</td>
+                        <td>Frei von Kalk und Schlamm in den Kanälen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dichtungen</strong></td>
+                        <td>Austausch der Brennerdeckeldichtung</td>
+                        <td>Obligatorisch bei jedem Öffnen (Wartungsset 1-Satz).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gasventil</strong></td>
+                        <td>Dichtheitsprüfung (Dichtheitsprüfung)</td>
+                        <td>Gasspürgerät oder Lecksuchspray.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Expansionsgefäß</strong></td>
+                        <td>Stickstoffdruck prüfen</td>
+                        <td>0.2 bar unter dem Systemdruck ansetzen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Abgassystem</strong></td>
+                        <td>Messung von O2 in der Verbrennungsluft</td>
+                        <td>Nicht unter 20.5% (Ausschluss von Rezirkulation).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ionisation</strong></td>
+                        <td>Messung des Stroms in µA</td>
+                        <td>Mindestens 5 µA, stabil bis 20-30 µA.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>6.3. Spezifische Aspekte bei Buderus-Brennwertkesseln</h3>
+        <ul>
+            <li><strong>Wärmetauscher WB5 (GB162):</strong> Verfügt über eine Keramikbeschichtung. Er darf keinesfalls mit harten Gegenständen mechanisch bearbeitet werden. Nur Spülung mit Wasser unter geringem Druck erlaubt.</li>
+            <li><strong>Messung der Abgastemperatur:</strong> Wenn bei sauberem Wärmetauscher die Abgastemperatur mehr als 20°C über der Vorlauftemperatur liegt, ist dies ein Signal für Kalkablagerungen in den wasserseitigen Kanälen des Aluminiumblocks. Eine chemische Spülung des Primärkreises ist erforderlich.</li>
+            <li><strong>Lambda-Einstellung:</strong> Bei Modellen mit automatischer Gasartanpassung den Parameter „Gasqualitätsfaktor“ im Servicemenü prüfen.</li>
+        </ul>
+
+        <h3>6.4. Zurücksetzen des Serviceintervalls</h3>
+        <p>Nach Abschluss der Arbeiten den Zähler zurücksetzen:</p>
+        <ul>
+            <li><strong>Im Menü des RC310:</strong> Servicemenü -&gt; Einstellungen Heizung -&gt; Serviceintervall -&gt; Zurücksetzen (Reset).</li>
+            <li><strong>Im U072:</strong> In der Ebene L.1 der Parameter 1.S.</li>
+        </ul>
+        <blockquote>
+            <strong>Praktische Empfehlung für Techniker:</strong> Bei der Montage die O-Ringe und Dichtungen immer mit Silikonfett (z. B. Unisilkon) schmieren. Buderus hat sehr enge Passungen; ohne Schmierung riskieren Sie, den Ring beim Einsetzen von Gebläse oder Pumpe zu quetschen, was zu Undichtigkeiten führt, die Sie erst nach einigen Betriebsstunden bemerken.
+        </blockquote>
     </section>
 
     <!-- 7. Modell-Übersicht -->
     <section id="modelle">
         <h2>7. Modell-Übersicht</h2>
+        <p>Das Buderus-Sortiment ist klar unterteilt in „Klassiker“ (atmosphärische und gebläseunterstützte Kessel) und moderne Brennwertsysteme. Die Hauptkennzeichnung lautet: U — wandhängend konventionell, GB — wandhängend Brennwert, G — bodenstehend Guss.</p>
+        
+        <h3>7.1. Wandhängende Brennwertkessel (Logamax plus)</h3>
+        <p>Dies ist die Basis des modernen Sortiments. Der Hauptunterschied liegt im Material des Wärmetauschers (Aluminium-Silizium-Gusslegierung).</p>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Serie</th><th>Typ</th><th>Merkmale</th></tr>
+                    <tr>
+                        <th>Serie</th>
+                        <th>Modelle</th>
+                        <th>Besonderheiten und Anwendung</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Logamax U072</td><td>Traditionell</td><td>Robust, Kupfer-WT, Bosch-Identisch.</td></tr>
-                    <tr><td>Logamax GB072</td><td>Brennwert</td><td>Alu-Guss WT WB6, EMS-Bus.</td></tr>
-                    <tr><td>Logamax GB172i</td><td>Brennwert</td><td>Glasfront, Internet ready, Premium.</td></tr>
-                    <tr><td>Logano G234</td><td>Boden (Atmo)</td><td>Gussglieder-Kessel, legendär robust.</td></tr>
+                    <tr>
+                        <td><strong>GB062</strong></td>
+                        <td>14, 24 kW</td>
+                        <td>Budget-Brennwertkessel. Kompakt, integrierter Warmwasser-Wärmetauscher (in Version K). Einfache Regelung.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GB072</strong></td>
+                        <td>14, 24 kW</td>
+                        <td>Das Arbeitstier. Sehr hohe Marktverbreitung. Äußerst zuverlässiger Wärmetauscher WB6. Unterstützung von EMS-Reglern.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GB122</strong></td>
+                        <td>15, 24 kW</td>
+                        <td>Neue Generation. Nachfolger des GB062. Sehr weiter Modulationsbereich und modernes Design.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GB162</strong></td>
+                        <td>15 – 100 kW</td>
+                        <td>Technologieführer. Wärmetauscher mit Keramikbeschichtung (ALU plus). Ideal für Kaskaden (bis 800 kW).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GB172 / 172i</strong></td>
+                        <td>14 – 42 kW</td>
+                        <td>Premium-Segment. Der Index "i" steht für die Frontverkleidung aus Titaniumglas. Integriertes Expansionsgefäß, leiser Betrieb.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>7.2. Wandhängende konventionelle Kessel (Logamax)</h3>
+        <p>Kessel mit Kupfer-Wärmetauscher und offener/geschlossener Verbrennungskammer.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serie</th>
+                        <th>Modelle</th>
+                        <th>Beschreibung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>U052 / U054</strong></td>
+                        <td>24, 28 kW</td>
+                        <td>Alte Klassiker. U052 — Turbo (raumluftunabhängig), U054 — Atmosphärisch (raumluftabhängig). Sehr robuste Hydraulik.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>U072</strong></td>
+                        <td>12, 18, 24, 28, 35 kW</td>
+                        <td>Am weitesten verbreitet. Entwickelt speziell für schwierige Bedingungen (Gasdruck- und Spannungsschwankungen). Fast alle Ersatzteile sind baugleich mit Bosch Gaz 6000.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>7.3. Bodenstehende Kessel (Logano / Logano plus)</h3>
+        <p>Unterteilt in klassische Gusskessel und bodenstehende Brennwertkessel.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serie</th>
+                        <th>Modell</th>
+                        <th>Typ / Besonderheiten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Logano G124 / G234</strong></td>
+                        <td>Atmosphärisch</td>
+                        <td>Gussgliederheizkessel. Arbeiten über Jahrzehnte. Erfordern externe Regelungen (Logamatic 2000/4000).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Logano G125 / G215</strong></td>
+                        <td>Gebläsebrenner</td>
+                        <td>Betrieb mit Gebläsebrennern (Gas/Öl). Leistungsstarke Stahl- oder Gusskessel.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Logano plus GB212</strong></td>
+                        <td>Brennwert</td>
+                        <td>Bodenstehende Variante des GB172. Leise, kompakt, ersetzt alte atmosphärische Kessel ohne Umbau des Abgassystems.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>7.4. Aufschlüsselung von Artikeln und Bezeichnungen</h3>
+        <p>Für das schnelle Verständnis der Spezifikation vor Ort:</p>
+        <ul>
+            <li><strong>K (Kombi):</strong> Kombikessel (Heizung + Warmwasser über Plattenwärmetauscher).</li>
+            <li><strong>S (System):</strong> Systemkessel (nur Heizung, mit Anschlussmöglichkeit für einen Speicher über ein 3-Wege-Ventil).</li>
+            <li><strong>i (Integrated):</strong> Vorhandensein einer Internetschnittstelle oder aktualisiertes Design (Glasfront).</li>
+            <li><strong>V2:</strong> Weist auf die Version des Hydraulikblocks hin (wichtig für die Pumpenauswahl).</li>
+        </ul>
+        <p><strong>Merkzettel für den Ingenieur:</strong></p>
+        <ul>
+            <li><strong>Kompatibilität mit Bosch:</strong> Denken Sie daran, dass der Buderus U072 konstruktiv identisch mit dem Bosch Gaz 6000 ist. Dies hilft oft bei Ersatzteilen in der Region Delmenhorst/Bremen, wenn kein originales Buderus-Lager direkt greifbar ist.</li>
+            <li><strong>EMS-Bus:</strong> Wenn Sie am Kessel einen Anschluss für den orangefarbenen Stecker sehen — handelt es sich um das EMS-Protokoll. Daran werden ausschließlich Regler der RC-Serie (RC200, RC310) angeschlossen. Normale Ein/Aus-Thermostate funktionieren zwar, nehmen dem Kessel jedoch die Modulation.</li>
+            <li><strong>Wärmetauscher:</strong> Bei den Brennwert-Wandkesseln von Buderus (GB) ist der Wärmetauscher fast immer aus Aluminium. Verwechseln Sie diesen niemals mit dem Edelstahl von Viessmann — die Reinigungsmethoden und die Anforderungen an das Wasser (pH-Wert) sind diametral entgegengesetzt.</li>
+        </ul>
     </section>
 
     <!-- 8. Ersatzteile -->
     <section id="ersatzteile">
         <h2>8. Ersatzteile & Art.-Nr.</h2>
+        <p>Für die Ersatzteilerauswahl bei Buderus ist die Kesselgeneration entscheidend. Die meisten gängigen Positionen für Wandmodelle teilen sich auf in die Serie U072 (konventionell) und die GB-Serien (Brennwert). Unten steht die zusammenfassende Tabelle der Artikelnummern, die am häufigsten bei Reparatur und Wartung in Deutschland benötigt werden.</p>
+        
+        <h3>8.1. Wartungssets & Elektroden (Wartung & Elektroden)</h3>
+        <p>Bei jedem Öffnen der Brennkammer von Brennwertmodellen wird der Austausch der Deckeldichtung empfohlen.</p>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Teil</th><th>Artikel-Nr.</th></tr>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Wartungsset GB072/172</td><td>8718600017</td></tr>
-                    <tr><td>Ionisationselektrode GB</td><td>8718107087</td></tr>
-                    <tr><td>Glühzünder U072</td><td>8737601099</td></tr>
-                    <tr><td>Drucksensor digital</td><td>8718641190</td></tr>
-                    <tr><td>NTC Tauchfühler</td><td>8714500071</td></tr>
-                    <tr><td>Umpwälzpumpe Grundfos</td><td>8718648181</td></tr>
-                    <tr><td>3-Wege-Ventil Motor</td><td>8718644562</td></tr>
-                    <tr><td>Lüfter U072</td><td>8737601103</td></tr>
-                    <tr><td>Gasventil (Honeywell)</td><td>8718600021</td></tr>
-                    <tr><td>MAG 8 Liter</td><td>8716105545</td></tr>
+                    <tr><td>8718600017</td><td>Wartungsset (Dichtungen)</td><td>Logamax GB072 / GB172</td></tr>
+                    <tr><td>8718107087</td><td>Ionisationselektrode</td><td>Logamax GB072 / GB172</td></tr>
+                    <tr><td>8718107050</td><td>Zündelektrodenblock</td><td>Logamax GB072 / GB172</td></tr>
+                    <tr><td>8718644383</td><td>Isolierstein Brennerdeckel</td><td>Logamax GB172</td></tr>
+                    <tr><td>8737601099</td><td>Elektrodensatz (Zündung + Ionisation)</td><td>Logamax U072</td></tr>
+                    <tr><td>8700103654</td><td>Wärmetauscherdichtung (Hauptdichtung)</td><td>Logamax GB162</td></tr>
+                    <tr><td>8711000159</td><td>Magnesiumanode 26x400 mm (M8)</td><td>Logalux Speicher (SU/ST)</td></tr>
+                    <tr><td>7747007843</td><td>Fremdstromanode (aktiv)</td><td>Logalux Speicher (ab Bj. 2012)</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>8.2. Sensorik & Elektronik (Sensorik & Elektronik)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>8714500071</td><td>Temperaturfühler NTC 10k (Tauchfühler)</td><td>Warmwasser / Heizung (universal)</td></tr>
+                    <tr><td>8735100810</td><td>Anlegefühler NTC (auf Rohr)</td><td>Logamax plus Serie</td></tr>
+                    <tr><td>8718641190</td><td>Wasserdrucksensor (digital)</td><td>Logamax GB072 / GB172</td></tr>
+                    <tr><td>8716102862</td><td>Wasserdruckschalter (Trockenkontakt)</td><td>Logamax U072</td></tr>
+                    <tr><td>8718224201</td><td>Außentemperaturfühler (FA)</td><td>EMS / EMS Plus</td></tr>
+                    <tr><td>8737601111</td><td>Leiterplatte (Hauptplatine)</td><td>Logamax U072 (24 kW)</td></tr>
+                    <tr><td>8718651816</td><td>Steuergerät (KIM)</td><td>Logamax GB172</td></tr>
+                    <tr><td>8717206213</td><td>Sicherheitstemperaturbegrenzer (STB 100°C)</td><td>Universal</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.3. Hydraulik, Pumpen & Drei-Wege-Ventile</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>8718648181</td><td>Zirkulationspumpe (Grundfos UPM3)</td><td>Logamax GB072 / GB172</td></tr>
+                    <tr><td>8737602715</td><td>Zirkulationspumpe (Wilo)</td><td>Logamax U072</td></tr>
+                    <tr><td>8718644562</td><td>Antrieb Drei-Wege-Ventil (VC)</td><td>Logamax GB / U072</td></tr>
+                    <tr><td>8716106847</td><td>Einsatz (Ventileinsatz) 3-Wege-Ventil</td><td>Logamax U072 / U052</td></tr>
+                    <tr><td>8718644563</td><td>Sekundärwärmetauscher (12 Platten)</td><td>Logamax GB072-24K</td></tr>
+                    <tr><td>8737601138</td><td>Sekundärwärmetauscher (16 Platten)</td><td>Logamax U072-24K</td></tr>
+                    <tr><td>8717406131</td><td>Sicherheitsventil (3 bar)</td><td>Wandhängende Modelle</td></tr>
+                    <tr><td>8716105545</td><td>Expansionsgefäß (8 Liter)</td><td>Logamax U072 / GB072</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.4. Gasarmaturen & Gebläse (Gas & Lüfter)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>8718600020</td><td>Gebläse komplett</td><td>Logamax GB072 / GB172 (14-24 kW)</td></tr>
+                    <tr><td>8737601103</td><td>Gebläse (modulierend)</td><td>Logamax U072</td></tr>
+                    <tr><td>8718600021</td><td>Gasventil (Honeywell)</td><td>Logamax GB072 / GB172</td></tr>
+                    <tr><td>8737601104</td><td>Gasventil (SIT Sigma 845)</td><td>Logamax U072</td></tr>
+                    <tr><td>8718120619</td><td>Venturigüse (Mischer)</td><td>Logamax GB162</td></tr>
+                    <tr><td>8718604088</td><td>Zündtransformator</td><td>Logamax plus Serie</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.5. Spezifische Positionen für bodenstehende Kessel (Logano)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>7747023348</td><td>Fotodiode MZ 770 S (Flammenüberwachung)</td><td>Ölgebläsebrenner (Logano)</td></tr>
+                    <tr><td>63012859</td><td>Sicherheitsautomat (Logamatic BC10)</td><td>Bodenstehende EMS-Kessel</td></tr>
+                    <tr><td>5867405</td><td>Reinigungsmesser-Set für Gussblock</td><td>Logano G124 / G234</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p><strong>Praktische Tipps für Einkauf und Auswahl:</strong></p>
+        <ul>
+            <li><strong>Ersatzteilsuche (Bosch/Buderus):</strong> Da Buderus zur Bosch-Gruppe gehört, beginnen die Artikelnummern mit 871... oder 873.... Wenn eine Position unter der Marke Buderus nicht verfügbar ist, kann sie oft unter der Marke Junkers oder Bosch mit identischer Nummer gefunden werden.</li>
+            <li><strong>Dichtungsaustausch:</strong> Verwenden Sie niemals die alte Brennerdeckeldichtung bei Brennwertkesseln wieder. Nach einem Heizzyklus verliert sie ihre Elastizität, und das Risiko eines CO-Austritts in das Kesselgehäuse wird kritisch.</li>
+            <li><strong>Identifikation über das Typschild:</strong> Bei wandhängenden Buderus-Kesseln befindet sich die Seriennummer (Data Matrix Code) im unteren Teil des Gehäuses oder hinter der Klappe. Für die exakte Zuordnung im Buderus-Ersatzteilkatalog werden die ersten 10 Ziffern benötigt.</li>
+        </ul>
     </section>
 
 </div>

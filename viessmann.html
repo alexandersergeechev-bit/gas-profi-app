@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viessmann - Gas-Profi Handbuch</title>
+    <title>Technisches Handbuch für Serviceingenieure: Viessmann Gaskessel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,173 +14,587 @@
 </header>
 
 <div class="container">
-    <h1 style="text-align: center;">Technische Dokumentation Viessmann</h1>
+    <h1 style="text-align: center;">Technisches Handbuch für Serviceingenieure: Viessmann Gaskessel</h1>
 
     <!-- Navigation Menu -->
     <nav class="nav-menu">
-        <a href="#diagnose" class="nav-item">1. Diagnose & Fehler</a>
-        <a href="#service" class="nav-item">2. Service / Codierung</a>
-        <a href="#gasdruck" class="nav-item">3. Gasdruck / Lambda</a>
-        <a href="#fuehler" class="nav-item">4. NTC & Motoren</a>
+        <a href="#diagnose" class="nav-item">1. Diagnose & Fehlercodes</a>
+        <a href="#service" class="nav-item">2. Service-Ebene & Codierung</a>
+        <a href="#gasdruck" class="nav-item">3. Gasdruck H/L-Gas</a>
+        <a href="#fuehler" class="nav-item">4. Fühlerkennwerte & Motoren</a>
         <a href="#loni" class="nav-item">5. Ioni, Anode & Wasser</a>
-        <a href="#wartung" class="nav-item">6. Wartung (MatriX)</a>
+        <a href="#wartung" class="nav-item">6. Wartung (Matrix)</a>
         <a href="#modelle" class="nav-item">7. Modell-Übersicht</a>
-        <a href="#ersatzteile" class="nav-item">8. Ersatzteile</a>
+        <a href="#ersatzteile" class="nav-item">8. Ersatzteile & Art.-Nr.</a>
     </nav>
 
-    <a href="gas-profi-app.html" class="btn-large" style="margin-bottom: 30px;">⬅ Zurück zur Markenauswahl</a>
+    <a href="index.html" class="btn-large" style="margin-bottom: 30px;">⬅ Zurück zur Markenauswahl</a>
 
     <!-- 1. Diagnose & Fehlercodes -->
     <section id="diagnose">
         <h2>1. Diagnose & Fehlercodes</h2>
-        <p>Viessmann nutzt die Vitotronic-Steuerung (HEX-Codes) oder die neue E3-Plattform.</p>
+        <p>Die Heizungssysteme von Viessmann zeichnen sich durch eine hochpräzise Codierungslogik (teilweise im Hexadezimalsystem) und eine hohe Sensibilität gegenüber den Betriebseinstellungen aus. Die Hauptproduktlinien umfassen die Baureihen Vitodens (Brennwerttechnik) und Vitopend (Heizwerttechnik). Fehlerursachen hängen stark vom Typ der eingesetzten Regelung (Vitotronic 100/200 oder der aktuellen Elektronik-Plattform E3) ab. Nachfolgend sind die am häufigsten auftretenden Fehlercodes in einer strukturierten Übersicht zusammengefasst.</p>
+        
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Code</th><th>Bedeutung</th><th>Ursache & Abhilfe</th></tr>
+                    <tr>
+                        <th>Code</th>
+                        <th>Fehlerbeschreibung</th>
+                        <th>Ursache und Behebungsmaßnahmen</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>06</strong></td><td>Wasserdruck</td><td>Druck < 0.8 bar. Anlage füllen.</td></tr>
-                    <tr><td><strong>10 / 18</strong></td><td>Außentemperatursensor</td><td>Kurzschluss (10) oder Unterbrechung (18).</td></tr>
-                    <tr><td><strong>F2</strong></td><td>STB ausgelöst</td><td>Überhitzung (110°C). Pumpe oder Luft prüfen.</td></tr>
-                    <tr><td><strong>F4</strong></td><td>Kein Flammsignal</td><td>Zündung prüfen, Elektroden reinigen, Gasdruck messen.</td></tr>
-                    <tr><td><strong>F5</strong></td><td>Druckwächter / Gebläse</td><td>Lüfter startet nicht oder Differenzdruck fehlt.</td></tr>
-                    <tr><td><strong>EE / EF</strong></td><td>Flammenausfall</td><td>Gasmangel, Ionisationselektrode defekt, Erdung fehlt.</td></tr>
-                    <tr><td><strong>Eb</strong></td><td>Lambda Pro Fehler</td><td>Wiederholter Flammenabriss. Kalibrierung nötig.</td></tr>
-                    <tr><td><strong>Fd</strong></td><td>Fehler Feuerungsautomat</td><td>Brennersteuergerät defekt. Reset versuchen.</td></tr>
+                    <tr><td><strong>06</strong></td><td>Anlagendruck zu niedrig</td><td>Der Anlagendruck liegt unter 0,8 bar. System auf Undichtigkeiten prüfen, Wasser nachfüllen.</td></tr>
+                    <tr><td><strong>0F</strong></td><td>Wartung erforderlich</td><td>Der Code hat reinen Informationscharakter (nach Betriebsstunden). Rückstellung über das Servicemenü.</td></tr>
+                    <tr><td><strong>10</strong></td><td>Kurzschluss Außenoperatursensor</td><td>Außentemperatursensor und Kabel prüfen. Wenn kein Sensor verwendet wird, Codierung überprüfen.</td></tr>
+                    <tr><td><strong>18</strong></td><td>Unterbrechung Außentemperatursensor</td><td>Anschluss prüfen. Bei Unterbrechung arbeitet der Kessel mit der berechneten maximalen Temperatur.</td></tr>
+                    <tr><td><strong>20 / 28</strong></td><td>Fehler Vorlauftemperatursensor (NTC)</td><td>Kurzschluss (20) oder Unterbrechung (28). Widerstand prüfen (siehe Abschnitt 4).</td></tr>
+                    <tr><td><strong>30 / 38</strong></td><td>Fehler Speichertemperatursensor (Warmwasser)</td><td>Temperatursensor des Speicher-Wassererwärmers überprüfen.</td></tr>
+                    <tr><td><strong>40 / 48</strong></td><td>Fehler Rücklauftemperatursensor</td><td>Relevant für Vitodens 200/300. Zirkulation prüfen.</td></tr>
+                    <tr><td><strong>50 / 51</strong></td><td>Fehler Auslauftemperatursensor Warmwasser</td><td>Sensor am Ausgang des Plattenwärmetauschers prüfen (für Vitopend/Vitodens 100-W).</td></tr>
+                    <tr><td><strong>94 / 9C</strong></td><td>Kommunikationsfehler</td><td>Verbindungsverlust zum Erweiterungsmodul oder zum Solarkollektorsensor.</td></tr>
+                    <tr><td><strong>A1</strong></td><td>Fehler eBUS-Kommunikationsmodul</td><td>Polarität des Anschlusses externer Regler überprüfen.</td></tr>
+                    <tr><td><strong>A7</strong></td><td>Fehler Bedieneinheit</td><td>Bedienfeld (HMI) defekt. Festen Sitz des Displays prüfen.</td></tr>
+                    <tr><td><strong>B0 / B8</strong></td><td>Fehler Abgastemperatursensor</td><td>Überhitzung im Abgassystem oder Sensor defekt.</td></tr>
+                    <tr><td><strong>C5 / C6</strong></td><td>Fehler Luftdruckschalter / Ventilator</td><td>Luftdruck zu niedrig (bei Vitopend) oder inkorrekte Ventilatordrehzahl.</td></tr>
+                    <tr><td><strong>E0</strong></td><td>Fehler Flammenüberwachung</td><td>Externer Begleiter hat angesprochen oder Fehler im Ionisationskreis.</td></tr>
+                    <tr><td><strong>EE / EF</strong></td><td>Zündfehler (keine Flammenbildung)</td><td>Kritischer Zustand. Kein Gas vorhanden, Zündtransformator defekt oder Elektrode verschmutzt.</td></tr>
+                    <tr><td><strong>F1</strong></td><td>Abgas-Überhitzung</td><td>Temperaturlimiter im Brennraum hat angesprochen. Sauberkeit des Wärmetauschers prüfen.</td></tr>
+                    <tr><td><strong>F2</strong></td><td>Sicherheitstemperaturbegrenzer (STB) ausgelöst</td><td>Temperatur hat 100–110 °C überschritten. Pumpe und Anlage auf Luft prüfen.</td></tr>
+                    <tr><td><strong>F4</strong></td><td>Kein Flammensignal vorhanden</td><td>Die Flamme erlischt sofort nach der Zündung. Ionisationsstrom und Erdung prüfen.</td></tr>
+                    <tr><td><strong>F5</strong></td><td>Fehler Luftdruckwächter</td><td>Der Druckwächter öffnet nicht bei Ventilatorstillstand oder schließt nicht bei Ventilatorstart.</td></tr>
+                    <tr><td><strong>F9</strong></td><td>Fehler Gebläsedrehzahl</td><td>Das Gebläse erreicht beim Start die vorgegebene Drehzahl nicht.</td></tr>
+                    <tr><td><strong>FC</strong></td><td>Fehler Gaskombiregler oder Leiterplatte</td><td>Fehler im Steuerkreis des Gasventils.</td></tr>
+                    <tr><td><strong>Fd</strong></td><td>Fehler Feuerungsautomat</td><td>Störung der Hauptleiterplatte. Reset versuchen, bei Wiederholung Leiterplatte austauschen.</td></tr>
                 </tbody>
             </table>
         </div>
-        
+
+        <h3>Diagnosehinweise für Techniker:</h3>
+        <ul>
+            <li><strong>Fehlerhistorie:</strong> In der Vitotronic-Regelung können die letzten 10 Fehler abgerufen werden. Dies hilft zu differenzieren, ob es sich um einen einmaligen Fehler (z. B. Spannungsschwankung) oder einen systematischen Defekt handelt.</li>
+            <li><strong>Entriegelung (Reset):</strong> Beim Vitopend 100 erfolgt dies durch Drehen des Drehknopfes „Heizung“ bis zum Anschlag nach links und zurück. Beim Vitodens 100/200 erfolgt die Entriegelung über die Taste „OK“ bzw. die Reset-Taste auf dem Touch-Display.</li>
+            <li><strong>Quittierung:</strong> Einige Fehler (z. B. Wartungsmeldungen) blockieren den Kessel nicht, sondern blinken im Display. Blockierende Fehler werden immer durch eine rote Anzeige oder ein Blitz-Symbol signalisiert.</li>
+        </ul>
+        <blockquote>
+            <strong>Wichtiger Warnhinweis zum Fehler F4/EE:</strong> Bei Vitodens Brennwertkesseln (insbesondere der 200er-Serie) steht dieser Fehler häufig im Zusammenhang mit einer Verschmutzung des zylindrischen MatriX-Brenners. Ablagerungen auf dem Geflecht verhindern, dass die Elektrode die Flamme korrekt detektiert. Bei der Wartung ist eine trockene Reinigung des Brenners zwingend erforderlich.
+        </blockquote>
+        <p><strong>Hinweis zur Elektronik-Plattform E3 (neue Vitodens-Modelle):</strong> Die Fehlercodes sind nun vierstellig (z. B. EB.01), die zugrundeliegende Diagnose-Logik bleibt jedoch identisch.</p>
     </section>
 
     <!-- 2. Service-Ebene & Codierung -->
     <section id="service">
         <h2>2. Service-Ebene & Codierung</h2>
-        <h3>Zugang zum Menü</h3>
+        <p>Die Arbeit mit der Viessmann-Regelungstechnik erfordert Präzision. Im Unterschied zu anderen Herstellern sind die Parameter in sogenannte „Codierungsadressen“ unterteilt. Zur Konfiguration müssen Servicetechniker häufig hexadezimale Wertepaare anpassen.</p>
+        
+        <h3>2.1. Zugang zur Service-Ebene nach Regelungstyp</h3>
         <ul>
-            <li><strong>Vitotronic 100/200:</strong> OK + ☰ gleichzeitig 4 Sek. drücken.</li>
-            <li><strong>Vitodens 100-W (B1HF):</strong> ☰ -> Einstellungen -> Spezialisten-Passwort: <code>viservice</code>.</li>
+            <li><strong>Vitotronic 100 (HC1/HC1A) und 200 (HO1/HO1A):</strong> Klassische Regelung mit Tasten und Grafischediplsay: Drücken Sie gleichzeitig die Tasten „OK“ und die „Menü-Taste“ (drei horizontale Linien) für ca. 4–5 Sekunden. Im Display erscheint der Punkt „Service-Menü“. Für tiefgehende Konfigurationen wählen Sie „Codierung 2“ – hier befinden sich alle Parameter wie Leistung, Anlagenkonfiguration und Sensoren.</li>
+            <li><strong>Vitodens 100-W (WB1B/WB1C) – mit Drehknöpfen:</strong> Drehen Sie die Drehknöpfe für Warmwasser und Heizung in die extreme linke Position. Drehen Sie anschließend den Heizungs-Drehknopf innerhalb von 2 Sekunden schnell in die extreme rechte und wieder in die extreme linke Position. Im Display blinkt das Wartungssymbol (Schlüssel) oder „Serv“.</li>
+            <li><strong>Vitodens 100-W (B1HF/B1KF) – Touch-Display:</strong> Drücken Sie die „Menü-Taste“ (drei Linien) und wählen Sie „Einstellungen“. Drücken und halten Sie gleichzeitig den oberen und unteren Bereich des Touch-Bedienfelds (bzw. die Navigationstasten) für ca. 4 Sekunden, bis die Passwortabfrage erscheint. Das Standard-Passwort für die Fachmannebene lautet: <code>viservice</code>.</li>
         </ul>
+
+        <h3>2.2. Navigation in den Codierungen (Codierung 1 und 2)</h3>
+        <p>Viessmann nutzt die Struktur „Adresse : Wert“.</p>
+        <ul>
+            <li><strong>Codierung 1:</strong> Gruppierte, vereinfachte Parameter (z. B. Anlagenschema).</li>
+            <li><strong>Codierung 2:</strong> Erweiterte Einstellungen. Die Änderung einer Adresse kann die gesamte Betriebslogik beeinflussen.</li>
+        </ul>
+
+        <p><strong>Kritische Codierungsadressen (für Vitotronic 200):</strong></p>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Adresse</th><th>Beschreibung</th><th>Empfehlung</th></tr>
+                    <tr>
+                        <th>Adresse</th>
+                        <th>Wert / Beschreibung</th>
+                        <th>Empfehlung / Bedeutung</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>00:1</td><td>Anlagenschema</td><td>Konfiguration Heizkreise/WW.</td></tr>
-                    <tr><td>31:100</td><td>Heizleistung max.</td><td>In % begrenzen zur Taktvermeidung.</td></tr>
-                    <tr><td>90:128</td><td>Dämpfung Außentemp.</td><td>Reaktionszeit auf Wetteränderung.</td></tr>
-                    <tr><td>A5:5</td><td>Frostschutz</td><td>Einschaltschwelle der Umwälzpumpe.</td></tr>
+                    <tr><td><strong>00:1</strong></td><td>Anlagenkonfiguration</td><td>Gibt an, ob ein Warmwasserspeicher und gemischte Heizkreise vorhanden sind.</td></tr>
+                    <tr><td><strong>31:100</strong></td><td>Max. Heizleistung</td><td>Einstellung in % der Nennleistung. Wichtig bei kleineren Gebäuden zur Leistungsbegrenzung.</td></tr>
+                    <tr><td><strong>59:0</strong></td><td>Vorlauf Trinkwassererwärmung</td><td>Nachlaufzeit der Speicherladepumpe nach der Warmwasserbereitung.</td></tr>
+                    <tr><td><strong>90:128</strong></td><td>Dämpfung Außentemperatur</td><td>Zeitkonstante für die Reaktion des Kessels auf Außentemperaturänderungen (in Minuten).</td></tr>
+                    <tr><td><strong>A5:5</strong></td><td>Frostschutzfunktion</td><td>Bestimmt die Aktivierungsschwelle für den Frostschutz (Werkseinstellung +5 °C).</td></tr>
+                    <tr><td><strong>C5:20</strong></td><td>Min. Vorlauftemperatur</td><td>Unterer Grenzwert, den die Vorlauftemperatur nicht unterschreiten darf.</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>2.3. Funktionstests (Aktorentest)</h3>
+        <p>Über die Service-Ebene können einzelne Komponenten direkt angesteuert werden:</p>
+        <ul>
+            <li><strong>Schornsteinfeger-Prüffunktion:</strong> Kurzes Drücken der speziellen Prüftaste (Kreis mit Punkt) oder Auswahl im Menü. Der Kessel fährt auf maximale Leistung zur Abgasmessung.</li>
+            <li><strong>Aktorentest:</strong> Erlaubt das sequentielle Einschalten von Pumpe, Dreiwegeventil (Position Heizung/Warmwasser), Gebläсе und Zündung. Dies ist die effektivste Methode zur Lokalisierung defekter Bauteile.</li>
+        </ul>
+
+        <h3>2.4. Praxisempfehlungen für Techniker</h3>
+        <ul>
+            <li><strong>Dokumentation der Werte:</strong> Notieren Sie vor jeder Änderung einer Adresse in Codierung 2 den ursprünglichen Wert. Ein falsches Zeichen kann die gesamte Regelung blockieren.</li>
+            <li><strong>Werkseinstellung (Reset):</strong> Bei Fehlkonfigurationen existiert in der „Codierung 2“ der Menüpunkt „Werkseinstellungen“ (nur auf dieser Ebene verfügbar).</li>
+            <li><strong>Heizkennlinie (Heizkurve):</strong> Die wichtigste Einstellung für den Anlagenkomfort.
+                <ul>
+                    <li><strong>Neigung:</strong> Bestimmt, wie stark die Vorlauftemperatur bei sinkender Außentemperatur ansteigt.</li>
+                    <li><strong>Niveau:</strong> Parallelverschiebung der gesamten Heizkurve nach oben oder unten.</li>
+                    <li><strong>Richtwerte:</strong> Für Radiatorenheizungen gilt meist eine Neigung von 1,2–1,4, für Fußbodenheizungen 0,4–0,6.</li>
+                </ul>
+            </li>
+        </ul>
+        <p><strong>Wichtiger Hinweis zur Plattform E3:</strong> Anstelle von Codierungsadressen wird ein Textmenü mit einer Parameter-ID verwendet. Zur schnellen Suche nutzen Sie die Suchfunktion in der Service-App ViGuide.</p>
     </section>
 
-    <!-- 3. Gasdruck & Lambda Pro -->
+    <!-- 3. Gasdruck H/L-Gas -->
     <section id="gasdruck">
-        <h2>3. Gasdruck & Lambda Pro</h2>
+        <h2>3. Gasdruck H/L-Gas</h2>
+        <p>Die Einstellung von Viessmann-Gasgeräten unterscheidet sich bei Brennwertgeräten fundamental von anderen Herstellern durch den Einsatz des Lambda Pro Control (bzw. Lambda Pro Plus) Systems. Diese Regelung passt sich automatisch an die Gasqualität an, weshalb klassische Düsendruckmessungen am Brenner entfallen.</p>
+        
+        <h3>3.1. Gasanschlussdruck (Anschlussdruck)</h3>
+        <p>Die Messung erfolgt am Eingangsprüfnippel des Gaskombireglers bei Volllastbetrieb des Kessels (Schornsteinfeger-Modus oder Aktorentest).</p>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Gasart</th><th>Anschlussdruck (mbar)</th><th>Bereich (mbar)</th></tr>
+                    <tr>
+                        <th>Gasart</th>
+                        <th>Nenndruck (mbar)</th>
+                        <th>Zulässiger Bereich (mbar)</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Erdgas H</td><td>20</td><td>17 – 25</td></tr>
-                    <tr><td>Erdgas L</td><td>20 / 25</td><td>18 – 30</td></tr>
-                    <tr><td>Flüssiggas</td><td>50</td><td>42.5 – 57.5</td></tr>
+                    <tr><td>Erdgas H (E)</td><td>20</td><td>17 – 25</td></tr>
+                    <tr><td>Erdgas L (LL)</td><td>20 / 25</td><td>18 – 30</td></tr>
+                    <tr><td>Flüssiggas (P)</td><td>50</td><td>42.5 – 57.5</td></tr>
                 </tbody>
             </table>
         </div>
-        <p><strong>Lambda Pro Control (Brennwert):</strong></p>
+        <blockquote>
+            <strong>Achtung:</strong> Fällt der dynamische Druck bei maximaler Belastung unter 17 mbar, kann die Lambda Pro Regelung den Fehler Eb oder F4 ausgeben, da der Brennstoffmangel nicht mehr auskompensiert werden kann.
+        </blockquote>
+
+        <h3>3.2. Heizwertkessel (Vitopend 100-W WH1D/A1HB)</h3>
+        <p>Bei diesen Modellen wird der Brennerdruck manuell über die Modulationsspule des Gasventils eingestellt.</p>
+        <p><strong>Richtwerte für den Düsendruck (mbar) bei 24 kW Leistung:</strong></p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Modell (24 kW)</th>
+                        <th>Gasart</th>
+                        <th>Min. Druck</th>
+                        <th>Max. Druck</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Vitopend 100</td><td>H-Gas (E)</td><td>1.2 – 1.8</td><td>10.0 – 12.5</td></tr>
+                    <tr><td>Vitopend 100</td><td>L-Gas (LL)</td><td>1.8 – 2.4</td><td>14.0 – 16.0</td></tr>
+                    <tr><td>Vitopend 100</td><td>Flüssiggas</td><td>4.5 – 5.5</td><td>28.0 – 35.0</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Die exakten Einstelldaten für die jeweilige Düsengruppe sind stets der Montageanleitung des spezifischen Gerätes zu entnehmen.</p>
+
+        <h3>3.3. Brennwertkessel (Vitodens 100/200/300)</h3>
+        <p>Eine klassische Düsendruckmessung ist hier nicht möglich, da das Gas-Luft-Gemisch im Kombiregler unter Unterdruck angesaugt wird.</p>
+        <p><strong>Prüfung über den CO2-Gehalt:</strong></p>
+        <p>Die Regelung erkennt die Gasart selbstständig. Beim Erststart oder nach einer Kalibrierung misst das Gerät den Ionisationsstrom und korrigiert die Stellung des Gasventils. Die Kontrolle erfolgt über die Abgasanalyse:</p>
         <ul>
-            <li>CO2-Wert (Erdgas): 8.7 % (Bereich 7.5 - 9.5 %)</li>
-            <li>CO2-Wert (Flüssiggas): 10.5 % (Bereich 10.0 - 12.0 %)</li>
+            <li>Erdgas: 7,5 – 9,5 % (Sollwert: 8,7 %)</li>
+            <li>Flüssiggas: 10,0 – 12,0 % (Sollwert: 10,5 %)</li>
         </ul>
-        
+        <p>Weichen die Werte ab, ist der Zustand der Ionisationselektrode und die Dichtigkeit des Abgassystems zu prüfen. Einstellschrauben am Ventil dürfen nicht unkontrolliert verstellt werden.</p>
+
+        <h3>3.4. Gasartumstellung</h3>
+        <ul>
+            <li><strong>Vitopend 100:</strong> Erfordert den physischen Austausch des Düsensatzes und eine manuelle Neueinstellung des Düsendrucks am Gasventil.</li>
+            <li><strong>Vitodens 200/300 (mit Lambda Pro):</strong> Kein Düsentausch erforderlich. Die Umstellung erfolgt über die Änderung einer Codierungsadresse (z. B. Adresse 82 in Codierung 2). Der Kessel adaptiert sich selbstständig auf H- oder L-Gas.</li>
+            <li><strong>Vitodens 100 (B1HF/B1KF):</strong> Die Auswahl der Gasart wird im Servicemenü über den Inbetriebnahme-Assistenten durchgeführt.</li>
+        </ul>
+
+        <h3>Praxisempfehlungen für Techniker:</h3>
+        <ul>
+            <li><strong>Ruhedruck:</strong> Liegt der Ruhedruck bei Erdgas über 30 mbar, öffnet das Gasventil unter Umständen aufgrund der internen Blockierung der Magnetspule nicht. In diesem Fall ist der Hausdruckregler zu prüfen.</li>
+            <li><strong>Fließdruck:</strong> Prüfen Sie den Fließdruck immer bei zeitgleich maximaler Belastung aller Gasverbraucher im Gebäude (z. B. Gasherd + Heizkessel). Ein Druckabfall von mehr als 5 mbar deutet auf eine Verstopfung oder eine zu geringe Dimensionierung der Gasleitung hin.</li>
+            <li><strong>Messstutzen:</strong> Die Verschlussschраuben der Messstutzen an den Viessmann-Gasventilen sind feingliedrig. Überprüfen Sie diese nach der Messung zwingend mit Lecksuchspray auf absolute Dichtigkeit.</li>
+        </ul>
     </section>
 
     <!-- 4. Fühlerkennwerte & Motoren -->
     <section id="fuehler">
         <h2>4. Fühlerkennwerte & Motoren</h2>
-        <p><strong>NTC 10 kΩ Tabelle:</strong></p>
+        <p>Die automatischen Diagnosesysteme registrieren bereits geringe Abweichungen der elektrischen Widerstände, was zu sofortigen Störabschaltungen (z. B. Fehler 20, 30, F9 oder FC) führt.</p>
+        
+        <h3>4.1. Temperatursensoren (NTC)</h3>
+        <p>Viessmann verwendet primär zwei Sensortypen: NTC 10 kΩ (Standard für fast alle Temperaturmessungen) und NTC 500 Ω (Abgassensoren älterer Modelle). In aktuellen Vitopend- und Vitodens-Modellen kommen fast ausschließlich 10-kΩ-Sensoren zum Einsatz.</p>
+        
+        <p><strong>Widerstandstabelle NTC 10 kΩ (Viessmann):</strong></p>
         <div class="table-container">
             <table>
-                <tr><td>0°C: 28.5 kΩ</td><td>25°C: 10.0 kΩ</td><td>50°C: 3.6 kΩ</td></tr>
-                <tr><td>10°C: 19.8 kΩ</td><td>30°C: 8.0 kΩ</td><td>90°C: 0.9 kΩ</td></tr>
+                <thead>
+                    <tr>
+                        <th>Temperatur (°C)</th>
+                        <th>Widerstand (Ohm)</th>
+                        <th>Temperatur (°C)</th>
+                        <th>Widerstand (Ohm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0</td><td>28 544</td><td>50</td><td>3 605</td></tr>
+                    <tr><td>10</td><td>19 871</td><td>60</td><td>2 490</td></tr>
+                    <tr><td>20</td><td>12 488</td><td>70</td><td>1 753</td></tr>
+                    <tr><td>25</td><td>10 000</td><td>80</td><td>1 256</td></tr>
+                    <tr><td>30</td><td>8 059</td><td>90</td><td>915</td></tr>
+                    <tr><td>40</td><td>5 330</td><td>100</td><td>677</td></tr>
+                </tbody>
             </table>
         </div>
-        <p><strong>Pumpen & Ventilatoren:</strong></p>
+
+        <h3>Diagnosemethoden für Sensoren:</h3>
         <ul>
-            <li><strong>HE-Pumpen:</strong> Steuerung via PWM-Signal. Spannungsversorgung 230V separat prüfen.</li>
-            <li><strong>Lüfter (MatriX):</strong> RG128/RG148. Bei F9 Leichtgängigkeit prüfen.</li>
+            <li><strong>Linearität prüfen:</strong> Messen Sie den Widerstand bei 20 °C und prüfen Sie die Veränderung bei Erwärmung (z. B. im Wasserbad). Wenn der Widerstand sprunghaft wechselt oder unendlich anzeigt, ist der Sensor defekt.</li>
+            <li><strong>Plausibilitätsprüfung:</strong> Vergleichen Sie im Servicemenü (Diagnose -> Allgemein) die Werte von Vorlauf- und Rücklaufsensor bei abgekühltem Kessel. Eine Differenz von mehr als 2–3 K deutet auf eine Sensordegeneration hin.</li>
+            <li><strong>Außentemperatursensor:</strong> Häufig oxidieren die Kontakte im externen Anschlussgehäuse. Messen Sie den Widerstand direkt an den Klemmen der Regelung, um Leitungseinflüsse auszuschließen.</li>
         </ul>
+
+        <h3>4.2. Umwälzpumpen</h3>
+        <p>Es kommen werksseitig modifizierte Pumpen der Hersteller Wilo oder Grundfos zum Einsatz.</p>
+        <ul>
+            <li><strong>Standard-Pumpen (Vitopend):</strong> Die Hauptwicklung besitzt typischerweise einen Widerstand von 160–240 Ohm. Wenn die Pumpe brummt, aber nicht anläuft, ist der Betriebskondensator zu prüfen. Viessmann verwendet oft Kapazitäten von 2,0 oder 2,5 µF. Ein Abfall unter 1,8 µF blockiert den Anlauf.</li>
+            <li><strong>Hocheffizienzpumpen (HE-Pumpen bei Vitodens):</strong> Diese werden über ein PWM-Signal moduliert. Prüfen Sie die Spannungsversorgung (230 V) am Leistungsstecker. Liegt Spannung an und die Pumpe läuft nicht, steuern Sie diese über den „Aktorentest“ mit 100 % an. Reagiert sie nicht, liegt eine mechanische Blockade (Ablagerungen) oder ein Defekt der pumpeninternen Elektronik vor.</li>
+        </ul>
+
+        <h3>4.3. Gebläse (Ventilator)</h3>
+        <p>Die Gebläseeinheiten der Vitodens-Brennwertkessel verfügen über integrierte Steuerungs-Controller.</p>
+        <ul>
+            <li><strong>Diagnose Brennwert (Vitodens):</strong> Der Anschlussstecker besitzt 4 oder 5 Kontakte. Zwischen L und N müssen 230 V anliegen. An den Niederspannungs-Steuerkontakten muss im Betrieb ein PWM-Signal messbar sein. Bei Fehler F9 ist zusätzlich die Leichtgängigkeit des Lüfterrades von Hand zu prüfen (Verschmutzungen über das Abgassystem können das Rad blockieren).</li>
+            <li><strong>Diagnose Heizwert (Vitopend):</strong> Klassischer Asynchronmotor. Der Wicklungswiderstand liegt bei ca. 200–300 Ohm. Kann testweise kurzzeitig direkt mit 230 V versorgt werden.</li>
+        </ul>
+
+        <h3>4.4. Dreiwegeventil (Umschaltventil)</h3>
+        <p>In neueren Modellen (z. B. Vitodens 100-W B1KF) wird ein Schrittmotor oder ein Standard-Stellantrieb verwendet.</p>
+        <ul>
+            <li><strong>Prüfschritte:</strong> Aktorentest aufrufen und zwischen den Modi „Heizung“ und „Warmwasser“ umschalten. Den Hub des Ventilstifts visuell oder haptisch prüfen.</li>
+            <li><strong>Spulenwiderstand:</strong> Bei klassischen Antrieben (230 V) beträgt der Widerstand zwischen den Kontakten ca. 10–15 kΩ. Bei einer Unterbrechung ist der Antrieb zu ersetzen.</li>
+            <li><strong>Hinweis:</strong> Häufig blockiert der Ventilbolzen im Messinggehäuse aufgrund mangelhafter Heizwasserqualität. Vor dem Motortausch immer die mechanische Gängigkeit des Stifts prüfen.</li>
+        </ul>
+
+        <h3>4.5. Gaskombiregler (Drosselspule / Magnetventil)</h3>
+        <p>Vitodens mit Lambda Pro: Der Widerstand der Hauptgasspulen beträgt ca. 1,5 – 2,5 kΩ, der der Modulationsspule ca. 30–50 Ohm.</p>
+        <blockquote>
+            <strong>Achtung:</strong> Legen Sie niemals Netzspannung (230 V) an die Modulationsspule an. Diese arbeitet im Niederspannungsbereich; eine Fehlbeschaltung zerstört den Ausgang der Hauptleiterplatte.
+        </blockquote>
+        <p><strong>Technikertipp:</strong> Überprüfen Sie bei Totalausfällen von Gebläse oder Pumpe immer die beiden Feinsicherungen (meist 6,3 A) auf der Hauptleiterplatte. Diese sichern die teure Elektronik bei Spannungsspitzen ab.</p>
     </section>
 
     <!-- 5. Ioni, Anode & Wasser -->
     <section id="loni">
         <h2>5. Ionisation, Anode & Wasser</h2>
+        <p>Die Steuerungs- und Regelungstechnik reagiert empfindlich auf das elektrische Potenzial der Erdung sowie auf die chemische Zusammensetzung des Heizwassers. Das Lambda Pro Control System basiert direkt auf der Stabilität des Ionisationssignals.</p>
+        
+        <h3>5.1. Ionisationsstrom und Lambda Pro Control</h3>
+        <p>Der Ionisationsstrom dient bei Viessmann nicht nur der Flammenüberwachung, sondern ist das primäre Regelsignal für die Verbrennungsoptimierung.</p>
         <ul>
-            <li><strong>Ionisationsstrom:</strong> Min. 5 µA, Normal 15 – 50 µA.</li>
-            <li><strong>Erdung (PE):</strong> Spannung N-PE < 1.5V. Wichtig für Fehler F4/EE!</li>
-            <li><strong>Magnesiumanode:</strong> Prüfstrom > 0.3 mA DC.</li>
-            <li><strong>Wasser (VDI 2035):</strong> pH-Wert 8.2 – 9.5. Härte < 3.0 mol/m³.</li>
+            <li><strong>Grenz- und Betriebswerte:</strong> Bei der Zündung mindestens 3–5 µA. Bei stabilem Betrieb unter Volllast: 15–50 µA (abhängig von Kesselleistung und MatriX-Brenner-Typ).</li>
+            <li><strong>Messverfahren:</strong> Ein Multimeter im Modus µA DC wird in Reihe in die Leitung der Ionisationselektrode geschaltet.</li>
+            <li><strong>Fehlerbild:</strong> Ein schwankender oder unter 5 µA sinkender Strom bei Volllast signalisiert eine Oxidschicht auf der Elektrode oder Verschmutzungen am Brenner. Das System gibt bei Abweichungen außerhalb des Kalibrierfensters den Fehler Eb (wiederholter Flammenabriss) oder EC (Fehler Kalibrierung) aus.</li>
         </ul>
+
+        <h3>5.2. Erdung (Potentialausgleich)</h3>
+        <p>Die Fehler F4 oder EE resultieren häufig aus Installationsfehlern in der Elektroanlage.</p>
+        <ul>
+            <li><strong>Anforderung:</strong> Der Erdungswiderstand muss &lt; 2 Ohm betragen. Die Spannung zwischen Neutralleiter (N) und Schutzleiter (PE) muss nahe 0 V liegen (maximal 1,5 V AC).</li>
+            <li><strong>Problem:</strong> Liegt ein Potenzial auf dem Kesselgehäuse vor (z. B. durch eine fehlende Isolierverschraubung in der Gasleitung oder mangelhafte Erdung im Elektroverteiler), führt dies zu Fehlmessungen des Ionisationsstroms und zur Störabschaltung.</li>
+        </ul>
+
+        <h3>5.3. Magnesiumanode und Titan-Fremdstromanode (Vitocell)</h3>
+        <p>Der Korrosionsschutz in den Vitocell 100/300 Speichern erfordert eine regelmäßige Überprüfung.</p>
+        <ul>
+            <li><strong>Messung des Anodenstroms:</strong> Lösen Sie das Massekabel der Anode an der oberen Speicherabdeckung. Schalten Sie das Multimeter im Modus mA DC zwischen die Anode und das Kesselgehäuse.</li>
+            <li><strong>Sollwert:</strong> Der Strom muss &gt; 0,3 mA betragen. Liegt der Wert darunter, ist die Magnesiumanode verbraucht und muss erneuert werden.</li>
+            <li><strong>Titan-Fremdstromanode:</strong> Prüfen Sie die Kontrollleuchte am separaten Netzteil. Eine grüne LED signalisiert ordnungsgemäßen Betrieb; eine rote LED zeigt einen Ausfall des Systems an, wodurch der Speicher korrosionsgefährdet ist.</li>
+        </ul>
+
+        <h3>5.4. Chemische Wasseraufbereitung (VDI 2035)</h3>
+        <p>Die Inox-Radial-Wärmetauscher aus Edelstahl sind robust, reagieren jedoch empfindlich auf hohe Chloridkonzentrationen und unzulässige pH-Werte.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Anforderung (Anlagen &lt; 50 kW)</th>
+                        <th>Hinweis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Gesamthärte</strong></td><td>&lt; 16,8 °dH (bzw. &lt; 3,0 mol/m³)</td><td>Bei spezifischen Anlagenvolumina &gt; 20 l/kW gelten strengere Grenzwerte.</td></tr>
+                    <tr><td><strong>pH-Wert</strong></td><td>8,2 – 9,5</td><td>Kritisch! Bei einem pH-Wert &lt; 8,2 besteht die Gefahr von Korrosion.</td></tr>
+                    <tr><td><strong>Leitfähigkeit</strong></td><td>&lt; 100 µS/cm</td><td>Gilt für salzarme Fahrweise zur Minimierung elektrochemischer Korrosion.</td></tr>
+                    <tr><td><strong>Chloride</strong></td><td>&lt; 30 mg/l</td><td>Höhere Werte können Lochfraß im Edelstahl verursachen.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Befüllen Sie die Anlage ausschließlich mit enthärtetem oder demineralisiertem Wasser. Viessmann rät vom Einsatz chemischer Inhibitoren ab, sofern das Füllwasser der VDI 2035 entspricht. Bei Frostschutzanforderungen sind nur freigegebene Medien (z. B. Tyfocor) zu verwenden.</p>
+
+        <h3>5.5. Dichtigkeit des Brennraums</h3>
+        <p>Ein Defekt der Brennerdichtung (Graphitring) führt zum Eintritt von Falschluft. Dies verändert das Gas-Luft-Verhältnis, lässt den Ionisationsstrom sinken und verhindert eine korrekte Kalibrierung durch Lambda Pro. Die Brennerdichtung bei der Vitodens-Serie ist ein Verschleißteil und muss bei jeder Öffnung des Brennraums auf Risse geprüft werden.</p>
+        <p><strong>Diagnose-Reihenfolge bei wiederholtem Fehler F4:</strong></p>
+        <ol>
+            <li>Spannung N-PE prüfen (Sollwert: ~0 V).</li>
+            <li>Ionisationselektrode reinigen, bei Materialabtrag austauschen.</li>
+            <li>Gasfließdruck unter dynamischer Last messen.</li>
+            <li>Abgassystem auf Dichtigkeit (Rezirkulation der Abgase in die Verbrennungsluft) prüfen.</li>
+        </ol>
     </section>
 
-    <!-- 6. Wartung (MatriX) -->
+    <!-- 6. Wartung (Matrix) -->
     <section id="wartung">
-        <h2>6. Wartung (MatriX)</h2>
-        <ol>
-            <li>Fehlerspeicher auslesen.</li>
-            <li><strong>Brenner MatriX:</strong> Ausbauen, nur Druckluft/weiche Bürste (keine Drahtbürste!).</li>
-            <li><strong>Inox-Radial:</strong> Mit Wasser spülen, Kondensatablauf prüfen.</li>
-            <li><strong>Siphon:</strong> Reinigen и auffüllen.</li>
-            <li><strong>Graphitdichtung:</strong> Bei Rissen zwingend tauschen!</li>
-        </ol>
+        <h2>6. Wartung (Matrix)</h2>
+        <p>Die Wartung der Viessmann-Brennwertgeräte erfordert den fachgerechten Umgang mit dem zylindrischen MatriX-Brenner und den Inox-Radial-Wärmetauscherelementen. Wartungsfehler können zum thermischen Verzug des Brenners oder zu Schäden an der Lambda Pro Regelung führen.</p>
         
+        <h3>6.1. Schritt-für-Schritt-Wartungsablauf</h3>
+        <ol>
+            <li><strong>Voranalytik:</strong> Fehlerhistorie auslesen (Diagnose -> Historie). Aktuelle Betriebsparameter prüfen (Ionisationssignal, Status Lambda Pro).</li>
+            <li><strong>Demontage:</strong> Anlage spannungsfrei schalten und Gasabsperrhahn schließen. Frontverkleidung demontieren. Steckverbindungen des Gebläses und der Elektroden abziehen. Die Befestigungsmuttern der Brennertür über Kreuz lösen. <em>Hinweis:</em> Verwenden Sie passgenaues Werkzeug, da die Muttern an den Stehbolzen des Wärmetauschers thermisch hoch belastet sind.</li>
+            <li><strong>Reinigung des MatriX-Brenners:</strong> Das Brennergeflecht visuellement auf Risse oder Blasenbildung prüfen. Bei Beschädigungen ist der Brenner komplett zu ersetzen. Die Reinigung darf nur mit Druckluft und einer weichen Bürste erfolgen. Keine Drahtbürsten verwenden! Staubablagerungen im Inneren des Brenners führen zum Flammenrückschlag und zur Zerstörung des Bauteils.</li>
+            <li><strong>Reinigung des Inox-Radial-Wärmetauschers:</strong> Die Spalte zwischen den Edelstahlwindungen kontrollieren. Reinigung durch Spülen mit klarem Wasser. Bei starken Ablagerungen die Kunststoff-Reinigungsklinge oder das Viessmann-Spezialwerkzeug verwenden. Der freie Kondensatablauf durch den Siphon ist sicherzustellen.</li>
+            <li><strong>Siphonreinigung:</strong> Siphon demontieren und reinigen. Starke weiße Ablagerungen (Aluminiumoxid) deuten auf Korrosionsprozesse im System hin (pH-Wert des Heizwassers prüfen).</li>
+            <li><strong>Montage:</strong> Die graphitierte Brennerdichtung sowie der Silikon-O-Ring des Gebläses sind kritische Dichtpunkte und im Zweifelsfall zu erneuern. Undichtigkeiten an der Brennertür führen zu thermischen Schäden an den umliegenden Kunststoffkomponenten.</li>
+        </ol>
+
+        <h3>6.2. Wartungsmatrix</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Komponente</th>
+                        <th>Prüfkriterium</th>
+                        <th>Sollwert / Maßnahme</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Elektrodenblock</strong></td><td>Elektrodenabstand</td><td>4 mm ± 0,5 mm. Von Oxidschichten befreien.</td></tr>
+                    <tr><td><strong>Membran-Ausdehnungsgefäß</strong></td><td>Vordruck (stickstoffseitig)</td><td>0,2 bar unter dem statischen Anlagendruck einstellen (im drucklosen Zustand der Wasserseite).</td></tr>
+                    <tr><td><strong>Lambda Pro System</strong></td><td>Kalibrierung</td><td>Nach jeder Wartung und Reinigung über das Servicemenü neu initiieren.</td></tr>
+                    <tr><td><strong>Abgassystem</strong></td><td>Ringspaltdichtigkeit</td><td>Messung des O2-Gehalts in der Verbrennungsluft (es darf kein CO nachweisbar sein).</td></tr>
+                    <tr><td><strong>Gasarmatur</strong></td><td>Dichtigkeit</td><td>Prüfung der Messstutzen-Verschlussschrauben mit Lecksuchspray.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>6.3. Besonderheiten der Brennwerttechnik</h3>
+        <ul>
+            <li><strong>Lambda Pro Plus (Inbetriebnahme-Funktion):</strong> Bei den Baureihen B1HF/B1KF muss nach der Wartung die Funktion „Kalibrierung des Verbrennungssystems“ gestartet werden. Das Gerät durchläuft selbstständig verschiedene Modulationsstufen, um sich an den gereinigten Wärmetauscher anzupassen.</li>
+            <li><strong>CO-Überwachung (Kohlenmonoxid):</strong> Beträgt der CO-Wert bei der Abgasmessung unter Volllast mehr als 150–200 ppm bei normalem CO2-Wert, deutet dies auf einen inneren Verschmutzungsgrad des Brenners oder eine fehlerhafte Flammengeometrie hin.</li>
+            <li><strong>Elektrodenverschleiß:</strong> Bei bestimmten Modellen dient die Ionisationselektrode gleichzeitig als Zündelektrode. Ein Abbrand von nur 1 mm kann trotz korrektem Gasfließdruck den Fehler F4 provozieren.</li>
+        </ul>
+        <blockquote>
+            <strong>Sicherheitshinweis:</strong> Befüllen Sie den Kondensatsiphon nach der Reinigung vor dem ersten Brennerstart zwingend mit ca. 0,5–1,0 Liter Wasser. Ein trockener Siphon führt beim Start zum Austritt von unverdünnten Abgasen über den Kondensatablauf in den Aufstellraum.
+        </blockquote>
     </section>
 
     <!-- 7. Modell-Übersicht -->
     <section id="modelle">
         <h2>7. Modell-Übersicht</h2>
+        <p>Das Produktprogramm von Viessmann folgt einer systematischen Nomenklatur. Die Bezeichnungen beginnen mit dem Präfix Vito-, gefolgt von der technologischen Zuordnung: -dens steht für Brennwerttechnik, -pend für Heizwerttechnik und -cross für bodenstehende Kesselkonzepte.</p>
+        
+        <h3>7.1. Wandhängende Gas-Brennwertkessel (Vitodens)</h3>
+        <p>Alle aktuellen Modelle sind mit dem Inox-Radial-Wärmetauscher aus Edelstahl ausgestattet.</p>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Serie</th><th>Bezeichnung</th><th>Typ</th></tr>
+                    <tr>
+                        <th>Baureihe</th>
+                        <th>Typen / Generationen</th>
+                        <th>Klassifizierung und Merkmale</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Vitodens 100-W</td><td>B1HF / B1KF</td><td>Wand, Brennwert, Lambda Pro.</td></tr>
-                    <tr><td>Vitodens 200-W</td><td>B2HE / B2HF</td><td>Wand, Premium, WLAN integriert.</td></tr>
-                    <tr><td>Vitopend 100-W</td><td>A1HB / A1JB</td><td>Wand, Heizwert (klassisch).</td></tr>
-                    <tr><td>Vitocrossal 300</td><td>CU3A</td><td>Boden, Brennwert (Inox-Crossal).</td></tr>
+                    <tr><td><strong>Vitodens 050-W</strong></td><td>B0HA, B0KA</td><td>Einstiegssegment. Basisregelung, vereinfachtes Display. Konzipiert für den Geschosswohnungsbau.</td></tr>
+                    <tr><td><strong>Vitodens 100-W</strong></td><td>WB1B, WB1C, B1HF, B1KF</td><td>Mittelklasse (Plus-Modelle). Hohe Marktdurchdringung. Ausgestattet mit Lambda Pro Control (in aktuellen Generationen) und Touch-Bedienung.</td></tr>
+                    <tr><td><strong>Vitodens 111-W</strong></td><td>B1LF</td><td>Variante der 100er-Serie mit integriertem Edelstahl-Ladespeicher (46 Liter Inhalt).</td></tr>
+                    <tr><td><strong>Vitodens 200-W</strong></td><td>WB2B, B2HE, B2HF</td><td>Premiumsegment. Farb-Touchdisplay, hoher Modulationsbereich (bis zu 1:17), integrierte WLAN-Schnittstelle, Lambda Pro Plus.</td></tr>
+                    <tr><td><strong>Vitodens 300-W</strong></td><td>B3HE</td><td>Spitzenmodell. Maximale Energieeffizienz, digitale Anlagendrucküberwachung im Display, integriertes Internet-Gateway.</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>7.2. Wandhängende Heizwertkessel (Vitopend)</h3>
+        <p>In Deutschland im Neuanlagenbereich aufgrund gesetzlicher Vorgaben kaum noch vertreten, jedoch im osteuropäischen Raum im Bestand weit verbreitet.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Baureihe</th>
+                        <th>Typ</th>
+                        <th>Beschreibung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Vitopend 100-W</strong></td><td>WH1B</td><td>Umlaufwasserheizer / Kombiwasserheizer. Robustes Standardgerät mit analogem Rundmanometer.</td></tr>
+                    <tr><td><strong>Vitopend 100-W</strong></td><td>WH1D</td><td>Ausführung mit digitalem Display und erweitertem Diagnosesystem.</td></tr>
+                    <tr><td><strong>Vitopend 100-W</strong></td><td>A1HB / A1JB</td><td>Letzte Generation der Heizwert-Baureihe. Optimierte Leiterplatte und modernisiertes Gehäusedesign.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>7.3. Bodenstehende Gas-Heizkessel</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Baureihe</th>
+                        <th>Typen</th>
+                        <th>Technologie / Besonderheiten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Vitocrossal 300</strong></td><td>CU3A, CI3</td><td>Bodenstehender Brennwertkessel. Vertikal angeordneter Inox-Crossal-Wärmetauscher. Unempfindlich bei großen Anlagenwasser-Volumina.</td></tr>
+                    <tr><td><strong>Vitorondens 200-T</strong></td><td>BR2A</td><td>Bodenstehender Guss-Brennwertkessel mit Eutectoplex-Heizfläche. Hohe Korrosionsbeständigkeit.</td></tr>
+                    <tr><td><strong>Vitogas 100-F</strong></td><td>GS1D</td><td>Klassischer Heizwert-Niedertemperaturkessel. Atmosphärischer Brenner, Guss-Heizfläche. Extrem langlebige Konstruktion.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>7.4. Typenschlüssel-Aufschlüsselung (Nomenklatur)</h3>
+        <ul>
+            <li><strong>VC / VU:</strong> Einschnittiges Gerät (nur Heizbetrieb).</li>
+            <li><strong>VCW / VUW:</strong> Kombinationsgerät (Heizbetrieb und integrierte Warmwasserbereitung im Durchlaufprinzip).</li>
+            <li><strong>W / F:</strong> Wandhängend (W – Wand) oder Bodenstehend (F – Fuß).</li>
+        </ul>
+        <p><strong>Beispiel B1KF / B1HF (Plattform E3):</strong></p>
+        <ul>
+            <li><strong>B1:</strong> Baureihe 100.</li>
+            <li><strong>K:</strong> Kombigerät.</li>
+            <li><strong>H:</strong> Reines Heizgerät (Heizgerät).</li>
+            <li><strong>F:</strong> Energieträger Gas (Flüssig-/Erdgas).</li>
+        </ul>
+
+        <h3>Servicetechnische Zusammenfassung:</h3>
+        <ul>
+            <li><strong>Regelungsplattformen:</strong> Modelle bis Baujahr 2020 nutzen die Vitotronic-Plattform (adressbasierte Codierung). Modelle ab Baujahr 2020 basieren auf der Plattform E3 (Konfiguration via ViGuide-App). Die Elektronikkomponenten (Leiterplatten, Sensoren) sind zwischen den Plattformen nicht abwärtskompatibel.</li>
+            <li><strong>Hydraulikkomponenten:</strong> Viessmann setzt primär auf schraublose Clip-Steckverbindungen. Bei Demontage sind die O-Ring-Dichtungen zwingend zu ersetzen, da gebrauchte Dichtringe nach dem Wiedereinsetzen zu Undichtigkeiten neigen.</li>
+            <li><strong>Wärmetauscher-Geometrie:</strong> Die Inox-Radial-Systeme der 100er- und 200er-Serie sind konstruktiv ähnlich aufgebaut, unterscheiden sich jedoch in den Abmessungen und den Leistungsstufen. Ersatzteilbestellungen müssen zwingend über die ersten 7 Stellen der Geräteseriennummer verifiziert werden.</li>
+        </ul>
     </section>
 
     <!-- 8. Ersatzteile -->
     <section id="ersatzteile">
         <h2>8. Ersatzteile & Art.-Nr.</h2>
+        <p>Die nachfolgenden Tabellen listen die am häufigsten benötigten Ersatz- und Verschleißteile für die Baureihen Vitopend 100 und Vitodens 100/200 auf. Ersatzteilnummern können sich im Zuge von Produktmodifikationen (z. B. beim Wechsel der Regelungsplattformen) ändern.</p>
+        
+        <h3>8.1. Wartungskomponenten & Elektroden (Wartung & Elektroden)</h3>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Bezeichnung</th><th>Artikel-Nr.</th></tr>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung / Passend für</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Elektrodensatz Vitodens 100</td><td>7826559</td></tr>
-                    <tr><td>Graphitdichtung Brenner</td><td>7826526</td></tr>
-                    <tr><td>NTC Tauchfühler (10k)</td><td>7819967</td></tr>
-                    <tr><td>Hocheffizienzpumpe Wilo</td><td>7828732</td></tr>
-                    <tr><td>3-Wege-Ventil Motor</td><td>7824532</td></tr>
-                    <tr><td>Wärmetauscher (12 Pl.)</td><td>7828044</td></tr>
-                    <tr><td>Gasarmatur (SIT 845)</td><td>7826453</td></tr>
-                    <tr><td>Lüfter RG128</td><td>7826501</td></tr>
-                    <tr><td>Zündtransformator</td><td>7826553</td></tr>
-                    <tr><td>Drucksensor digital</td><td>7838536</td></tr>
+                    <tr><td><strong>7826559</strong></td><td>Elektrodenblock (Zündung + Ionisation)</td><td>Vitodens 100-W (WB1B, WB1C)</td></tr>
+                    <tr><td><strong>7834234</strong></td><td>Elektrodenblock (MatriX-Brenner)</td><td>Vitodens 200-W (WB2B)</td></tr>
+                    <tr><td><strong>7828023</strong></td><td>Ionisationselektrode einzeln</td><td>Vitopend 100-W (WH1D, A1HB)</td></tr>
+                    <tr><td><strong>7827031</strong></td><td>Zündelektroden (Paar)</td><td>Vitopend 100-W</td></tr>
+                    <tr><td><strong>7826526</strong></td><td>Brennerdichtung (Graphitring)</td><td>Vitodens 100-W (13–35 kW)</td></tr>
+                    <tr><td><strong>7829792</strong></td><td>Dichtungssatz Brennkammer</td><td>Vitodens 200-W / 300-W</td></tr>
+                    <tr><td><strong>7831664</strong></td><td>Kondensatsiphon (komplett)</td><td>Vitodens Brennwertgeräte (Wandgeräte)</td></tr>
+                    <tr><td><strong>7819656</strong></td><td>Magnesiumanode (26 x 480 mm)</td><td>Vitocell 100-W / 100-V Speicher</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>8.2. Sensorik & Leiterplatten (Sensorik & Leiterplatten)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung / Passend für</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>7819967</strong></td><td>Tauchsensor NTC 10 kΩ</td><td>Universell einsetzbar (Warmwasser/Vorlauf)</td></tr>
+                    <tr><td><strong>7831303</strong></td><td>Außentemperatursensor</td><td>Vitotronic 100/200 Regelungen</td></tr>
+                    <tr><td><strong>7838536</strong></td><td>Drucksensor (digital)</td><td>Vitodens 100-W (B1HF/B1KF)</td></tr>
+                    <tr><td><strong>7827444</strong></td><td>Feuerungsautomat LGM 29 (Leiterplatte)</td><td>Vitopend 100-W (WH1B)</td></tr>
+                    <tr><td><strong>7856784</strong></td><td>Hauptleiterplatte Regelung (VBC)</td><td>Vitodens 100-W (WB1C)</td></tr>
+                    <tr><td><strong>7864432</strong></td><td>HMU-Controller (Elektronik-Plattform E3)</td><td>Vitodens 100/200-W aktuelle Generationen</td></tr>
+                    <tr><td><strong>7823512</strong></td><td>Abgastemperatursensor</td><td>Vitodens Brennwertgeräte (Überhitzungsschutz)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.3. Hydraulikkomponenten & Pumpen (Hydraulik & Pumpen)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung / Passend für</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>7828732</strong></td><td>Heizungskreispumpe komplett (Wilo)</td><td>Vitopend 100-W (WH1D, A1HB)</td></tr>
+                    <tr><td><strong>7835807</strong></td><td>Hocheffizienz-Pumpe (Grundfos UPM3)</td><td>Vitodens 100-W (WB1C)</td></tr>
+                    <tr><td><strong>7836417</strong></td><td>Ventileinsatz Dreiwegeventil</td><td>Vitopend / Vitodens 100-W</td></tr>
+                    <tr><td><strong>7824532</strong></td><td>Schrittmotor Stellantrieb Dreiwegeventil</td><td>Mehrheit der wandhängenden Modelle</td></tr>
+                    <tr><td><strong>7828044</strong></td><td>Plattenwärmetauscher (12 Platten)</td><td>Vitopend 100-W (24 kW) Warmwasserbereitung</td></tr>
+                    <tr><td><strong>7837234</strong></td><td>Plattenwärmetauscher (20 Platten)</td><td>Vitodens 100-W (35 kW) Warmwasserbereitung</td></tr>
+                    <tr><td><strong>7814924</strong></td><td>Sicherheitsventil (3 bar)</td><td>Universell verwendbar</td></tr>
+                    <tr><td><strong>7831525</strong></td><td>Membran-Ausdehnungsgefäß (8 Liter)</td><td>Vitodens / Vitopend Kompaktgeräte</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.4. Gaskomponenten & Gebläse (Gas & Lüfter)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung / Passend für</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>7826501</strong></td><td>Gebläseeinheit (RG128)</td><td>Vitodens 100-W (26–35 kW)</td></tr>
+                    <tr><td><strong>7831032</strong></td><td>Gleichstromgebläse (DC)</td><td>Vitopend 100-W (A1HB)</td></tr>
+                    <tr><td><strong>7834236</strong></td><td>Gaskombiregler (Honeywell)</td><td>Vitodens 100-W (Lambda Pro Ausführung)</td></tr>
+                    <tr><td><strong>7826453</strong></td><td>Gasventil (SIT 845)</td><td>Vitopend 100-W (WH1B/WH1D)</td></tr>
+                    <tr><td><strong>7826553</strong></td><td>Zündbaustein / Zündtransformator</td><td>Vitodens / Vitopend Baureihen</td></tr>
+                    <tr><td><strong>7833534</strong></td><td>Venturidüse (Gemischregler)</td><td>Vitodens 100-W</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.5. Werkzeuge & Servicezubehör (Service-Zubehör)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendungszweck</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>7147066</strong></td><td>Dichtungssortiment (universell)</td><td>Gesamtes Wandgeräte-Produktprogramm</td></tr>
+                    <tr><td><strong>7834235</strong></td><td>Manometer für Anlagendruck (analog)</td><td>Vitopend 100-W Ersatzteil</td></tr>
+                    <tr><td><strong>7831666</strong></td><td>Reinigungset für Wärmetauscher</td><td>Spezialwerkzeug für den Serviceeinsatz</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Praxisempfehlungen für den Teileaustausch:</h3>
+        <ul>
+            <li><strong>Seriennummernprüfung:</strong> Viessmann-Geräte wurden innerhalb einer Baureihe (z. B. Vitodens 100-W) in mehreren Modifikationen produziert. Prüfen Sie die Kompatibilität des Ersatzteils zwingend über die ersten 7 Ziffern der kesselspezifischen Herstellnummer.</li>
+            <li><strong>Dichtringe separat bestellen:</strong> Komplette Baugruppen (wie Pumpenköpfe oder Ventileinsätze) enthalten im Originallieferumfang die passenden Dichtungen. Werden Komponenten zu Reinigungs- oder Revisionszwecken demontiert, sind die O-Ringe (z. B. Art.-Nr. 7822554) separat als Verbrauchsmaterial zu disponieren.</li>
+            <li><strong>Originalteile vs. Identteile:</strong> Bei Temperaturfühlern (NTC 10 kΩ) können qualitativ gleichwertige Markensensoren verwendet werden. Bei Zünd- und Ionisationskomponenten sowie bei Gasventilen führt der Einsatz von Nachbauteilen aufgrund abweichender Materiallegierungen häufig zu Störungen im Ionisationskreis.</li>
+        </ul>
     </section>
 
 </div>

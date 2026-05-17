@@ -14,205 +14,622 @@
 </header>
 
 <div class="container">
-    <h1 style="text-align: center;">Technische Dokumentation Vaillant</h1>
+    <h1 style="text-align: center;">Technisches Handbuch für Serviceingenieure: Vaillant Gasgeräte</h1>
 
     <!-- 0. Navigation Menu -->
     <nav class="nav-menu">
-        <a href="#diagnose" class="nav-item">1. Diagnose & Fehler</a>
-        <a href="#service" class="nav-item">2. Service-Ebene</a>
-        <a href="#gasdruck" class="nav-item">3. Gasdruck</a>
-        <a href="#fuehler" class="nav-item">4. Fühler & Motoren</a>
-        <a href="#wasser" class="nav-item">5. Ioni & Wasser</a>
-        <a href="#wartung" class="nav-item">6. Wartung</a>
-        <a href="#modelle" class="nav-item">7. Modelle</a>
-        <a href="#ersatzteile" class="nav-item">8. Ersatzteile</a>
+        <a href="#diagnose" class="nav-item">1. Diagnose & Fehlercodes</a>
+        <a href="#service" class="nav-item">2. Service-Ebene & Codierung</a>
+        <a href="#gasdruck" class="nav-item">3. Gasdruck H/L-Gas</a>
+        <a href="#fuehler" class="nav-item">4. Fühlerkennwerte & Motoren</a>
+        <a href="#wasser" class="nav-item">5. Ioni, Anode & Wasser</a>
+        <a href="#wartung" class="nav-item">6. Wartung (Matrix)</a>
+        <a href="#modelle" class="nav-item">7. Modell-Übersicht</a>
+        <a href="#ersatzteile" class="nav-item">8. Ersatzteile & Art.-Nr.</a>
     </nav>
 
-    <a href="gas-profi-app.html" class="btn-large" style="border-color: #ccc; margin-bottom: 30px;">⬅ Zurück zur Auswahl</a>
+    <a href="index.html" class="btn-large" style="border-color: #ccc; margin-bottom: 30px;">⬅ Zurück zur Auswahl</a>
 
     <!-- 1. Diagnose & Fehlercodes -->
     <section id="diagnose">
         <h2>1. Diagnose & Fehlercodes</h2>
-        <p>Die Fehler werden mit dem Buchstaben „F“ (Fault/Fehler) bezeichnet. Gültig für atmoTEC, turboTEC, ecoTEC, ecoCOMPACT.</p>
+        <p>Die Marke Vaillant verwendet ein einheitliches Fehlercodesystem für die meisten modernen Produktlinien (atmoTEC, turboTEC, ecoTEC, ecoCOMPACT). Fehler werden mit dem Buchstaben „F“ (Fault/Fehler) gekennzeichnet. Nachfolgend finden Sie eine detaillierte Tabelle der Haupt- und Service-Fehlercodes, deren Bedeutung und Algorithmen zur Behebung.</p>
+        
+        <h3>Tabelle der Fehlercodes für Vaillant-Kessel</h3>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Code</th>
-                        <th>Bedeutung</th>
-                        <th>Ursache und Abhilfe</th>
+                        <th>Bedeutung des Fehlers</th>
+                        <th>Ursache und Methoden zur Behebung</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>F.00 / F.01</strong></td><td>Unterbrechung NTC (Vorlauf / Rücklauf)</td><td>NTC defekt, Stecker lose, Kabel beschädigt. Widerstand prüfen.</td></tr>
-                    <tr><td><strong>F.10 / F.11</strong></td><td>Kurzschluss NTC (Vorlauf / Rücklauf)</td><td>Gehäuseschluss oder Kabelbrücke. Sensor austauschen.</td></tr>
-                    <tr><td><strong>F.20</strong></td><td>Sicherheitstemperaturbegrenzer (STB)</td><td>Überhitzung (> 97°C). Pumpe, Wasserstand, Luft im System prüfen.</td></tr>
-                    <tr><td><strong>F.22</strong></td><td>Trockenlauf (Wassermangel)</td><td>Druck < 0.6 bar. Wasser nachfüllen. Drucksensor/Pumpe prüfen.</td></tr>
-                    <tr><td><strong>F.23</strong></td><td>Wassermangel (Spreizung zu groß)</td><td>Zirkulationsproblem, Filter verstopft, Pumpe blockiert.</td></tr>
-                    <tr><td><strong>F.24</strong></td><td>Wassermangel (Temperaturanstieg zu schnell)</td><td>Pumpe blockiert oder Luftpolster im Wärmetauscher.</td></tr>
-                    <tr><td><strong>F.27</strong></td><td>Fremdlicht (Ionisationssignal trotz geschlossenem Gasventil)</td><td>Gasmagnetventil undicht, Elektroden feucht, Elektronik defekt.</td></tr>
-                    <tr><td><strong>F.28</strong></td><td>Zündfehler (Anlauf erfolglos)</td><td>Kein Gas, Luft in Gasleitung, Zündtrafo defekt, Erdungsfehler.</td></tr>
-                    <tr><td><strong>F.29</strong></td><td>Flammenausfall während des Betriebs</td><td>Gasdruck schwankt, Abgasrezirkulation, Kondensatstau (Siphon).</td></tr>
-                    <tr><td><strong>F.32</strong></td><td>Lüfterfehler (turbo/eco)</td><td>Drehzahl unplausibel. Hall-Sensor oder Kabel prüfen.</td></tr>
-                    <tr><td><strong>F.33</strong></td><td>Druckwächterfehler (turboTEC)</td><td>Druckwächter schaltet nicht. Abgassystem/Pitot-Rohre prüfen.</td></tr>
-                    <tr><td><strong>F.36</strong></td><td>Abgasaustritt (atmoTEC)</td><td>Strömungssicherung/Kaminzug prüfen, Zuluft sicherstellen.</td></tr>
-                    <tr><td><strong>F.49</strong></td><td>eBUS-Fehlspannung</td><td>Kurzschluss oder Überlastung am eBUS (Reglerleitung).</td></tr>
-                    <tr><td><strong>F.61 / F.62</strong></td><td>Gasventil / Elektronikfehler</td><td>Ansteuerung Gasventil fehlerhaft. Hauptplatine prüfen.</td></tr>
-                    <tr><td><strong>F.70</strong></td><td>Ungültiger Gerätekennung (DSN)</td><td>DSN-Code in d.93 fehlt oder ist falsch nach Platinentausch.</td></tr>
-                    <tr><td><strong>F.75</strong></td><td>Drucksensor (Kein Drucksprung)</td><td>Pumpe läuft an, aber Sensor misst keinen Druckanstieg. Sensor verstopft.</td></tr>
-                    <tr><td><strong>F.76</strong></td><td>Überhitzung Wärmetauscher (ecoTEC)</td><td>Schmelzsicherung am Wärmetauscher ausgelöst. Austausch nötig.</td></tr>
-                    <tr><td><strong>F.83</strong></td><td>Fehler Temperaturänderung</td><td>NTCs reagieren nicht auf Brennerstart. Zu wenig Wasser.</td></tr>
+                    <tr><td><strong>F.00 / F.01</strong></td><td>Unterbrechung des NTC-Sensorkreises (Vorlauf / Rücklauf)</td><td>NTC-Sensor defekt, Stecker schlecht fixiert oder Kabel beschädigt. Widerstand prüfen (siehe NTC-Diagramm).</td></tr>
+                    <tr><td><strong>F.10 / F.11</strong></td><td>Kurzschluss des NTC-Sensors (Vorlauf / Rücklauf)</td><td>Kurzschluss im Sensorgehäuse oder im Kabelbaum. Sensor austauschen.</td></tr>
+                    <tr><td><strong>F.20</strong></td><td>Temperaturbegrenzer hat ausgelöst (Überhitzung)</td><td>Temperatur hat 97°C überschritten. Prüfen: Vorhandensein von Wasser, Pumpenfunktion, Sauberkeit des Wärmetauschers und Abwenzenheit von Luft im System.</td></tr>
+                    <tr><td><strong>F.22</strong></td><td>„Trockenlauf“ (Wassermangel)</td><td>Systemdruck unter 0,6 bar. Wasser nachfüllen. Wenn der Druck normal ist – Drucksensor oder Pumpe (Blockierung) prüfen.</td></tr>
+                    <tr><td><strong>F.23</strong></td><td>Wassermangel (große Temperaturdifferenz)</td><td>Zu große Differenz zwischen Vorlauf und Rücklauf. Zirkulation, Filterverstopfung oder Pumpendefekt prüfen.</td></tr>
+                    <tr><td><strong>F.24</strong></td><td>Wassermangel (schneller Temperaturanstieg)</td><td>Pumpe blockiert oder entlüftet. Die Temperatur steigt zu schnell für die Sensoren.</td></tr>
+                    <tr><td><strong>F.27</strong></td><td>Fremdflamme (Ionisationssignal bei geschlossenem Ventil)</td><td>Fehlfunktion der Gasarmatur oder der Elektroden. Steuerplatine prüfen (Kriechstrom).</td></tr>
+                    <tr><td><strong>F.28</strong></td><td>Zündfehler (erfolgloser Start)</td><td>Häufigster Fehler. Kein Gas, niedriger Gasdruck, Zündtransformator defekt, schmutzige Elektrode oder Erdungsfehler.</td></tr>
+                    <tr><td><strong>F.29</strong></td><td>Erlöschen der Flamme während des Betriebs</td><td>Unterbrechung der Gaszufuhr, Probleme mit dem Schornstein (Gasrezirkulation), verstopfter Siphon (bei Brennwertmodellen).</td></tr>
+                    <tr><td><strong>F.32</strong></td><td>Lüfterfehler (für turboTEC / ecoTEC)</td><td>Falsche Lüfterdrehzahl. Stromversorgung, Hallsensor oder Verstopfung in den Pitot-Rohren prüfen.</td></tr>
+                    <tr><td><strong>F.33</strong></td><td>Fehler Luftdruckschalter (für turboTEC)</td><td>Das Relais schließt nach dem Einschalten des Lüfters nicht. Schornstein auf Vereisung oder Verstopfung prüfen.</td></tr>
+                    <tr><td><strong>F.36</strong></td><td>Abgasaustritt (für atmoTEC)</td><td>Der Strömungssensor hat den Rückfluss von Gasen in den Raum registriert. Zug im Schornstein und Zuluftventilation prüfen.</td></tr>
+                    <tr><td><strong>F.49</strong></td><td>Spannungsfehler am eBUS</td><td>Kurzschluss auf dem Kommunikationsbus oder Überlastung. Polarität und Zustand der Kabel zum Thermostat prüfen.</td></tr>
+                    <tr><td><strong>F.61 / F.62</strong></td><td>Gasventilfehler / Platinenfehler</td><td>Falsche Ansteuerung des Gasventils. Häufig verbunden mit einem Kurzschluss oder Defekt der Hauptplatine.</td></tr>
+                    <tr><td><strong>F.70</strong></td><td>Ungültiger Gerätecode (DSN)</td><td>Einstellungen im Servicemenü (Gerätecode) sind verloren gegangen. Korrekten DSN-Code unter Punkt d.93 eingeben.</td></tr>
+                    <tr><td><strong>F.75</strong></td><td>Drucksensorfehler (kein Drucksprung)</td><td>Beim Einschalten der Pumpe hat der Sensor keinen „Drucksprung“ (0,05 bar) registriert. Pumpe oder Sensorverstopfung prüfen.</td></tr>
+                    <tr><td><strong>F.76</strong></td><td>Überhitzung des Wärmetauschers (Brennwertgeräte)</td><td>Die Sicherung am primären Wärmetauscher hat ausgelöst. Erfordert normalerweise den Austausch des Wärmetauschers oder seine Reinigung.</td></tr>
+                    <tr><td><strong>F.83</strong></td><td>Fehler bei der Temperaturänderung</td><td>Vorlauf-/Rücklaufsensoren registrieren keinen Temperaturanstieg bei laufendem Brenner. Zu wenig Wasser im Wärmetauscher.</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>Algorithmus zur Primärbehebung (für Techniker):</h3>
+        <ol>
+            <li><strong>Zurücksetzen (Reset):</strong> Taste mit dem Symbol der „durchgestrichenen Flamme“. 3 Sekunden lang gedrückt halten.</li>
+            <li><strong>Druckprüfung:</strong> Visuell am Manometer (Normalwert 1,2 – 1,8 bar).</li>
+            <li><strong>Diagnosecodes (d.Codes):</strong> Wenn der Fehler nicht offensichtlich ist, rufen Sie das Servicemenü auf (z. B. d.00 zur Leistungsprüfung oder d.90 für den eBUS-Status), um den Zustand der Komponenten in Echtzeit anzuzeigen.</li>
+        </ol>
         <blockquote>
-            <strong>Techniker-Tipp:</strong> Reset durch Halten der Taste mit dem durchgestrichenen Flammensymbol (3 Sek.). Bei ecoTEC Modellen bei F.28/F.29 immer erst den <strong>Siphon</strong> prüfen!
+            <strong>Hinweis:</strong> Bei Brennwertkesseln (ecoTEC) bei den Fehlern F.28 und F.29 zuerst den Kondensatablauf (Siphon) überprüfen. Wenn dieser verstopft ist, flutet Wasser den Brenner und der Kessel startet nicht.
         </blockquote>
     </section>
 
     <!-- 2. Service-Ebene & Codierung -->
     <section id="service">
         <h2>2. Service-Ebene & Codierung</h2>
-        <h3>Zugang zum Diagnosemenü</h3>
+        <p>Für den Serviceingenieur beginnt die Arbeit mit Vaillant mit dem Verständnis der Zugriffsebenen. In modernen Modellen (ab den Generationen TEC plus/pro bis hin to IoniDetect) wird das System der „d-Parameter“ verwendet.</p>
+        
+        <h3>Eingang in das Servicemenü (Diagnostik)</h3>
+        <p>Für die meisten Modelle (atmoTEC, turboTEC, ecoTEC, ecoCOMPACT) erfolgt der Zugang wie folgt:</p>
         <ol>
-            <li>Gleichzeitig <strong>„+“</strong> und <strong>„–“</strong> drücken (d.00 erscheint).</li>
-            <li>Zu <strong>d.97</strong> navigieren.</li>
-            <li>Code <strong>17</strong> eingeben und mit „Ok“ bestätigen.</li>
+            <li>Drücken Sie gleichzeitig die Tasten <strong>„+“</strong> und <strong>„–“</strong> (bei einigen Modellen sind dies die Tasten unter dem Display oder die Navigationstasten).</li>
+            <li>Auf dem Bildschirm erscheint <strong>d.00</strong>.</li>
+            <li>Für den Zugriff auf die geschützten Serviceparameter (zweite Ebene) navigieren Sie mit den Tasten „+“/„–“ zum Parameter <strong>d.97</strong>.</li>
+            <li>Drücken Sie die Taste <strong>„i“</strong> oder <strong>„Ok“</strong>.</li>
+            <li>Geben Sie den Zugangscode ein: <strong>17</strong> (Universallcode für Vaillant-Fachhandwerker).</li>
+            <li>Bestätigen Sie mit <strong>„Ok“</strong>. Jetzt stehen Ihnen alle erweiterten Einstellungen zur Verfügung.</li>
         </ol>
+
+        <h3>Hauptserviceparameter (d-Codes)</h3>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Code</th><th>Beschreibung</th><th>Empfehlung</th></tr>
+                    <tr>
+                        <th>Code</th>
+                        <th>Beschreibung</th>
+                        <th>Empfehlungen und Hinweise</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>d.00</td><td>Heizungsteillast</td><td>An reale Heizlast in kW anpassen.</td></tr>
-                    <tr><td>d.01</td><td>Pumpennachlauf</td><td>Werk: 5 Min. Bei großen Anlagen erhöhen.</td></tr>
-                    <tr><td>d.02</td><td>Brennersperrzeit</td><td>Vermeidung von Takten. Optimal 15–20 Min.</td></tr>
-                    <tr><td>d.33</td><td>Lüfterdrehzahl</td><td>Ist-Wert zur Diagnose der Modulation.</td></tr>
-                    <tr><td>d.44</td><td>Ionisationsstrom</td><td>Digitaler Wert (0-100). Diagnose der Flamme.</td></tr>
-                    <tr><td>d.93</td><td>Gerätekennung (DSN)</td><td>Nach Platinentausch Code vom Typenschild eingeben.</td></tr>
-                    <tr><td>d.96</td><td>Werkseinstellung</td><td>Auf 1 setzen für Reset aller Parameter.</td></tr>
+                    <tr><td>d.00</td><td>Heizungsteillast</td><td>Wird an die Heizlast des Gebäudes angepasst (in kW). Beeinflusst Warmwasser (WW) nicht.</td></tr>
+                    <tr><td>d.01</td><td>Pumpennachlauf</td><td>Werkseinstellung 5 Min. Für große Systeme ist eine Erhöhung besser.</td></tr>
+                    <tr><td>d.02</td><td>Brennerbrennsperrzeit</td><td>Verhindert Taktung. Optimal sind 15–20 Min.</td></tr>
+                    <tr><td>d.09</td><td>Sollwert Regler an Klemme 7</td><td>Prüfung des Signals vom externen Regler (24V).</td></tr>
+                    <tr><td>d.33</td><td>Gebläsedrehzahl</td><td>Relevant für die Überprüfung der Modulation bei turbo/eco Modellen.</td></tr>
+                    <tr><td>d.34</td><td>Gebläsestrom</td><td>Diagnose von Lagerverschleiß oder Schornsteinverstopfung.</td></tr>
+                    <tr><td>d.40</td><td>Vorlauftemperatur</td><td>Aktueller Wert vom Sensor NTC1.</td></tr>
+                    <tr><td>d.41</td><td>Rücklauftemperatur</td><td>Aktueller Wert vom Sensor NTC2.</td></tr>
+                    <tr><td>d.44</td><td>Ionisationsstrom</td><td>Zeigt den digitalen Wert (von 0 bis 100).</td></tr>
+                    <tr><td>d.47</td><td>Außentemperatur</td><td>Wenn der Außenfühler VRC 693 angeschlossen ist.</td></tr>
+                    <tr><td>d.71</td><td>Max. Vorlauftemperatur Heizung</td><td>Begrenzung für Heizkörper (normalerweise 75-80°C).</td></tr>
+                    <tr><td>d.93</td><td>Gerätecode (DSN)</td><td>Kritisch! Beim Austausch der Platine muss der Code vom Typenschild des Kessels eingegeben werden.</td></tr>
+                    <tr><td>d.95</td><td>eBUS-Typ</td><td>Status der Kommunikation mit der Regelung.</td></tr>
                 </tbody>
             </table>
         </div>
-        <h3>Prüfprogramme (P-Codes)</h3>
-        <p>Aktivierung: „+“ halten beim Einschalten oder über das Menü.</p>
+
+        <h3>Spezielle Prüfprogramme (P-Codes)</h3>
+        <p>Werden bei der Inbetriebnahme und Wartung verwendet. Zur Aktivierung: Schalten Sie den Kessel aus, halten Sie „+“ gedrückt, schalten Sie den Kessel ein und halten Sie die Taste 5 Sek. lang gedrückt. Oder suchen Sie den Punkt „Test Menu“.</p>
         <ul>
-            <li><strong>P.00:</strong> Entlüftungsprogramm (6,5 Min.).</li>
-            <li><strong>P.01:</strong> Maximallast (für Gasdruckmessung/CO2).</li>
-            <li><strong>P.02:</strong> Minimallast (Zündstabilität).</li>
+            <li><strong>P.00 (Entlüftung):</strong> Automatisches Programm. Die Pumpe arbeitet im Intervallbetrieb, das Ventil schaltet zwischen WW und Heizung um. Dauert ca. 6,5 Min.</li>
+            <li><strong>P.01 (Maximallast):</strong> Der Kessel fährt auf maximale Leistung. Wird zur Messung des dynamischen Gasfließdrucks und zur CO2-Einstellung verwendet.</li>
+            <li><strong>P.02 (Minimallast):</strong> Der Kessel fährt auf minimale Leistung. Überprüfung der Flammenstabilität und des Mindestdrucks.</li>
+            <li><strong>P.06 (Befüllung/Entleerung):</strong> Bringt das Vorrangumschaltventil in die mittlere Position.</li>
         </ul>
+
+        <h3>Empfehlungen zur Navigation und Codierung</h3>
+        <ul>
+            <li><strong>Leistungseinstellung (d.00):</strong> Niemals auf „Auto“ belassen, wenn das Heizsystem deutlich kleiner als die Kesselleistung ist. Berechnen Sie die reale Heizlast und begrenzen Sie den Kessel programmgesteuert – das schont die Ressourcen des Wärmetauschers.</li>
+            <li><strong>Arbeit mit IoniDetect (neue ecoTEC):</strong> Bei Modellen mit automatischer Gasanpassung (VUI/VUW 1-5 und höher) gibt es keine manuelle Einstellung des Gasventils. Alles erfolgt über d.92 (Auswahl der Gasart).</li>
+            <li><strong>Rückstellung auf Werkseinstellungen:</strong> Wenn sich der Kessel nach fremdem Eingriff unvorhersehbar verhält, verwenden Sie d.96 (ändern Sie 0 auf 1).</li>
+            <li><strong>Status-Codes (S-Codes):</strong> Nicht mit Fehlern (F) verwechseln. Drücken Sie „i“, um den aktuellen Status anzuzeigen.
+                <br><strong>S.0</strong> — Kein Wärmebedarf.
+                <br><strong>S.4</strong> — Zündung.
+                <br><strong>S.34</strong> — Frostschutzbetrieb.
+                <br><strong>S.7</strong> — Pumpennachlauf.
+            </li>
+        </ul>
+        <blockquote>
+            <strong>Wichtig:</strong> Beim Austausch der Hauptplatine (Leiterplatte) gibt der Kessel immer den Fehler F.70 aus. Das System „weiß“ nicht, welche Leistung der Kessel hat und welche Sensoren vorhanden sind. Gehen Sie unbedingt zu d.93 und geben Sie den DSN-Code (Device Specific Number) ein, der auf dem Schild mit der Seriennummer des Kessels angegeben ist.
+        </blockquote>
     </section>
 
     <!-- 3. Gasdruck H/L-Gas -->
     <section id="gasdruck">
         <h2>3. Gasdruck H/L-Gas</h2>
+        <p>Die Einstellung des Gasdrucks ist ein kritischer Schritt, insbesondere in Deutschland, wo H-Gas- (hochkalorisch) und L-Gas-Netze (niederkalorisch) koexistieren. Für Vaillant ist es wichtig, zwischen klassischen Kesseln (atmo/turbo) und Brennwertkesseln (ecoTEC) zu unterscheiden, da sich deren Einstellprinzipien grundlegend unterscheiden.</p>
+        
+        <h3>3.1. Anschlussdruck (Eingangsdruck)</h3>
+        <p>Dies ist der Druck in der Leitung vor der Gasarmatur. Er wird bei stabilem Betrieb des Kessels (Dynamik) bei voller Leistung gemessen (Programm P.01).</p>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Gasart</th><th>Anschlussdruck (mbar)</th><th>Zulässiger Bereich (mbar)</th></tr>
+                    <tr>
+                        <th>Gasart</th>
+                        <th>Nenndruck (mbar)</th>
+                        <th>Zulässiger Bereich (mbar)</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr><td>Erdgas H (E)</td><td>20</td><td>17 – 25</td></tr>
                     <tr><td>Erdgas L (LL)</td><td>20 / 25</td><td>18 – 30</td></tr>
-                    <tr><td>Flüssiggas (P/B)</td><td>30 / 50</td><td>Reglerabhängig</td></tr>
+                    <tr><td>Flüssiggas (P/B)</td><td>30 / 37 / 50</td><td>Abhängig von der Einstellung des Druckminderers</td></tr>
                 </tbody>
             </table>
         </div>
-        <p><strong>Brennwertgeräte (ecoTEC) CO2-Werte:</strong></p>
+        <blockquote>
+            <strong>Wichtig:</strong> Wenn der Druck beim Einschalten des Brenners (Dynamik) unter 17 mbar (bei H-Gas) fällt, kann der Kessel in den Fehler F.28/F.29 gehen. Dies weist auf eine geringe Durchflusskapazität der Gasleitung oder eine Verstopfung des Filters/Zählers hin.
+        </blockquote>
+
+        <h3>3.2. Düsenniederdruck — für atmoTEC / turboTEC</h3>
+        <p>In traditionellen Kesseln wird die Leistung durch Ändern des Gasdrucks am Brenner reguliert. Die Einstellung erfolgt über Schrauben an der Gasarmatur (SIT 845 oder Honeywell).</p>
+        <p>Ungefähre Werte für beliebte Modelle (atmoTEC/turboTEC pro/plus):</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Modell (24 kW)</th>
+                        <th>Gasart</th>
+                        <th>Min. Druck (mbar)</th>
+                        <th>Max. Druck (mbar)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>VUW 240/242</td><td>H-Gas (E)</td><td>1.5 – 2.0</td><td>10.5 – 12.0</td></tr>
+                    <tr><td>VUW 240/242</td><td>L-Gas (LL)</td><td>2.5 – 3.0</td><td>14.5 – 16.5</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Genaue Daten sind immer in der Tabelle auf der Innenseite der Frontblende oder im Pass der jeweiligen Modifikation angegeben (5-3, 5-5 usw.).</p>
+
+        <h3>3.3. Brennwertkessel (ecoTEC) — Luftüberschusszahl</h3>
+        <p>In modernen Modellen (ecoTEC plus/pro) wird the Druck am Brenner nicht auf herkömmliche Weise gemessen. Hier wird ein pneumatisches Mischsystem (Gas/Luft 1:1) oder das elektronische System IoniDetect verwendet.</p>
         <ul>
-            <li>Erdgas H: 9,0 Prozent plus/minus 1,0 Prozent</li>
-            <li>Erdgas L: 8,8 Prozent plus/minus 1,0 Prozent</li>
+            <li><strong>Klassischer ecoTEC (bis 2020):</strong> Die Einstellung erfolgt über die Abgasanalyse (CO2).
+                <br>H-Gas: 9.0% ± 1.0%
+                <br>L-Gas: 8.8% ± 1.0%
+                <br>Bei minimaler Leistung sollte der CO2-Wert um 0,3–0,5% niedriger sein als bei maximaler Leistung.
+            </li>
+            <li><strong>Neuer ecoTEC (mit IoniDetect):</strong> Eine manuelle Einstellung des Drucks oder des CO2 über Schrauben ist unmöglich. Der Kessel passt sich selbst an die Gasart anb. Der Techniker wählt lediglich die Gasart im Menü d.92 aus.</li>
         </ul>
+
+        <h3>3.4. Methodik der Diagnose und Einstellung</h3>
+        <ol>
+            <li><strong>Prüfung der Statik:</strong> Kessel ist ausgeschaltet. Schraube am Messstutzen „In“ (Eingang) der Gasarmatur lösen, Manometer anschließen. Erwartet: ~20-25 mbar.</li>
+            <li><strong>Prüfung der Dynamik:</strong> P.01 starten (Max. Leistung). Wenn der Druck um mehr als 3-4 mbar gegenüber der Statik abfällt, liegt ein Problem in der Zuleitung vor.</li>
+            <li><strong>Einstellung Max./Min. (für atmo/turbo):</strong>
+                <br>- Bei maximaler Leistung (P.01) drehen wir die große Mutter am Ventil (mechanisches Maximum).
+                <br>- Bei minimaler Leistung (P.02) nehmen wir die Klemme von der Spule der Modulation ab (or programmgesteuert) und stellen die kleine innere Schraube ein.
+            </li>
+            <li><strong>U-Rohr-Manometer vs. Digital:</strong> Für die Einstellung von Vaillant wird dringend ein digitales Manometer mit einer Schrittweite von 0,1 mbar empfohlen, da eine Abweichung von 0,5 mbar im Minimum bereits zu Flammenabriss oder Verpuffungen führt.</li>
+        </ol>
+        <blockquote>
+            <strong>Resümee für den Service:</strong> Wenn Sie in einer Region mit Gasumstellung von L-Gas auf H-Gas arbeiten (dies ist in Deutschland derzeit ein Massenprozess), denken Sie daran: Bei der Umstellung der Gasart bei alten Vaillant-Geräten (atmo/turbo) ist ein Austausch der Düsen (Düsensatz) erforderlich, bei neuen ecoTEC hingegen nur eine programmgesteuerte Umstellung oder automatische Anpassung.
+        </blockquote>
     </section>
 
     <!-- 4. Fühlerkennwerte & Motoren -->
     <section id="fuehler">
         <h2>4. Fühlerkennwerte & Motoren</h2>
-        <p><strong>NTC-Tabelle (10 kOhm bei 25°C):</strong></p>
+        <p>Für den Vaillant-Serviceingenieur ist das Wissen über die Eigenschaften von Sensoren und Komponenten 90% des Erfolgs bei der Diagnose von „schwebenden“ Fehlern wie F.20, F.00, F.01 oder Zündproblemen.</p>
+        
+        <h3>4.1. NTC-Sensoren (Temperatursensoren)</h3>
+        <p>Vaillant verwendet Standard-Sensoren mit negativem Temperaturkoeffizienten (NTC). Bei steigender Temperatur sinkt deren Widerstand.</p>
+        <p>Typische Widerstandstabelle (NTC 10 kΩ bei 25°C):</p>
         <div class="table-container">
             <table>
-                <tr><td>0°C: 32.5 kΩ</td><td>25°C: 10.0 kΩ</td><td>60°C: 2.5 kΩ</td></tr>
-                <tr><td>10°C: 19.8 kΩ</td><td>30°C: 8.0 kΩ</td><td>90°C: 0.9 kΩ</td></tr>
+                <thead>
+                    <tr>
+                        <th>Temperatur (°C)</th>
+                        <th>Widerstand (kΩ)</th>
+                        <th>Temperatur (°C)</th>
+                        <th>Widerstand (kΩ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0</td><td>32.5</td><td>50</td><td>3.6</td></tr>
+                    <tr><td>5</td><td>25.3</td><td>60</td><td>2.5</td></tr>
+                    <tr><td>10</td><td>19.8</td><td>70</td><td>1.7</td></tr>
+                    <tr><td>20</td><td>12.5</td><td>80</td><td>1.2</td></tr>
+                    <tr><td>25</td><td>10.0</td><td>90</td><td>0.9</td></tr>
+                    <tr><td>30</td><td>8.0</td><td>100</td><td>0.7</td></tr>
+                </tbody>
             </table>
         </div>
-        <p><strong>Pumpen & Lüfter:</strong></p>
+
+        <h3>Methoden zur Diagnose von NTC:</h3>
+        <ol>
+            <li><strong>Widerstandsmessung:</strong> Schalten Sie den Kessel aus, ziehen Sie den Stecker vom Sensor ab und messen Sie den Wert an den Klemmen mit einem Multimeter. Vergleichen Sie ihn mit der Tabelle oben unter Berücksichtigung der ungefähren Wassertemperatur.</li>
+            <li><strong>Prüfung auf „Durchschlag“:</strong> Überprüfen Sie den Widerstand zwischen einem der Kontakte und dem Gehäuse (es muss Unendlichkeit angezeigt werden). Wenn ein Durchgang vorhanden ist, muss der Sensor ersetzt werden.</li>
+            <li><strong>Diagnose über das Menü:</strong> Überprüfen Sie im Servicemenü (d.40 – Vorlauf, d.41 – Rücklauf), ob die Messwerte der Realität entsprechen. Wenn der Sensor bei kaltem Kessel 70°C anzeigt, ist er defekt.</li>
+        </ol>
+
+        <h3>4.2. Zirkulationspumpen (Pumpen)</h3>
         <ul>
-            <li><strong>Pumpe (230V):</strong> Widerstand ca. 150–350 Ohm. Anlaufkondensator prüfen (2–2.6 µF).</li>
-            <li><strong>Lüfter (ecoTEC):</strong> 24V/325V DC. Niemals 230V direkt anlegen!</li>
-            <li><strong>3-Wege-Ventil:</strong> Prüfung über P.06 oder manuelles Umschalten im Menü.</li>
+            <li><strong>Klassische Pumpen (230V):</strong> Überprüfen Sie den Widerstand der Wicklungen. Zwischen Phase und Null liegen meist 150–350 Ohm (abhängig von der Stufe). Wenn ein Summen zu hören ist, sich die Welle aber nicht dreht: Startkondensator prüfen (meist 2–2,6 µF). Wenn die Kapazität um 20% oder mehr abgefallen ist, startet die Pumpe unter Last nicht.</li>
+            <li><strong>Frequenzgesteuerte Pumpen (PWM-Steuerung):</strong> Haben zwei Kabel: Stromversorgung (230V) und Steuersignal (Niederspannungsanschluss). Wenn Strom vorhanden ist, die Pumpe aber steht – Parameter d.01 und Vorhandensein des PWM-Signals prüfen. Wenn die Welle blockiert ist, blinkt bei modernen Pumpen oft eine rote/rot-grüne LED.</li>
         </ul>
+
+        <h3>4.3. Ventilatoren (Lüfter)</h3>
+        <p>Ventilatoren in den Modellen turboTEC (AC 230V) und ecoTEC (DC 24V/325V mit Steuerung) werden unterschiedlich diagnostiziert.</p>
+        <ul>
+            <li><strong>turboTEC (Traditionell):</strong> Widerstand der Hauptwicklung: ca. 150–250 Ohm. Diagnose: Wenn der Lüfter nicht startet, prüfen, ob die Platine im Moment der Zündung 230V liefert. Wenn Spannung vorhanden ist, aber keine Drehung erfolgt – Lüfter austauschen oder Buchsen reinigen (temporäre Maßnahme).</li>
+            <li><strong>ecoTEC (Brennwerttechnik):</strong> Dies sind bürstenlose Gleichstrommotoren mit fünf Drähten (Versorgung, Masse, 15V Logik, PWM-Signal, Hallsensor). Überprüfung: Wenn sich der Lüfter nicht dreht, die Sicherung auf der Platine prüfen. Im Menü d.33 ist die Solldrehzahl zu sehen, in d.34 die reale Rückmeldung vom Hallsensor.</li>
+        </ul>
+        <blockquote>
+            <strong>Wichtig:</strong> Niemals 230V direkt an die Kontakte des ecoTEC-Lüfters anlegen – dies zerstört dessen Controller sofort.
+        </blockquote>
+
+        <h3>4.4. Dreiwegeventil (Vorrangumschaltventil)</h3>
+        <p>Das Ventil schaltet den Durchfluss zwischen Heizung und Warmwasser um.</p>
+        <ul>
+            <li><strong>Diagnose:</strong> Entfernen Sie den Motor (Stellantrieb) vom hydraulischen Teil. Starten Sie den Kessel und schalten Sie den Modus um (Wasserhahn öffnen/schließen). Die Motorenstange muss aus- und wieder einfahren.</li>
+            <li><strong>Elektrik:</strong> Meist ein 3-poliger Anschluss. Überprüfen Sie die Spannungszufuhr von der Platine im Moment des Umschaltens. Wenn der Motor summt, sich die Stange aber nicht bewegt, sind die Zahnräder im Kunststoffgehäuse beschädigt.</li>
+        </ul>
+        <blockquote>
+            <strong>Empfehlung für Techniker:</strong> Bei der Diagnose von Fehlern durch Überhitzung (F.20) oder Temperaturdifferenz (F.23) immer den Widerstand beider NTCs (Vorlauf und Rücklauf) gleichzeitig überprüfen. Vaillant analysiert den Gradienten (Geschwindigkeit des Anstiegs) der Temperatur. Wenn ein Sensor um 5–10 Grad „lügt“, blockiert der Kessel, selbst wenn keine tatsächliche Überhitzung vorliegt.
+        </blockquote>
     </section>
 
     <!-- 5. Ioni, Anode & Wasser -->
     <section id="wasser">
-        <h2>5. Ionisation, Anode & Wasser</h2>
+        <h2>5. Ioni, Anode & Wasser</h2>
+        <p>Dieser Abschnitt betrifft die physikalisch-chemischen Aspekte des Gerätebetriebs. Für Vaillant sind die Stabilität des Ionisationsstroms und die Qualität des Wärmeträgers kritische Faktoren für die Langlebigkeit des primären Wärmetauschers (insbesondere aus Edelstahl in der ecoTEC-Serie).</p>
+        
+        <h3>5.1. Ionisationsstrom (Flammenüberwachung)</h3>
+        <p>Die Flammenkontrolle bei Vaillant erfolgt über eine Ionisationselektrode. Die Flamme wirkt wie eine Diode und lässt den Strom nur in eine Richtung fließen.</p>
+        <p>Normwerte:</p>
         <ul>
-            <li><strong>Ionisationsstrom:</strong> Minimum 1.5 µA, Normal 5 – 20 µA. Bei IoniDetect via d.44 prüfen.</li>
-            <li><strong>Magnesiumanode:</strong> Prüfstrom > 0.3 mA DC. Bei < 0.3 mA tauschen.</li>
-            <li><strong>Wasseraufbereitung (VDI 2035):</strong>
-                <br>pH-Wert (Edelstahl): 8.2 – 9.0
-                <br>Härte: < 0.11 mmol/l (empfohlen für ecoTEC).
-            </li>
+            <li>Mindeststrom zur Flammenerhaltung: 1.5 – 2.0 µA.</li>
+            <li>Stabiler Arbeitsbereich: 5.0 – 20.0 µA (abhängig von Leistung und Modell).</li>
+            <li>Bei neuen Modellen mit IoniDetect wird der Wert im Menü (d.44) in relativen Einheiten (digitales Signal) angezeigt, wobei ein Abfall unter 40 Einheiten als kritisch gilt.</li>
         </ul>
+        <p>Prüfmethode:</p>
+        <ol>
+            <li>Multimeter in den Messmodus für Mikroampere (µA DC) schalten.</li>
+            <li>Prüfspitzen in Reihe in den Kreis der Ionisationselektrode schalten.</li>
+            <li>Wenn der Strom unter 1,5 µA liegt: Elektrode von Ruß reinigen (mit feinem Schleifmittel) oder den Abstand prüfen (3–5 mm zum Brenner).</li>
+        </ol>
+
+        <h3>5.2. Erdung und Potenzial (Erdung)</h3>
+        <p>Vaillant reagiert äußerst empfindlich auf die „Sauberkeit“ der Erdung. Die Fehler F.27, F.28, F.68 werden häufig durch Potenzialdifferenzen verursacht.</p>
+        <ul>
+            <li><strong>Werte:</strong> Die Spannung zwischen „Null“ und „Erde“ muss &lt; 1,0 V AC sein.</li>
+            <li><strong>Prüfung:</strong> Wenn die Spannung über 2-3 Volt liegt, kann die Platine den Ionisationsstrom nicht korrekt erkennen (Rauschen überlagert das Signal).</li>
+            <li><strong>Empfehlung:</strong> Der Einbau eines Isolierstücks in die Gasleitung ist obligatorisch, damit keine parasitären Ströme aus der Hauptleitung auf das Kesselgehäuse gelangen.</li>
+        </ul>
+
+        <h3>5.3. Magnesiumanode im Speicher (Opferanode)</h3>
+        <p>Zum Schutz von Warmwasserspeichern (Serie VIH) wird eine Magnesiumanode verwendet.</p>
+        <ul>
+            <li><strong>Anodenstrom:</strong> An vielen Vaillant-Speichern ist ein Anodentester („grüne Zone“) installiert oder ein Kontakt zur Messung herausgeführt.</li>
+            <li><strong>Prüfmethode (Anodenprüfung):</strong>
+                <br>1. Erdungskreis der Anode trennen (meist ein Kabel oben auf dem Speicher).
+                <br>2. Multimeter (mA DC) in die Trennstelle schalten.
+                <br>3. Norm: Wenn der Strom &gt; 0,3 mA ist, ist die Anode noch funktionsfähig. Wenn er &lt; 0,3 mA oder gleich null ist, hat sich die Anode vollständig aufgelöst und muss sofort ersetzt werden.
+            </li>
+            <li><strong>Austausch:</strong> Alle 2 Jahre (oder jährlich bei aggressivem Wasser).</li>
+        </ul>
+
+        <h3>5.4. Chemische Wasseraufbereitung (VDI 2035)</h3>
+        <p>Vaillant befolgt strikt die deutsche Richtlinie VDI 2035 zum Schutz von Wärmetauschern vor Kalkablagerungen und Korrosion.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Anforderung für Aluminium-Wärmetauscher</th>
+                        <th>Anforderung für Edelstahl (ecoTEC)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Härte</td><td>&lt; 3.0 °dH (abhängig vom Volumen)</td><td>&lt; 0.1 °dH (für Systeme &gt; 20 kW/l)</td></tr>
+                    <tr><td>pH-Wert</td><td>8.2 – 8.5</td><td>8.2 – 9.0</td></tr>
+                    <tr><td>Leitfähigkeit</td><td>&lt; 100 µS/cm (empfohlen)</td><td>&lt; 1500 µS/cm (salzhaltiger Betrieb)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Empfehlungen für Techniker:</p>
+        <ul>
+            <li><strong>Spülung:</strong> Vor der Montage eines neuen Kessels in ein altes System ist das Spülen bis zu klarem Wasser obligatorisch.</li>
+            <li><strong>Inhibitoren:</strong> Vaillant erlaubt die Verwendung zertifizierter Zusätze (z. B. Fernox F1 oder Sentinel X100), aber die beste Option für ein Brennwertgerät ist die Befüllung mit demineralisiertem Wasser (Vollentsalzung).</li>
+            <li><strong>F.76 (Wärmetauscherfehler):</strong> Wenn der Kessel diesen Fehler häufig ausgibt, ist dies ein Zeichen für lokale Überhitzung aufgrund von Ablagerungen in den Rohren. Eine chemische Spülung mit einer Pumpe (Booster) ist erforderlich.</li>
+        </ul>
+
+        <h3>5.5. Drucksensor (Wasserdrucksensor)</h3>
+        <p>In modernen Vaillant-Geräten ist anstelle eines mechanischen Druckwächters ein elektronischer Sensor (drei Kontakte) verbaut.</p>
+        <ul>
+            <li><strong>Prüfung:</strong> An den Sensor werden 5V DC angelegt. Das Signalkabel gibt eine Spannung proportional zum Druck aus: meist 0,5 V (bei 0 bar) bis 3,5 V (bei 3 bar). Wenn der Druck im Menü d.05 (oder auf dem Display) „springt“, überprüfen Sie den Stecker auf Feuchtigkeit (läuft oft am Kabel entlang hinein).</li>
+        </ul>
+        <blockquote>
+            <strong>Mitgliedertipp / Expertentipp:</strong> Überprüfen Sie bei der Wartung immer das Ausdehnungsgefäß (MAG). Der Druck im leeren Gefäß sollte 0,2 – 0,3 bar unter dem Arbeitsdruck des Systems liegen. Wenn beim Drücken auf das Ventil Wasser austritt, ist die Membran gerissen.
+        </blockquote>
     </section>
 
     <!-- 6. Wartung (Matrix) -->
     <section id="wartung">
-        <h2>6. Wartung (Algorithmus)</h2>
+        <h2>6. Wartung (Matrix)</h2>
+        <p>Für den Serviceingenieur ist der Wartungsplan nicht nur ein „Staubwischen“, sondern eine Überprüfung von Sicherheit und Effizienz. Bei Vaillant gibt es eine klare Trennung zwischen der Wartung traditioneller (atmo/turbo) und kondensierender (ecoTEC) Modelle. Nachfolgend finden Sie den Schritt-für-Schritt-Algorithmus und die Matrix kritischer Prüfungen.</p>
+        
+        <h3>6.1. Allgemeiner Diagnosealgorithmus (Pre-Check)</h3>
+        <p>Führen Sie vor Beginn der Demontage folgende Schritte aus:</p>
         <ol>
-            <li>Fehlerspeicher auslesen (d.94).</li>
-            <li>Brenner ausbauen, trocken reinigen (weiche Bürste).</li>
-            <li>Wärmetauscher spülen (ecoTEC) / Lamellen reinigen (atmo/turbo).</li>
-            <li>Elektroden prüfen (Abstand 3.5 mm).</li>
-            <li><strong>Wichtig:</strong> Siphon ausbauen и reinigen.</li>
-            <li>Ausdehnungsgefäß (MAG) Vordruck prüfen (0.75 – 1.0 bar).</li>
-            <li>Abgasanalyse (P.01).</li>
+            <li><strong>Fehlerspeicher abfragen:</strong> Überprüfen Sie die Historie über das Menü d.94.</li>
+            <li><strong>Abgasanalyse:</strong> Führen Sie eine Messung im Modus P.01 (Max. Leistung) durch. Wenn die O2- oder CO-Werte stark abweichen, ist dies ein Signal für eine Verschmutzung des Wärmetauschers oder des Brenners.</li>
+            <li><strong>Visuelle Inspektion:</strong> Überprüfung der Dichtheit von Hydraulik- und Gasverbindungen (Lecksuchspray).</li>
         </ol>
+
+        <h3>6.2. Service-Checkliste (Wartungsmatrix)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Komponente</th>
+                        <th>Maßnahme</th>
+                        <th>Besonderheiten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Brenner</td><td>Demontage und Reinigung</td><td>Nur weiche Bürste oder Druckluft. Keine Metallbürsten verwenden!</td></tr>
+                    <tr><td>Wärmetauscher</td><td>Reinigung des Primärkreises</td><td>Bei Brennwertgeräten – Spülen mit Wasser. Bei traditionellen – trockene Reinigung der Lamellen.</td></tr>
+                    <tr><td>Elektroden</td><td>Prüfung von Abstand und Verschleiß</td><td>Zündabstand 3,5 ± 0,5 mm. Bei Rußbildung – Reinigen oder Ersetzen.</td></tr>
+                    <tr><td>Ausdehnungsgefäß</td><td>Druckprüfung (Vordruck)</td><td>Unbedingt am entleerten Kessel. Der Druck sollte ~0,75–1,0 bar betragen.</td></tr>
+                    <tr><td>Siphon (Condens)</td><td>Demontage und Spülung</td><td>Durchflusskapazität prüfen. Ein trockener Siphon bedeutet das Risiko des Gasaustritts in das Gebäude.</td></tr>
+                    <tr><td>Gasarmatur</td><td>Dichtheitsprüfung</td><td>Messung des Drucks (Statik/Dynamik), wie in Punkt 3 beschrieben.</td></tr>
+                    <tr><td>Hydraulik</td><td>Reinigung des Schlammfilters</td><td>Überprüfung des Siebs auf Späne oder Schlamm.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>6.3. Besonderheiten der Wartung von Brennwertkesseln (ecoTEC)</h3>
+        <p>Brennwertgeräte erfordern aufgrund der Spezifik der Verbrennung und des Kondensatanfalls einen tieferen Ansatz.</p>
+        
+        <h4>1. Reinigung des Wärmetauschers (Spiral-Wärmetauscher)</h4>
+        <p>Wärmetauscher aus Edelstahl (Sorte 1.4404) haben enge Spalten zwischen den Windungen.</p>
+        <ul>
+            <li><strong>Diagnose:</strong> Wenn die Differenz zwischen Vorlauf und Rücklauf bei maximaler Leistung zu schnell steigt und das CO im Abgas zunimmt, sind die Spalten mit Oxiden verstopft.</li>
+            <li><strong>Methode:</strong> Verwenden Sie den speziellen Kunststoffspatel (Vaillant Art.-Nr. 0020010293) zur Reinigung der Schlitze. Danach reichlich mit Wasser durch die Brennkammer spülen – der gesamte Schmutz fließt in den Siphon ab.</li>
+        </ul>
+
+        <h4>2. Austausch von Dichtungen (Dichtungssatz)</h4>
+        <p><strong>Kritisch wichtig:</strong> Die Dichtung des Brennkammerdeckels (Graphit oder Silikon) bei ecoTEC-Modellen muss inspiziert und bei der kleinsten Formänderung oder alle 2 Jahre zwingend ersetzt werden. Ein Austritt heißer Gase kann das Kunststoffgehäuse des Lüfters oder die Elektronik schmelzen.</p>
+
+        <h4>3. Verbrennungseinstellung (CO2 Check)</h4>
+        <p>Bei Brennwertgeräten ist die Einstellung nach Manometer sekundär, primär ist die Einstellung nach dem Abgasanalysegerät. Stellen Sie die Schraube an der Gasarmatur (Drossel) so ein, dass 9,0% CO2 für H-Gas erreicht werden. Nach der Einstellung unbedingt den Parameter Offset bei minimaler Leistung (P.02) überprüfen.</p>
+
+        <h3>6.4. Abschluss der Arbeiten und Systemeinstellungen</h3>
+        <ul>
+            <li><strong>Siphon befüllen:</strong> Vor dem Start nach der Reinigung immer ca. 0,5 l Wasser in den Siphon füllen.</li>
+            <li><strong>Wartungsintervall zurücksetzen:</strong>
+                <br>1. Servicemenü aufrufen (Code 17).
+                <br>2. In d.84 die Anzahl der Stunden bis zur nächsten Wartung (z. B. 3000 oder 5000 Std.) oder das Datum einstellen.
+            </li>
+            <li><strong>Testlauf (P.00):</strong> Starten Sie das Entlüftungsprogramm, um Kavitation in der Pumpe auszuschließen.</li>
+        </ul>
+        <blockquote>
+            <strong>Tipp für Profis:</strong> Bei ecoTEC plus Modellen ab 2015 gibt es die Funktion „Comfort-Sicherung“. Wenn der Kessel Abweichungen erkennt, geht er nicht sofort in den Fehler, sondern reduziert die Leistung. Wenn Sie sehen, dass der Kessel „träge“ arbeitet, überprüfen Sie den Ionisationsstrom und die Sauberkeit der Elektroden – möglicherweise hat sich der Schutzmodus eingeschaltet.
+        </blockquote>
     </section>
 
     <!-- 7. Modell-Übersicht -->
     <section id="modelle">
         <h2>7. Modell-Übersicht</h2>
+        <p>Für den Serviceingenieur ist es wichtig, sich nicht nur in den Namen, sondern auch in den Gerätegenerationen auszukennen (z. B. der Unterschied zwischen VC und VCW). Die Kennzeichnung ist eindeutig: VC — nur Heizung (einheimisch/einheitlich), VCW / VUW — Heizung + WW (Kombigerät).</p>
+        
+        <h3>7.1. Wandhängende Brennwertkessel (ecoTEC)</h3>
+        <p>Das massenhafteste Segment in Deutschland (Brennwerttechnik).</p>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Serie</th><th>Typ</th><th>Merkmale</th></tr>
+                    <tr>
+                        <th>Serie</th>
+                        <th>Modelle (Beispiele)</th>
+                        <th>Beschreibung und Anwendung</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>ecoTEC pro</td><td>VCW 236/286</td><td>Basis-Brennwert, Kunststoff-Block.</td></tr>
-                    <tr><td>ecoTEC plus</td><td>VC/VCW 146-326</td><td>Gehobene Klasse, Messing-Hydraulik.</td></tr>
-                    <tr><td>atmoTEC</td><td>VU/VUW ...0</td><td>Schornsteinanschluss (Kamin).</td></tr>
-                    <tr><td>turboTEC</td><td>VU/VUW ...2</td><td>Außenwandanschluss (Gebläse).</td></tr>
+                    <tr><td><strong>ecoTEC pro</strong></td><td>VCW 236, 286</td><td>„Budget“-Linie. Vereinfachte Hydraulik, Kunststoffkollektor, Basis-Pumpe.</td></tr>
+                    <tr><td><strong>ecoTEC plus</strong></td><td>VC/VCW 146, 206, 246, 326</td><td>Hauptserie. Messinghydraulik, erweitertes Menü, Möglichkeit zur Arbeit mit großen Systemen.</td></tr>
+                    <tr><td><strong>ecoTEC exclusive</strong></td><td>VC 146 - 656 /5-7</td><td>Top-Linie mit Green iQ System. Integriertes Internetmodul, maximaler Wirkungsgrad und Arbeit mit IoniDetect.</td></tr>
+                    <tr><td><strong>ecoTEC pure</strong></td><td>VUW 236/286</td><td>Kompakte Serie (oft für Wohnungen). Vereinfachte Frontblende, Budget-Ausführung.</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>7.2. Wandhängende traditionelle Kessel (atmoTEC / turboTEC)</h3>
+        <p>In Deutschland (EU) sind sie derzeit nur in Ausnahmefällen (Austausch in alten Schornsteinen) zur Installation zugelassen, im Service sind sie aber nach wie vor sehr häufig anzutreffen.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serie</th>
+                        <th>Typ</th>
+                        <th>Besonderheiten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>atmoTEC pro/plus</strong></td><td>VU/VUW (Atmo)</td><td>Atmosphärisch (offene Kammer). Verbrennungsluft aus dem Raum. Gekennzeichnet durch die Ziffer 0 (z. B. VUW 240).</td></tr>
+                    <tr><td><strong>turboTEC pro/plus</strong></td><td>VU/VUW (Turbo)</td><td>Turbovariante (geschlossene Kammer). Gekennzeichnet durch die Ziffer 2 (z. B. VUW 242).</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>7.3. Bodenstehende Kessel (Gas)</h3>
+        <p>Werden für Einfamilienhäuser mit großer Fläche oder zum Austausch alter Gusskessel verwendet.</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serie</th>
+                        <th>Modelle</th>
+                        <th>Typ / Beschreibung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>ecoCOMPACT</strong></td><td>VSC 146 - 306</td><td>Kompakter Turm (Kessel + integrierter Schichtladespeicher 90-150l). Ideal für Aufstellräume mit geringer Fläche.</td></tr>
+                    <tr><td><strong>atmoVIT / iroVIT</strong></td><td>VK / VK INT</td><td>Klassische Bodenkessel mit Guss-Wärmetauscher. Sehr zuverlässig, aber niedriger Wirkungsgrad.</td></tr>
+                    <tr><td><strong>ecoVIT</strong></td><td>VKK 226 - 656</td><td>Bodenstehender Brennwertkessel mit großem Wasserinhalt (Rohrschlangen-Wärmetauscher).</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>7.4. Tabelle zur Entschlüsselung der Artikelbezeichnungen (Nomenklatur)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Abkürzung</th>
+                        <th>Bedeutung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>VC</strong></td><td>Einkreisgerät (nur Heizung, Anschluss für Speicher vorhanden).</td></tr>
+                    <tr><td><strong>VCW / VUW</strong></td><td>Zweikreisgerät (Heizung + Warmwasser im Durchlaufprinzip).</td></tr>
+                    <tr><td><strong>VSC</strong></td><td>Kompaktstation (Kessel + Speicher in einem Gehäuse).</td></tr>
+                    <tr><td><strong>146, 246 usw.</strong></td><td>Die ersten beiden Ziffern geben die Leistung an (14 kW, 24 kW). Die letzte Ziffer gibt den Typ an (6 = Brennwerttechnik).</td></tr>
+                    <tr><td><strong>... /5-3</strong></td><td>5 — Generation (aktuelle), 3 — Ausführung (Pro).</td></tr>
+                    <tr><td><strong>... /5-5</strong></td><td>5 — Generation, 5 — Ausführung (Plus).</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <blockquote>
+            <strong>Resümee für den Service:</strong>
+            <br>- <strong>Ersatzteile:</strong> Denken Sie daran, dass die Hydraulikbaugruppen von pro (Kunststoff) und plus (Messing) oft nicht austauschbar sind, obwohl sie äußerlich ähnlich sehen.
+            <br>- <strong>Schornsteine:</strong> Bei Brennwertgeräten (6 am Ende) ist das Abgasrohr immer aus Kunststoff (PP), bei Turbogeräten (2 am Ende) aus Aluminium. Verwechseln Sie diese niemals, da das Kondensat Aluminium innerhalb einer Saison zerfrisst.
+            <br>- <strong>Elektronik:</strong> Ab der Generation /5 sind die Steuerplatinen universell, erfordern jedoch die Eingabe des DSN-Codes (siehe Punkt 2).
+        </blockquote>
     </section>
 
     <!-- 8. Ersatzteile & Art.-Nr. -->
     <section id="ersatzteile">
         <h2>8. Ersatzteile & Art.-Nr.</h2>
+        <p>Für den Serviceingenieur ist das Vorhandensein der richtigen Artikelnummer die Garantie für eine schnelle Reparatur. In der folgenden Liste sind die am meisten nachgefragten Positionen für die beliebten Linien atmo/turboTEC (Generationen /3 und /5) und ecoTEC (Brennwertgeräte) zusammengefasst.</p>
+        
+        <h3>8.1. Verbrauchsmaterialien für die Wartung (Wartungssätze)</h3>
         <div class="table-container">
             <table>
                 <thead>
-                    <tr><th>Bezeichnung</th><th>Artikel-Nummer</th></tr>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendbarkeit</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Wartungssatz ecoTEC plus</td><td>0020133812</td></tr>
-                    <tr><td>Ionisationselektrode ecoTEC</td><td>0020021154</td></tr>
-                    <tr><td>Zündelektrode ecoTEC</td><td>0020021152</td></tr>
-                    <tr><td>NTC-Fühler (Universal)</td><td>193593</td></tr>
-                    <tr><td>Drucksensor (digital)</td><td>0020059717</td></tr>
-                    <tr><td>Pumpe (Grundfos VPM 5)</td><td>0020197507</td></tr>
-                    <tr><td>Vorrangumschaltventil (Motor)</td><td>0020132682</td></tr>
-                    <tr><td>Sicherheitsventil (3 bar)</td><td>190732</td></tr>
-                    <tr><td>Ausdehnungsgefäß (10 l)</td><td>0020223525</td></tr>
-                    <tr><td>Lüfter (turboTEC /3)</td><td>190215</td></tr>
-                    <tr><td>Gasventil (Honeywell ecoTEC)</td><td>0020110998</td></tr>
-                    <tr><td>Platine (Leiterplatte /3)</td><td>0020023216</td></tr>
+                    <tr><td><strong>0020010293</strong></td><td>Reinigungsschaber für Wärmetauscher</td><td>ecoTEC (alle Modelle)</td></tr>
+                    <tr><td><strong>0020133812</strong></td><td>Dichtungssatz (Brenner Dichtung)</td><td>ecoTEC plus/pro</td></tr>
+                    <tr><td><strong>090649</strong></td><td>Dichtung Brennkammerdeckel</td><td>ecoTEC (ältere Modelle)</td></tr>
+                    <tr><td><strong>0020025929</strong></td><td>Magnesiumanode (G 3/4 x 352 mm)</td><td>Speicher VIH R 120-200</td></tr>
+                    <tr><td><strong>140429</strong></td><td>Dichtungssatz (O-Ring Set)</td><td>Universeller Satz für Hydraulik</td></tr>
+                    <tr><td><strong>108471</strong></td><td>Zünd- und Ionisationselektrode</td><td>atmoTEC / turboTEC</td></tr>
+                    <tr><td><strong>0020021154</strong></td><td>Ionisationselektrode</td><td>ecoTEC plus/pro</td></tr>
+                    <tr><td><strong>0020021152</strong></td><td>Zündelektrode</td><td>ecoTEC plus/pro</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>8.2. Sensoren und Elektronik (Sensorik & Elektronik)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendbarkeit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>193593</strong></td><td>NTC-Fühler (Tauch-/Anlegefühler)</td><td>Universell (Vorlauf/WW)</td></tr>
+                    <tr><td><strong>0020059717</strong></td><td>Wasserdrucksensor (digital)</td><td>ecoTEC, atmo/turboTEC /5</td></tr>
+                    <tr><td><strong>0020023216</strong></td><td>Leiterplatte (Hauptplatine)</td><td>atmo/turboTEC pro/plus /3</td></tr>
+                    <tr><td><strong>0020202559</strong></td><td>Leiterplatte (VAI)</td><td>ecoTEC plus /5-5</td></tr>
+                    <tr><td><strong>101274</strong></td><td>Sicherheitstemperaturbegrenzer (STB 97°C)</td><td>Universell (Fehler F.20)</td></tr>
+                    <tr><td><strong>0020018082</strong></td><td>Durchflusssensor (Aqua-Sensor)</td><td>VCW (Kombigeräte)</td></tr>
+                    <tr><td><strong>064884</strong></td><td>Zündtransformator</td><td>atmo/turboTEC</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.3. Hydraulische Komponenten (Hydraulik)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendbarkeit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>0020197507</strong></td><td>Pumpe komplett (Grundfos VPM 5)</td><td>ecoTEC plus /5-5</td></tr>
+                    <tr><td><strong>160928</strong></td><td>Pumpe (Pumpenkopf) 2-stufig</td><td>atmo/turboTEC /3</td></tr>
+                    <tr><td><strong>178988</strong></td><td>Dreiwegeventil (komplett)</td><td>atmo/turboTEC, ecoTEC /3</td></tr>
+                    <tr><td><strong>0020132682</strong></td><td>Stellantrieb Ventil (Motor)</td><td>Alle modernen Modelle</td></tr>
+                    <tr><td><strong>0020018116</strong></td><td>Sekundärwärmetauscher (13 Platten)</td><td>VUW 200/240/280/282</td></tr>
+                    <tr><td><strong>0020135132</strong></td><td>Sekundärwärmetauscher (20 Platten)</td><td>VUW 246/306/346</td></tr>
+                    <tr><td><strong>190732</strong></td><td>Sicherheitsventil (3 bar)</td><td>Universell (Heizung)</td></tr>
+                    <tr><td><strong>0020223525</strong></td><td>Ausdehnungsgefäß (10 l)</td><td>ecoTEC, turboTEC</td></tr>
+                    <tr><td><strong>0020107740</strong></td><td>Füllhahn</td><td>atmo/turboTEC /5</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.4. Gasteil und Abgasführung (Gas & Lüfter)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendbarkeit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>0020110998</strong></td><td>Gasarmatur (Honeywell)</td><td>ecoTEC plus /5-5</td></tr>
+                    <tr><td><strong>050743</strong></td><td>Gasarmatur (SIT 845)</td><td>atmo/turboTEC /3</td></tr>
+                    <tr><td><strong>190215</strong></td><td>Gebläse (AC 230V)</td><td>turboTEC pro/plus /3</td></tr>
+                    <tr><td><strong>0020022604</strong></td><td>Gebläse (DC 24V)</td><td>ecoTEC plus 24-30 kW</td></tr>
+                    <tr><td><strong>0020145321</strong></td><td>Luftdruckschalter</td><td>turboTEC /5</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.5. Spezifische Positionen für ältere Modelle</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikelnummer</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendbarkeit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>114288</strong></td><td>Automatischer Schnellentlüfter</td><td>Pumpen Grundfos/Wilo</td></tr>
+                    <tr><td><strong>102550</strong></td><td>Knebel (schwarz/blau)</td><td>Bedienblende /3</td></tr>
+                    <tr><td><strong>115363</strong></td><td>Sieb (Heizungsrücklauf)</td><td>Hydraulikblock (Rücklauf)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <blockquote>
+            <strong>Empfehlung für die Bestellung:</strong> Bei der Arbeit mit Vaillant immer die 7-stellige Seriennummer des Kessels überprüfen (die ersten beiden Ziffern geben das Baujahr an, die folgenden zwei die Kalenderwoche). Wenn es sich um ein Übergangsmodell handelt (z. B. Austausch der Generation /3 durch /5 in den Jahren 2013-2015), können die Artikelnummern der Hydraulik abweichen.
+            <br><br><strong>Nützliches Werkzeug:</strong> Nutzen Sie die App „Vaillant Ersatzteilcheck“. Sie ermöglicht das Scannen des Barcodes eines Ersatzteils oder die Suche über die Explosionszeichnung des jeweiligen Geräts.
+        </blockquote>
     </section>
 
 </div>

@@ -18,119 +18,152 @@
 <body>
 
 <header>
-    <a href="gas-profi-app.html" style="position: absolute; left: 15px; color: white; text-decoration: none; font-size: 20px;">←</a>
+    <a href="index.html" style="position: absolute; left: 15px; color: white; text-decoration: none; font-size: 20px;">←</a>
     <h1 style="margin: 0;">BRÖTJE</h1>
     <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
 </header>
 
 <div class="container">
-    <h2 style="text-align: center;">Technische Dokumentation & Diagnose</h2>
+    <h2 style="text-align: center;">Technisches Handbuch für Serviceingenieure: Brötje Gaskessel</h2>
+    <p>Dieses Dokument dient als umfassende technische Referenz für die Diagnose, Wartung, Codierung und Reparatur von Brötje Gas-Heizgeräten (Siemens LMS/LMU Steuerungen).</p>
 
     <!-- Navigation -->
     <nav class="nav-menu">
-        <a href="#diagnose" class="nav-item">1. Diagnose & Fehler</a>
-        <a href="#service" class="nav-item">2. Service-Ebene</a>
-        <a href="#gasdruck" class="nav-item">3. Gasdruck</a>
-        <a href="#fuehler" class="nav-item">4. Fühler & Motoren</a>
-        <a href="#wasser" class="nav-item">5. Ioni & Wasser</a>
-        <a href="#wartung" class="nav-item">6. Wartung</a>
-        <a href="#modelle" class="nav-item">7. Modelle</a>
-        <a href="#ersatzteile" class="nav-item">8. Ersatzteile</a>
+        <a href="#diagnose" class="nav-item">1. Diagnose & Fehlercodes</a>
+        <a href="#service" class="nav-item">2. Service-Ebene & Codierung</a>
+        <a href="#gasdruck" class="nav-item">3. Gasdruck H/L-Gas</a>
+        <a href="#fuehler" class="nav-item">4. Fühlerkennwerte & Motoren</a>
+        <a href="#wasser" class="nav-item">5. Ioni, Anode & Wasser</a>
+        <a href="#wartung" class="nav-item">6. Wartung (Matrix)</a>
+        <a href="#modelle" class="nav-item">7. Modell-Übersicht</a>
+        <a href="#ersatzteile" class="nav-item">8. Ersatzteile & Art.-Nr.</a>
     </nav>
 	
-	<a href="gas-profi-app.html" class="btn-large" style="border-color: #ccc; margin-bottom: 30px;">⬅ Zurück zur Auswahl</a>
+    <a href="index.html" class="btn-large" style="border-color: #ccc; margin-bottom: 30px;">⬅ Zurück zur Auswahl</a>
 
     <!-- 1. Diagnose & Fehlercodes -->
     <section id="diagnose">
-        <h2>1. Diagnose & Fehlercodes (Siemens LMS/LMU)</h2>
-        <p>Brötje nutzt ISR-Plus Regelungen. Fehler werden als numerische Codes mit Textbeschreibung angezeigt.</p>
+        <h2>1. Diagnose & Fehlercodes</h2>
+        <p>Brötje-Kessel (BDR Thermea Gruppe) nutzen Siemens LMS oder LMU Steuerungen. Fehler werden als digitale Codes angezeigt, bei ISR-Plus-Bedienfeldern oft mit Kurztext.</p>
         
+        <h3>1.1. Hauptfehlertabelle (Siemens LMS/LMU)</h3>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Code</th>
                         <th>Beschreibung</th>
-                        <th>Ursache & Lösung</th>
+                        <th>Ursache und Behebungsmaßnahme</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td class="code-block">10</td><td>Außenfühlerfehler</td><td>Obruch oder Kurzschluss. Widerstand prüfen (NTC 1k oder 10k).</td></tr>
-                    <tr><td class="code-block">20</td><td>Vorlauffühler 1 Fehler</td><td>Kesseltemperaturfühler defekt. Stecker und NTC prüfen.</td></tr>
-                    <tr><td class="code-block">28</td><td>Abgasfühlerfehler</td><td>Überhitzung oder Sensordefekt. Wärmetauscher reinigen.</td></tr>
-                    <tr><td class="code-block">40</td><td>Rücklauffühlerfehler</td><td>NTC prüfen. Oft Anzeichen für mangelnde Zirkulation.</td></tr>
-                    <tr><td class="code-block">50</td><td>Trinkwasserfühlerfehler</td><td>Speicherfühler prüfen. Ggf. Kodierung prüfen (WW-Betrieb).</td></tr>
-                    <tr><td class="code-block">110</td><td>Überhitzung (STB)</td><td>Sicherheitstemperaturbegrenzer. Pumpe, Luft, Reset-Taste prüfen.</td></tr>
-                    <tr><td class="code-block">111</td><td>Temperaturbegrenzung</td><td>Sicherheitsschwelle überschritten. Wärmetauscher verschmutzt.</td></tr>
-                    <tr><td class="code-block">117</td><td>Wasserdruck zu hoch</td><td>Druck > 3.0 bar. Ausdehnungsgefäß und Füllarmatur prüfen.</td></tr>
-                    <tr><td class="code-block">118</td><td>Wasserdruck zu niedrig</td><td>Druck < 0.5-0.8 bar. Wasser nachfüllen, Lecksuche.</td></tr>
-                    <tr><td class="code-block">128</td><td>Flammenabriss im Betrieb</td><td>Ionisation verloren. Gasfließdruck und Elektrode prüfen.</td></tr>
-                    <tr><td class="code-block">131</td><td>Brennerstörung</td><td>Zündfehler. Zündtrafo und Kabel prüfen.</td></tr>
-                    <tr><td class="code-block">132</td><td>Sicherheitsfehler</td><td>Interne Logikstörung oder Kurzschluss im Sicherheitskreis.</td></tr>
-                    <tr><td class="code-block">133</td><td>Keine Flammenbildung</td><td>Kein Gas, Ionisationselektrode defekt oder Siphon verstopft.</td></tr>
-                    <tr><td class="code-block">151</td><td>Interner Reglerfehler</td><td>LMU/LMS Defekt. Reset versuchen, sonst Platinentausch.</td></tr>
-                    <tr><td class="code-block">153</td><td>Verriegelung</td><td>Zu viele Startversuche. Manueller Reset erforderlich.</td></tr>
-                    <tr><td class="code-block">160</td><td>Gebläsefehler</td><td>Solldrehzahl nicht erreicht. Spannungsversorgung und PWM prüfen.</td></tr>
+                    <tr><td class="code-block">10</td><td>Fehler Außenfühler</td><td>Unterbrechung oder Kurzschluss des Außenfühlers. Außenwiederstand prüfen (NTC 1k oder 10k je nach Baujahr).</td></tr>
+                    <tr><td class="code-block">20</td><td>Fehler Vorlauffühler 1</td><td>Kesseltemperaturfühler defekt. Stecker und NTC prüfen.</td></tr>
+                    <tr><td class="code-block">28</td><td>Fehler Abgasfühler</td><td>Überhitzung oder Defekt des Fühlers im Abgassammler. Sauberkeit des Wärmetauschers prüfen.</td></tr>
+                    <tr><td class="code-block">40</td><td>Fehler Rücklauffühler</td><td>NTC an der Rücklaufleitung prüfen. Weist oft auf mangelnde Zirkulation hin.</td></tr>
+                    <tr><td class="code-block">50</td><td>Fehler Trinkwasserfühler</td><td>Speicherfühler prüfen. Wenn kein Speicher vorhanden ist – Codierung prüfen (Trinkwasserbetrieb deaktiviert?).</td></tr>
+                    <tr><td class="code-block">110</td><td>Überhitzung (STB)</td><td>Sicherheitstemperaturbegrenzer hat ausgelöst. Pumpe, Luft im System prüfen und alle Ventile öffnen. Entriegelung über Reset-Taste.</td></tr>
+                    <tr><td class="code-block">111</td><td>Temperaturbegrenzung</td><td>Sicherheitsgrenze überschritten. Häufig aufgrund eines verschmutzten Hauptwärmetauschers.</td></tr>
+                    <tr><td class="code-block">117</td><td>Wasserdruck zu hoch</td><td>Druck &gt; 3.0 bar. Ausdehnungsgefäß und Nachfüllventil prüfen.</td></tr>
+                    <tr><td class="code-block">118</td><td>Wasserdruck zu niedrig</td><td>Druck &lt; 0.5-0.8 bar. Wasser nachfüllen, System auf Undichtigkeiten prüfen.</td></tr>
+                    <tr><td class="code-block">128</td><td>Flammenabriss während des Betriebs</td><td>Kessel hat gezündet, verliert aber das Ionisationssignal. Gasfließdruck dynamisch und Sauberkeit der Elektrode prüfen.</td></tr>
+                    <tr><td class="code-block">131</td><td>Brennerstörung</td><td>Allgemeiner Zündfehler. Zündtransformator und Kabel prüfen.</td></tr>
+                    <tr><td class="code-block">132</td><td>Sicherheitsfehler</td><td>Problem mit der internen Logik der Platine oder Kurzschluss im Sicherheitskreis.</td></tr>
+                    <tr><td class="code-block">133</td><td>Keine Flammenbildung</td><td>Kein Gas vorhanden, Ionisationselektrode defekt oder Siphon mit Kondensat verstopft (Flamme „ersäuft“).</td></tr>
+                    <tr><td class="code-block">151</td><td>Interner Fehler Steuerungsplatine</td><td>Defekt der LMU/LMS-Einheit. Reset versuchen, falls erfolglos – Platine austauschen.</td></tr>
+                    <tr><td class="code-block">153</td><td>Gerät verriegelt</td><td>Zu viele erfolglose Zündversuche. Manueller Reset erforderlich.</td></tr>
+                    <tr><td class="code-block">160</td><td>Ventilatorfehler</td><td>Gebläse erreicht die Solldrehzahl nicht. Spannungsversorgung und PWM-Kabel prüfen.</td></tr>
                 </tbody>
             </table>
         </div>
 
-        <h3>1.2. EVO System Fehler (WGB Evo)</h3>
+        <h3>1.2. Spezifische Fehler des EVO-Systems (WGB Evo)</h3>
+        <p>Modelle mit der selbstkalibrierenden Verbrennungsregelung EVO besitzen spezifische Codes:</p>
         <div class="highlight-evo">
-            <p><strong>183 / 184:</strong> Kalibrierungsfehler. Gashahn prüfen, Abgassystem auf Rezirkulation prüfen.</p>
-            <p><strong>E154:</strong> Zirkulationsprüfung. Spreizung Vorlauf/Rücklauf zu hoch. Pumpe prüfen.</p>
+            <p><strong>183 / 184:</strong> Kalibrierungsfehler. Das System kann die Gasqualität nicht bestimmen. Prüfen, ob der Gashahn vollständig geöffnet ist und keine Falschluft im Abgassystem vorliegt.</p>
+            <p><strong>E154:</strong> Zirkulationskontrolle. Die Temperaturdifferenz zwischen Vor- und Rücklauf ist unmittelbar nach dem Start zu groß. Prüfen, ob die Pumpe blockiert ist.</p>
         </div>
 
-        <h3>1.3. Status-LED Indikation</h3>
+        <h3>1.3. Diagnose über Status-LED</h3>
         <ul>
-            <li><span class="status-led led-green"></span> <strong>Blinkt Grün:</strong> Normalbetrieb, Wärmeanforderung.</li>
-            <li><span class="status-led led-red" style="opacity: 0.5;"></span> <strong>Blinkt Rot:</strong> Vorübergehender Fehler (z.B. Wasserdruck).</li>
-            <li><span class="status-led led-red"></span> <strong>Leuchtet Rot:</strong> Kritische Verriegelung (Reset nötig).</li>
+            <li><span class="status-led led-green"></span> <strong>Grün blinkend:</strong> Normaler Betrieb, Wärmeanforderung liegt vor.</li>
+            <li><span class="status-led led-red" style="opacity: 0.5;"></span> <strong>Rot blinkend:</strong> Vorübergehende Störung, die sich selbst beheben kann (z. B. geringer Wasserdruck).</li>
+            <li><span class="status-led led-red"></span> <strong>Rot leuchtend:</strong> Kritische Verriegelung (Reset zwingend erforderlich).</li>
+        </ul>
+
+        <p><strong>Praxishinweise für Techniker (Brötje):</strong></p>
+        <ul>
+            <li><strong>Fehler 133 (Häufigste Ursache):</strong> Bei Brötje oft mit einem verstopften Siphon verbunden. Kondensat steht in der Brennkammer, die Ionisationselektrode wird nass und sieht keine Flamme. Siphon reinigen.</li>
+            <li><strong>Fehlerhistorie auslesen:</strong> Fachmann-Ebene -&gt; Menü „Fehler“ (Fehlerhistorie speichert die letzten 10 Codes mit Anlagenparametern zum Zeitpunkt des Fehlers).</li>
+            <li><strong>Erdungsproblem:</strong> Brötje reagiert empfindlich auf Gehäusepotenziale. Bei „Phantom“-Ionisationsfehlern die Geräteerdung prüfen.</li>
         </ul>
     </section>
 
     <!-- 2. Service-Ebene & Codierung -->
     <section id="service">
         <h2>2. Service-Ebene & Codierung</h2>
-        <div class="highlight-evo">
-            <p><strong>Zugang Fachmann-Ebene (ISR Plus):</strong></p>
-            <ol>
-                <li>Taste <strong>OK</strong> ca. 3-5 Sekunden gedrückt halten.</li>
-                <li>Ebene <strong>"Fachmann"</strong> wählen und mit OK bestätigen.</li>
-                <li>Navigation erfolgt über den Drehknopf, Zurück mit <strong>ESC</strong>.</li>
-            </ol>
-        </div>
+        <p>Die Navigation erfolgt über eine Baumstruktur mit eindeutigen Zeilennummern am ISR Plus Bedienfeld (WGB, WBS, BBS, SGB).</p>
+        
+        <h3>2.1. Einstieg in die Service-Ebenen</h3>
+        <ul>
+            <li><strong>Endbenutzer-Ebene:</strong> OK-Taste kurz drücken.</li>
+            <li><strong>Fachmann-Ebene (Fachmann):</strong> OK-Taste (oder „i“-Taste je nach Version) für ca. 3–5 Sekunden gedrückt halten. Mit dem Drehknopf „Fachmann“ auswählen und mit OK bestätigen. Standardmäßig ist kein Passwort erforderlich.</li>
+        </ul>
+
+        <h3>2.2. Menüstruktur (Hauptbereiche)</h3>
+        <ul>
+            <li><strong>Zeitprogramme:</strong> Schaltzeiten für Heizkreise und Trinkwasser.</li>
+            <li><strong>Heizkreis (1, 2, P):</strong> Einstellungen der Heizkreise. Kennlinie (Heizkurve) wird in Zeile 720 eingestellt.</li>
+            <li><strong>Trinkwasser:</strong> Sollwerte, Legionellenfunktion, Pumpennachlauf.</li>
+            <li><strong>Kessel:</strong> Kesseleinstellungen (Leistung, Brennerparameter).</li>
+            <li><strong>Fehler:</strong> Die letzten 10 Fehlercodes.</li>
+            <li><strong>Wartung / Sonderbetrieb:</strong> Testfunktionen und Wartungsintervall-Reset.</li>
+        </ul>
+
+        <h3>2.3. Wichtige Codierungszeilen (Auswahl)</h3>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Zeile</th>
-                        <th>Funktion</th>
-                        <th>Standard / Empfehlung</th>
+                        <th>Bezeichnung / Funktion</th>
+                        <th>Richtwert / Empfehlung</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>710</td><td>Komfortsollwert</td><td>Raumtemperaturvorgabe.</td></tr>
-                    <tr><td>720</td><td>Heizkennlinie</td><td>Heizkörper: 1.2–1.5 | FB-Heizung: 0.4–0.8.</td></tr>
-                    <tr><td>2210</td><td>Soll-Leistung Min</td><td>Vermeidung von Taktbetrieb.</td></tr>
-                    <tr><td>2317</td><td>Nenndrehzahl Gebläse</td><td>Einstellung der Max.-Leistung.</td></tr>
-                    <tr><td>2550</td><td>Wartungsintervall</td><td>Einstellung nach Monaten oder Betriebsstunden.</td></tr>
+                    <tr><td>710</td><td>Komfortsollwert</td><td>Gewünschte Raumtemperatur für den Heizbetrieb.</td></tr>
+                    <tr><td>720</td><td>Kennlinie-Steilheit</td><td>Standard: 1.2–1.5 (Radiatoren), 0.4–0.8 (Fußbodenheizung).</td></tr>
+                    <tr><td>2210</td><td>Sollbegrenzung Min-Leistung</td><td>Verhindert das Takten bei kleinen Heizlasten.</td></tr>
+                    <tr><td>2317</td><td>Nominaldrehzahl Ventilator</td><td>Einstellung der maximalen Kesselleistung.</td></tr>
+                    <tr><td>2441</td><td>Gebläsedrehzahl Trinkwasser max</td><td>Leistungsbegrenzung im Warmwasserbetrieb zum Schutz des Wärmetauschers.</td></tr>
+                    <tr><td>2550</td><td>Wartungsintervall</td><td>Einstellung der Zeit bis zur nächsten Wartung (Monate oder Betriebsstunden).</td></tr>
+                    <tr><td>7044</td><td>Konfiguration Ausgang QX</td><td>Steuerung von Zusatzrelais (z. B. Zirkulationspumpe).</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>2.4. Sonderbetriebsfunktionen</h3>
+        <ul>
+            <li><strong>Schornsteinfeger-Funktion:</strong> Schornsteinfegertaste drücken. Der Kessel goes auf Maximalleistung. Ein erneutes Drücken wechselt auf Minimalleistung. Genutzt für Gasdruck- und CO2-Messungen.</li>
+            <li><strong>Relaytest (Ausgangstest):</strong> Menü „Relaistest“. Erlaubt das manuelle Schalten von Pumpen, Gebläse und 3-Wege-Ventil zur mechanischen Funktionsprüfung.</li>
+        </ul>
+        <p><strong>Wichtige Hinweise:</strong> Vor Änderungen die Drehzahleinstellungen (Zeile 2320 Min, Zeile 2317 Max) notieren. Nach der Wartung den Zähler im Menü „Wartung“ (Zeile 2551) zurücksetzen.</p>
     </section>
 
     <!-- 3. Gasdruck H/L-Gas -->
     <section id="gasdruck">
-        <h2>3. Gasdruck & $CO_2$ Werte</h2>
-        <h3>3.1. Anschlussdruck</h3>
+        <h2>3. Gasdruck H/L-Gas</h2>
+        <p>Unterscheidung zwischen atmosphärischen Altgeräten (Einstellung über Düsendruck) und Brennwertgeräten (WGB, BBS, WBS), welche pneumatisch über den CO2-Wert eingestellt werden (EVO-Modelle regeln sich selbst ein).</p>
+        
+        <h3>3.1. Anschlussdruck (Gasfließdruck)</h3>
+        <p>Messung erfolgt am Messstutzen der Gasarmatur bei Volllast des Kessels.</p>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Gasart</th>
-                        <th>Nominal (mbar)</th>
-                        <th>Bereich (mbar)</th>
+                        <th>Nenndruck (mbar)</th>
+                        <th>Zulässiger Bereich (mbar)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -140,124 +173,295 @@
                 </tbody>
             </table>
         </div>
+        <p><strong>Kritischer Hinweis:</strong> Ein Druckabfall von mehr als 3–4 mbar von Statisch zu Dynamisch deutet auf einen verstopften Gasfilter oder eine zu gering dimensionierte Zuleitung hin.</p>
 
-        <h3>3.2. $CO_2$ Einstellung (WGB / BBS / WBS)</h3>
+        <h3>3.2. CO2-Einstellwerte für Brennwertgeräte (geschlossenes Gehäuse)</h3>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Gasart</th>
-                        <th>Vollast (Max)</th>
-                        <th>Teillast (Min)</th>
+                        <th>Modell / Gasart</th>
+                        <th>Bei Volllast (Full Load)</th>
+                        <th>Bei Teillast (Part Load)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Erdgas H/L</td><td>8.8% – 9.0%</td><td>8.5% – 8.8%</td></tr>
-                    <tr><td>Flüssiggas P</td><td>10.3% – 10.8%</td><td>10.0% – 10.5%</td></tr>
+                    <tr><td>Erdgas H (E)</td><td>8.8% – 9.0%</td><td>8.5% – 8.8%</td></tr>
+                    <tr><td>Erdgas L (LL)</td><td>8.8% – 9.0%</td><td>8.5% – 8.8%</td></tr>
+                    <tr><td>Flüssiggas (P)</td><td>10.3% – 10.8%</td><td>10.0% – 10.5%</td></tr>
                 </tbody>
             </table>
         </div>
-        <p><i>Hinweis:</i> Min-Wert muss immer 0.2 - 0.5% unter dem Max-Wert liegen!</p>
+        <p><strong>Regel:</strong> Der CO2-Wert bei Teillast muss immer um 0.2 – 0.5% niedriger sein als bei Volllast. Ist dies umgekehrt, führt dies zu Zündstörungen (Fehler 133).</p>
+
+        <h3>3.3. EVO-System (i-Evo)</h3>
+        <p>Modelle mit i-Evo passen sich elektronisch an die Gasart (H/L) an. Eine manuelle mechanische Verstellung an den Einstellschrauben entfällt. Geprüft wird der „Gasqualitätsfaktor“ im Diagnosemenü.</p>
+
+        <h3>3.4. Traditionelle atmosphärische Modelle (z. B. EuroControl 24 kW)</h3>
+        <ul>
+            <li><strong>Erdgas H:</strong> Max. Leistung: 10.5 – 11.5 mbar / Min. Leistung: 1.5 – 2.0 mbar</li>
+            <li><strong>Flüssiggas P:</strong> Max. Leistung: 34.0 – 36.0 mbar / Min. Leistung: 5.5 – 6.5 mbar</li>
+        </ul>
+
+        <h3>3.5. Gasartumstellung</h3>
+        <ul>
+            <li><strong>EVO-Serie:</strong> Softwareseitig über Zeile 2447 + Tausch des Codiersteckers/Drosselscheibe sofern herstellerseitig vorgegeben.</li>
+            <li><strong>Nicht-EVO-Serie:</strong> Physischer Tausch der Gasdrossel und komplette Neueinstellung mittels Abgasanalysegerät.</li>
+        </ul>
     </section>
 
     <!-- 4. Fühlerkennwerte & Motoren -->
     <section id="fuehler">
         <h2>4. Fühlerkennwerte & Motoren</h2>
+        
+        <h3>4.1. Temperaturfühler Kennwerte (NTC 10 kΩ)</h3>
+        <p>Standard-NTC für Vorlauf, Rücklauf und Warmwasser bei WGB, WBS, BBS.</p>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Temp. (°C)</th>
-                        <th>NTC 10k (Ω)</th>
-                        <th>QAC34 1k (Ω)</th>
+                        <th>Temperatur (°C)</th>
+                        <th>Widerstand (Ohm)</th>
+                        <th>Temperatur (°C)</th>
+                        <th>Widerstand (Ohm)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>0</td><td>32.500</td><td>570</td></tr>
-                    <tr><td>20</td><td>12.500</td><td>1.000</td></tr>
-                    <tr><td>25</td><td>10.000</td><td>1.100</td></tr>
-                    <tr><td>50</td><td>3.600</td><td>1.600</td></tr>
+                    <tr><td>0</td><td>32 500</td><td>50</td><td>3 600</td></tr>
+                    <tr><td>10</td><td>19 800</td><td>60</td><td>2 500</td></tr>
+                    <tr><td>20</td><td>12 500</td><td>70</td><td>1 750</td></tr>
+                    <tr><td>25</td><td>10 000</td><td>80</td><td>1 250</td></tr>
+                    <tr><td>30</td><td>8 000</td><td>90</td><td>900</td></tr>
+                    <tr><td>40</td><td>5 300</td><td>100</td><td>650</td></tr>
                 </tbody>
             </table>
         </div>
-        <p><strong>PWM-Pumpen Test:</strong> PWM-Stecker abziehen -> Pumpe muss auf 100% laufen.</p>
+
+        <h3>4.2. Außenfühler (QAC 34)</h3>
+        <ul>
+            <li><strong>QAC 34 (1kΩ-Variante älterer Typen):</strong> 0°C = 570 Ohm, 20°C = 1000 Ohm.</li>
+            <li><strong>QAC 34 (10kΩ-Variante):</strong> Entspricht der obigen Standardtabelle.</li>
+        </ul>
+
+        <h3>4.3. Umwälzpumpen & Gebläse</h3>
+        <ul>
+            <li><strong>Umwälzpumpen (PWM):</strong> Hocheffizienzpumpen (PWM): 230V Spannungsversorgung liegt dauerhaft an. Wird der PWM-Stecker abgezogen, läuft die Pumpe als Eigenschutz auf 100% Leistung. Läuft sie dann nicht, liegt ein Pumpendefekt vor. Standardpumpen (ohne PWM) besitzen einen Wicklungswiderstand von ca. 160–300 Ohm.</li>
+            <li><strong>Ventilator (Gebläse):</strong> 4- bis 5-poliger Anschluss (230V/24V + PWM + Hall-Signal). Freigängigkeit des Rades prüfen. Ruckelt das Gebläse nur, liegt meist ein Defekt der internen Gebläse-Elektronik vor.</li>
+        </ul>
+
+        <h3>4.4. Dreiwegeventil & Wasserdrucksensor</h3>
+        <ul>
+            <li><strong>Antrieb Dreiwegeventil:</strong> Wicklungswiderstand liegt bei ca. 8–10 kОm. Leichtgängigkeit des mechanischen Ventileinsatzes (Kesselkartusche) händisch prüfen.</li>
+            <li><strong>Wasserdrucksensor:</strong> 3-Leiter-Aktivsensor (5V DC Versorgung). Signalspannung liefert Werte von 0.5V (bei 0 bar) bis 3.5V (bei 3 bar). Bei konstanten 0V oder 5V liegt ein Sensordefekt vor.</li>
+        </ul>
     </section>
 
     <!-- 5. Ioni, Anode & Wasser -->
     <section id="wasser">
-        <h2>5. Ionisation, Anode & Wasser (VDI 2035)</h2>
+        <h2>5. Ioni, Anode & Wasser</h2>
+        
+        <h3>5.1. Ionisationsstrom (Flammenüberwachung)</h3>
         <ul>
-            <li><strong>Ionisationsstrom:</strong> Min. 4-5 µA | Normal 15-30 µA.</li>
-            <li><strong>Magnesiumanode:</strong> Schutzstrom > 0.3 mA. Austausch bei < 0.1 mA.</li>
-            <li><strong>pH-Wert (Alu-Si):</strong> 8.2 – 8.5. (Kritisch: < 7.0 oder > 9.0).</li>
-            <li><strong>Leitfähigkeit:</strong> < 100 µS/cm empfohlen.</li>
+            <li><strong>Minimale Schwelle:</strong> 4–5 µA (unter 3 µA erfolgt Abschaltung mit Fehler 133).</li>
+            <li><strong>Normalbetrieb:</strong> 15–30 µA (unter Volllast bis zu 45 µA möglich).</li>
+            <li><strong>Prüfung:</strong> Zeile 8326 (Ionisationsstrom) im Menü aufrufen oder per Multimeter in Reihe in die Ionisationsleitung schleifen (µA DC). Elektrodenabstand: 3.5–4.0 mm.</li>
         </ul>
+
+        <h3>5.2. Gehäuseerdung</h3>
+        <p>Spannung zwischen Neutralleiter (N) und Schutzleiter (PE) muss &lt; 1.0 V betragen. Schlechte Erdung führt zu Flammenverlust trotz physikalisch fließendem Ionisationsstrom.</p>
+
+        <h3>5.3. Magnesiumschutzanode (Trinkwasserspeicher z. B. EAS)</h3>
+        <p>Messung des Schutzstroms im abgeklemmten Zustand gegen den Speicherbehälter (mA DC-Modus). Richtwert: &gt; 0.3 mA. Unter 0.1 mA is die Anode verbraucht oder verkalkt. Sichtprüfung alle 2 Jahre; Austausch ab 60% Abnutzung.</p>
+
+        <h3>5.4. Füllwasseranforderungen nach VDI 2035 (Alu-Si-Wärmetauscher)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Sollwert (Brötje)</th>
+                        <th>Technische Relevanz</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>pH-Wert</td><td>8.2 – 8.5</td><td>Zwingend einhalten! Bei pH &lt; 7.0 oder pH &gt; 9.0 wird die Aluminium-Schutzschicht zerstört.</td></tr>
+                    <tr><td>Gesamthärte</td><td>&lt; 0.1 °dH</td><td>Vollentsalzung/Enthärtung empfohlen, besonders bei Anlagen &gt; 50 kW.</td></tr>
+                    <tr><td>Leitfähigkeit</td><td>&lt; 100 µS/cm</td><td>Minimiert das Risiko von elektrochemischer Korrosion.</td></tr>
+                    <tr><td>Chloridionen</td><td>&lt; 30 mg/l</td><td>Vermeidet Lochfraßkorrosion am Alu-Si-Wärmetauscher.</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>Praxishinweise:</strong> Weißer, schlammiger Rückstand im Siphon deutet auf Aluminiumhydroxid hin. Ursache ist ein zu hoher pH-Wert (&gt; 9.0) des Anlagenwassers. System spülen und normgerecht befüllen.</p>
     </section>
 
     <!-- 6. Wartung (Matrix) -->
     <section id="wartung">
-        <h2>6. Wartungs-Algorithmus</h2>
-        <div class="highlight-evo">
-            <ol>
-                <li>Fehlerhistorie auslesen (Zeile 8040).</li>
-                <li>Wärmetauscher trocken & nass reinigen (Nur Kunststoffspachtel!).</li>
-                <li>Siphon reinigen (Aluminium-Schlamm entfernen).</li>
-                <li>Brennerdichtung (Graphit) zwingend erneuern.</li>
-                <li>$CO_2$ Messung und ggf. Kalibrierung (i-Evo).</li>
-                <li>Service-Intervall zurücksetzen (Zeile 2551).</li>
-            </ol>
+        <h2>6. Wartung (Matrix)</h2>
+        
+        <h3>6.1. Wartungsablauf Schritt-für-Schritt</h3>
+        <ol>
+            <li>Fehlerhistorie auslesen (Zeilen 8040–8043) und Ionisationsstrom prüfen.</li>
+            <li>Anlage spannungsfrei schalten, Gaszufuhr schließen. Gebläse und Brennerbaugruppe demontieren.</li>
+            <li>Wärmetauscherreinigung (Alu-Si): Trockenreinigung ausschließlich mit Kunststoffspachtel oder der originalen, weichen Brötje-Edelstahlbürste. Nassreinigung mit Wasser durchführen, bei starker Verkrustung Brötje-Kesselreiniger verwenden. Keine harten Stahlbürsten nutzen.</li>
+            <li>Kondensatsiphon ausbauen, von Aluminiumschlamm reinigen und spülen.</li>
+            <li>Zünd- und Ionisationselektroden prüfen, ggf. reinigen oder austauschen (Abstand 3.5–4.0 mm).</li>
+            <li>Zusammenbau mit neuer Brennertürdichtung (Grafidichtung zwingend erneuern). Gasdichtigkeitsprüfung durchführen.</li>
+        </ol>
+
+        <h3>6.2. Wartungsmatrix</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bauteil</th>
+                        <th>Prüfung / Tätigkeit</th>
+                        <th>Werkzeug / Kriterium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Wärmetauscher</td><td>Visuelle Kontrolle, mechanische Reinigung &amp; Spülen</td><td>Freie Abgaskanäle, kein Rückstau.</td></tr>
+                    <tr><td>Brenner (Matrix-Schnitt)</td><td>Prüfung auf Risse und Verzug</td><td>Keine sichtbaren Beschädigungen oder Verfärbungen.</td></tr>
+                    <tr><td>Siphon</td><td>Ausbau und vollständige Spülung</td><td>Freier Kondensatablauf ohne Rückstände.</td></tr>
+                    <tr><td>Ausdehnungsgefäß (MAG)</td><td>Vordruckprüfung im drucklosen Zustand</td><td>Stickstoffdruck 0.2 bar unter Anlagendruck einstellen.</td></tr>
+                    <tr><td>Gasregelblock</td><td>CO2-Messung bei Volllast und Teillast</td><td>Abgasanalysegerät (Werte siehe Kapitel 3.2).</td></tr>
+                    <tr><td>Abgassystem</td><td>Ringspaltmessung (Relevanz bei LAS)</td><td>O2-Gehalt im Zuluftkanal muss &gt; 20.5% betragen.</td></tr>
+                </tbody>
+            </table>
         </div>
+        <p><strong>Wartungs-Reset:</strong> Im Fachmann-Menü unter „Wartung“ die Zeile 2551 (Wartungs-Reset) auf „Ja“ setzen. In Zeile 2550 die Parameter für das nächste Intervall (z. B. 12 Monate) definieren.</p>
     </section>
 
     <!-- 7. Modell-Übersicht -->
     <section id="modelle">
         <h2>7. Modell-Übersicht</h2>
+        <p>Die Nomenklatur liest sich wie folgt: W = Wandhängend, B = Bodenstehend, G = Gas, O = Öl, S = Solo (nur Heizung), C = Kombi (Heizung + Warmwasser im Durchlaufprinzip), K = Kompakt (mit integriertem Speicher).</p>
+        
+        <h3>7.1. Wandhängende Brennwertgeräte (EcoCondens)</h3>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
                         <th>Serie</th>
-                        <th>Leistung</th>
-                        <th>Typ / Anwendung</th>
+                        <th>Leistungsbereich</th>
+                        <th>Merkmale und Einsatzbereich</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>WGB (Evo)</td><td>15 – 38 kW</td><td>Wandgerät, Top-Modell, Alu-Si.</td></tr>
-                    <tr><td>BBS (Evo)</td><td>15 – 28 kW</td><td>Bodenstehend mit Schichtladespeicher.</td></tr>
-                    <tr><td>WBS / WBC</td><td>14 – 22 kW</td><td>Kompakt-Klasse (Solo/Combi).</td></tr>
-                    <tr><td>SGB</td><td>20 – 300 kW</td><td>Großkessel für Gewerbe.</td></tr>
+                    <tr><td>WGB (Evo)</td><td>15 – 38 kW</td><td>Premium-Modell. Integrierte EVO-Verbrennungsregelung, gegossener Alu-Si-Wärmetauscher. Häufigstes Serviceobjekt.</td></tr>
+                    <tr><td>WBS / WBC</td><td>14 – 22 kW</td><td>Kompaktklasse. WBS als reine Heiztherme, WBC als Kombitherme. Vereinfachter hydraulischer Aufbau.</td></tr>
+                    <tr><td>WGB-K</td><td>20 / 24 kW</td><td>Kompaktzentrale. Wandgerät mit integriertem 60-Liter-Schichtladespeicher. High-Comfort auf engem Raum.</td></tr>
+                    <tr><td>WGB Pro</td><td>15 – 25 kW</td><td>Klassische WGB-Ausführung ohne EVO-Regelung. Manuelle CO2-Einstellung erforderlich. Oft im Mietwohnungsbau.</td></tr>
+                    <tr><td>WGB-M</td><td>15 – 20 kW</td><td>Ausführung mit integrierter Regelung für zwei separate Heizkreise (z. B. Radiatoren + Fußbodenkreis).</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>7.2. Bodenstehende Brennwert- und Heizkessel</h3>
+        <ul>
+            <li><strong>BBS (Evo) | 15 – 28 kW:</strong> Kompaktzentrale bodenstehend. Kesselmodul (WGB) direkt auf einem 135- oder 160-Liter-Warmwasserspeicher montiert.</li>
+            <li><strong>SGB | 20 – 300 kW:</strong> Großkessel für Mehrfamilienhäuser oder gewerbliche Objekte. Sehr kompakt trotz hoher Leistung.</li>
+            <li><strong>BGB | 15 – 38 kW:</strong> Bodenstehende Variante der WGB-Heiztherme für Aufstellräume ohne tragfähige Wandkonstruktion.</li>
+            <li><strong>Logobloc Unit:</strong> Niedertemperatur-Gussheizkessel mit Gebläsebrenner (Altanlagen, robust, oft über 30 Jahre im Betrieb).</li>
+            <li><strong>EuroControl:</strong> Atmosphärischer Gas-Heizkessel der älteren Generation mit robuster RVA- oder EuroControl-Regelung.</li>
+        </ul>
     </section>
 
     <!-- 8. Ersatzteile & Art.-Nr. -->
     <section id="ersatzteile">
-        <h2>8. Ersatzteile & Artikelnummern</h2>
+        <h2>8. Ersatzteile & Art.-Nr.</h2>
+        <p>Die Angabe bezieht sich auf die originalen 7-stelligen Brötje-Ersatzteilnummern.</p>
+        
+        <h3>8.1. Wartungssets & Dichtungen</h3>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Art.-Nr.</th>
+                        <th>Artikel-Nr.</th>
                         <th>Bezeichnung</th>
-                        <th>Modell</th>
+                        <th>Verwendung / Passend für</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>7683466</td><td>Wartungsset (Dichtungen/Elek.)</td><td>WGB EVO 15-28</td></tr>
-                    <tr><td>986121</td><td>Brennertürdichtung (Graphit)</td><td>WGB 15-38</td></tr>
-                    <tr><td>7684617</td><td>Ionisationselektrode</td><td>WGB EVO</td></tr>
-                    <tr><td>7684614</td><td>Zündelektrode</td><td>WGB EVO</td></tr>
-                    <tr><td>624533</td><td>Außenfühler QAC34</td><td>Alle ISR</td></tr>
-                    <tr><td>7304627</td><td>Wasserdrucksensor</td><td>WGB / BBS</td></tr>
-                    <tr><td>7702241</td><td>Leiterplatte LMS15</td><td>WGB EVO</td></tr>
-                    <tr><td>626070</td><td>Stellmotor 3-Wege-Ventil</td><td>Wandgeräte</td></tr>
-                    <tr><td>7683935</td><td>Gasregelblock i-EVO</td><td>WGB EVO</td></tr>
-                    <tr><td>626155</td><td>Ausdehnungsgefäß 10L</td><td>WGB / WBS</td></tr>
-                    <!-- Список может быть продолжен до 50 позиций -->
+                    <tr><td>7683466</td><td>Wartungsset (Dichtungen + Elektroden)</td><td>WGB EVO 15-28 / BBS EVO</td></tr>
+                    <tr><td>986121</td><td>Dichtung Brennertür (Graphit)</td><td>WGB 15-38 (Serie C/D)</td></tr>
+                    <tr><td>7622615</td><td>Wartungsset (Dichtungen + Elektroden)</td><td>WBS / WBC</td></tr>
+                    <tr><td>638363</td><td>Siphondichtung</td><td>Universell einsetzbar (WGB/BBS)</td></tr>
+                    <tr><td>626759</td><td>Dichtungssatz Wärmetauscher</td><td>WGB Großkessel 50-110 kW</td></tr>
+                    <tr><td>579435</td><td>O-Ring Set Hydraulik</td><td>Wandhängende Modelle</td></tr>
                 </tbody>
             </table>
         </div>
+
+        <h3>8.2. Elektroden & Fühler</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikel-Nr.</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung / Passend für</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>7684617</td><td>Ionisationselektrode</td><td>WGB EVO / BBS EVO</td></tr>
+                    <tr><td>7684614</td><td>Zündelectrode</td><td>WGB EVO / BBS EVO</td></tr>
+                    <tr><td>986060</td><td>Ionisationselektrode (Alte Ausführung)</td><td>WGB 15-28 (Serie B/C)</td></tr>
+                    <tr><td>624533</td><td>Außenfühler QAC34</td><td>ISR-Regelung / Siemens-Zubehör</td></tr>
+                    <tr><td>7625121</td><td>NTC Tauchfühler (10k)</td><td>Vorlauf / Trinkwassererwärmer</td></tr>
+                    <tr><td>624519</td><td>NTC Anlegefühler (10k)</td><td>Rohrmontage Vorlauf/Rücklauf</td></tr>
+                    <tr><td>624540</td><td>Abgastemperaturfühler</td><td>Brennwertgeräte-Abgassammler</td></tr>
+                    <tr><td>7304627</td><td>Wasserdrucksensor</td><td>WGB / BBS / WBS</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.3. Elektronik, Antriebe & Gebläse</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikel-Nr.</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung / Passend für</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>7702241</td><td>Leiterplatte LMS15 (Hauptplatine)</td><td>WGB EVO / BBS EVO</td></tr>
+                    <tr><td>7644335</td><td>Bedienteil ISR Plus</td><td>Universelles Display-Modul ISR</td></tr>
+                    <tr><td>564614</td><td>Zündbaustein</td><td>WGB / WBS Zündtrafo</td></tr>
+                    <tr><td>626070</td><td>Stellmotor 3-Wege-Ventil</td><td>Wandgeräte-Umschaltventil</td></tr>
+                    <tr><td>7673995</td><td>Umwälzpumpe UPM3 (Grundfos PWM)</td><td>WGB EVO 15-28</td></tr>
+                    <tr><td>626063</td><td>Dreiwegeventil-Einsatz (Kartusche)</td><td>Hydraulikblock Wandgeräte</td></tr>
+                    <tr><td>7684128</td><td>Gebläse (Ventilator komplett)</td><td>WGB EVO 15-20</td></tr>
+                    <tr><td>7692224</td><td>Gebläse (Ventilator komplett)</td><td>WGB EVO 28-38</td></tr>
+                    <tr><td>7683935</td><td>Gasregelblock (i-EVO)</td><td>WGB EVO / BBS EVO Gasventil</td></tr>
+                    <tr><td>626711</td><td>Gasregelblock (SIT-Ausführung)</td><td>WBS / WBC</td></tr>
+                    <tr><td>7684666</td><td>Venturi-Rohr</td><td>Mischreinrichtung WGB EVO</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.4. Hydraulik & Zubehör</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Artikel-Nr.</th>
+                        <th>Bezeichnung</th>
+                        <th>Verwendung / Passend für</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>626155</td><td>Ausdehnungsgefäß (MAG) 10L</td><td>WGB / WBS interne Absicherung</td></tr>
+                    <tr><td>7305141</td><td>Sicherheitsventil 3 bar</td><td>Heizkreisabsicherung Wandgeräte</td></tr>
+                    <tr><td>7310577</td><td>Automatikentlüfter</td><td>Schnellentlüfter Pumpe</td></tr>
+                    <tr><td>833777</td><td>Plattenwärmetauscher</td><td>Trinkwassererwärmung WBC 22/24</td></tr>
+                    <tr><td>954203</td><td>Magnesiumanode 26x400 (M8)</td><td>Speicherschutz EAS / BBS</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p><strong>Hinweis zur Ersatzteilbestellung:</strong> Platinen und Gebläse der EVO-Serie sind abwärtskompatibel nicht mit Altgeräten mischbar, obwohl Gehäuseformen identisch sein können. Vor Bestellung stets den Softwarestand und die Seriennummer des Kessels abgleichen.</p>
     </section>
 
 </div>
