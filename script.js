@@ -50,8 +50,8 @@
 // Register Service Worker for Offline Work
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('SW registered'))
+        navigator.serviceWorker.register('sw.js') // Убран ведущий слеш
+            .then(reg => console.log('SW registered', reg))
             .catch(err => console.log('SW error', err));
     });
 }
