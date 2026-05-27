@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wartung & Inspektion - Gas-Profi DE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+</head>
+<body>
+
+    <header>
+        <h1 style="margin: 0; font-size: 1.3rem; text-align: center; width: 100%;">Wartung & Inspektion</h1>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+    </header>
+
+    <div class="container">
+        
+        <a href="index.html" class="nav-item" style="display: inline-block; margin-bottom: 15px; width: auto; padding: 8px 20px;">← Home</a>
+
+        <div class="table-container">
+            <table class="wartung-table">
+                <thead>
+                    <tr>
+                        <th style="width: 90px; text-align: center;">Status / Move</th>
+                        <th style="width: 25%;">Arbeitsschritt</th>
+                        <th>Beschreibung / Durchführung</th>
+                        <th style="width: 25%;">Sollwerte / Notizen</th>
+                    </tr>
+                </thead>
+                <tbody id="wartungTableBody">
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>Kundenbefragung</strong></td>
+                        <td class="td-desc">Den Betreiber nach Beanstandungen, Störungen oder Auffälligkeiten im Betrieb fragen.</td>
+                        <td class="td-value">Keine Fehler vorhanden? Whg warm?</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>Sichtprüfung</strong></td>
+                        <td class="td-desc">Sicht- und Funktionsprüfung des Aufstellraums (Belüftung, Abgassystem, Dichtheit, Wasserleitung).</td>
+                        <td class="td-value">Freier Aufstellraum, Verbrennungsluft frei.</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>Inbetriebnahme & Fehlerspeicher</strong></td>
+                        <td class="td-desc">Anlage starten. Fehlerspeicher über das Fachhandwerker-Menü auslesen und protokollieren.</td>
+                        <td class="td-value">Fehlercode-Historie prüfen.</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>Kabel demontieren</strong></td>
+                        <td class="td-desc">Anlage stromlos schalten! Zünd- и Überwachungskabel (Ionisation) vom Brenner trennen.</td>
+                        <td class="td-value"><strong>Spannungsfrei prüfen!</strong></td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>Brenner ausbauen</strong></td>
+                        <td class="td-desc">Befestigungsschrauben lösen, Brennerbaugruppe vorsichtig öffnen und herausnehmen.</td>
+                        <td class="td-value">Brennerdichtung auf Beschädigung prüfen.</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>Elektroden prüfen</strong></td>
+                        <td class="td-desc">Zünd- und Ionisationselektroden auf Verschleiß и Risse prüfen. Reinigen oder ggf. austauschen.</td>
+                        <td class="td-value">Abstand der Elektroden laut Herstellervorgabe.</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>Anlagendruck ablassen</strong></td>
+                        <td class="td-desc">Heizwasserseitigen Druck am Kessel absperren und komplett auf 0 bar entlasten.</td>
+                        <td class="td-value">Manometer: 0.0 bar für MAG-Prüfung.</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>MAG Prüfung (Ausdehnungsgefäß)</strong></td>
+                        <td class="td-desc">Vordruck des Membran-Ausdehnungsgefäßes (MAG) mit Prüfgerät messen и ggf. mit Stickstoff nachfüllen.</td>
+                        <td class="td-value">Statische Höhe + 0.3 bar (mind. 1.0 - 1.2 bar).</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>Brennkammer reinigen</strong></td>
+                        <td class="td-desc">Mechanische Reinigung der Wärmetauscher-Flächen (Spachtel/Bürste). Bei Brennwertkesseln mit Wasser spülen. Siphon reinigen!</td>
+                        <td class="td-value">Freier Kondensatablauf zwingend erforderlich.</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <form class="add-item-form" id="wartungForm" onSubmit="addNewWartungItem(event)">
+            <h3 style="margin: 0 0 5px 0; text-align: center;">+ Neuen Arbeitsschritt hinzufügen</h3>
+            <input type="text" id="newTitle" placeholder="Titel (z.B. Siphon reinigen)" required>
+            <input type="text" id="newDesc" placeholder="Beschreibung (Anleitung)...">
+            <input type="text" id="newValue" placeholder="Werte / Kommentar...">
+            <button type="submit" class="btn-add-submit">Hinzufügen</button>
+        </form>
+
+    </div>
+
+    <button id="backToTop" title="Nach oben">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

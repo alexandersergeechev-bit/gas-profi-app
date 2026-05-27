@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Abgasmessung - Gas-Profi DE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+</head>
+<body>
+
+    <header>
+        <h1 style="margin: 0; font-size: 1.3rem; text-align: center; width: 100%;">Abgasmessung (Analyse)</h1>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+    </header>
+
+    <div class="container">
+        
+        <a href="index.html" class="nav-item" style="display: inline-block; margin-bottom: 15px; width: auto; padding: 8px 20px;">← Home</a>
+
+        <h2 style="text-align: center; margin-bottom: 10px;">Messablauf (MRU SPECTRA plus)</h2>
+
+        <div class="table-container">
+            <table class="wartung-table">
+                <thead>
+                    <tr>
+                        <th style="width: 90px; text-align: center;">Status / Move</th>
+                        <th style="width: 25%;">Arbeitsschritt</th>
+                        <th>Durchführung / Details</th>
+                        <th style="width: 25%;">Werte / Hinweise</th>
+                    </tr>
+                </thead>
+                <tbody id="messungTableBody">
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>1. Kalibrierung (Frischluft)</strong></td>
+                        <td class="td-desc">Messgerät an der frischen Luft einschalten (außerhalb des Aufstellraums). Nullpunktnahme O2/CO abwarten.</td>
+                        <td class="td-value">Wichtig: Nicht im Abgasstrom starten!</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>2. Kraftstoffauswahl</strong></td>
+                        <td class="td-desc">Im Hauptmenü den richtigen Brennstoff auswählen: Erdgas H, Erdgas L oder Flüssiggas. Modus "Abgasmessung" wählen.</td>
+                        <td class="td-value">Standard in DE meistens Erdgas H.</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>3. Schornsteinfeger-Modus</strong></td>
+                        <td class="td-desc">Heizkessel in den Messbetrieb/Prüfbetrieb schalten. Anlage 3–5 Minuten stabilisieren lassen.</td>
+                        <td class="td-value">Wärmetauscher muss Betriebstemperatur erreichen.</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>4. Sondenplatzierung</strong></td>
+                        <td class="td-desc">Abgassonde in die Messöffnung im Abgasrohr einführen. Thermoelement im Kernstrom zentrieren. T-Luft Fühler positionieren.</td>
+                        <td class="td-value">Immer die kesselnächste Messöffnung nutzen.</td>
+                    </tr>
+
+                    <tr class="wartung-row">
+                        <td class="td-action">
+                            <div class="checkbox-container">
+                                <input type="checkbox" class="heavy-checkbox" onchange="toggleRowStatus(this)">
+                            </div>
+                            <div class="move-btn-group">
+                                <button class="btn-move" onclick="moveRowUp(this)">▲</button>
+                                <button class="btn-move" onclick="moveRowDown(this)">▼</button>
+                            </div>
+                        </td>
+                        <td class="td-title"><strong>5. Messung & Speicherung</strong></td>
+                        <td class="td-desc">Taste F1 (Start) drücken. Nach Stabilisierung F3 (Mittelw. 30s) nutzen. Daten mit F2 speichern или drucken.</td>
+                        <td class="td-value">Sonde entnehmen, Gerät mit Frischluft spülen!</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <form class="add-item-form" id="messungForm" onSubmit="addNewMessungItem(event)">
+            <h3 style="margin: 0 0 5px 0; text-align: center;">+ Messschritt hinzufügen</h3>
+            <input type="text" id="newMessungTitle" placeholder="Schritt-Name" required>
+            <input type="text" id="newMessungDesc" placeholder="Beschreibung...">
+            <input type="text" id="newMessungValue" placeholder="Hinweis / Sollwert...">
+            <button type="submit" class="btn-add-submit">Hinzufügen</button>
+        </form>
+
+        <hr style="margin: 40px 0; border: 0; border-top: 2px dashed var(--border-color);">
+
+        <h2 style="text-align: center; margin-bottom: 10px;">Richtwerte für Brennwertkessel</h2>
+        
+        <div class="table-container">
+            <table class="norm-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Bedeutung</th>
+                        <th>Normaler Bereich</th>
+                        <th>Abweichung / Fehlerursache</th>
+                    </tr>
+                </thead>
+                <tbody>
+    <tr>
+        <td class="norm-td-param"><strong>CO (ppmUnv)</strong></td>
+        <td class="norm-td-meaning">Unverdünntes Kohlenmonoxid (bezogen auf &lambda; = 1)</td>
+        <td class="norm-td-range"><strong>&lt; 50 ppm</strong> (Limit: &lt; 1000)</td>
+        <td class="norm-td-alert"><strong>Dein Wert: 44 ppm (Perfekt).</strong><br>Wenn &gt; 400 ppm: Gefährliche unvollständige Verbrennung, Brenner verschmutzt, Luftmangel.</td>
+    </tr>
+
+    <tr>
+        <td class="norm-td-param"><strong>CO (ppm)</strong></td>
+        <td class="norm-td-meaning">Gemessenes Kohlenmonoxid im trockenen Abgas</td>
+        <td class="norm-td-range"><strong>Anhaltswert proportional zu ppmUnv</strong></td>
+        <td class="norm-td-alert"><strong>Dein Wert: 34 ppm (Normal).</strong><br>Zeigt den realen CO-Anteil im Abgasstrom. Steigt bei CO2-Rücksaugen oder schlechtem Gas-Luft-Gemisch.</td>
+    </tr>
+
+    <tr>
+        <td class="norm-td-param"><strong>CO (mg/kWh)</strong></td>
+        <td class="norm-td-meaning">Massenspezifische CO-Emission pro Kilowattstunde Energie</td>
+        <td class="norm-td-range"><strong>Gesetzliches Limit beachten</strong></td>
+        <td class="norm-td-alert"><strong>Dein Wert: 48.3 mg/kWh (Sehr gut).</strong><br>Ureigener Umweltindikator. Hohe Werte deuten auf mangelhafte Wartung oder falsche Düseneinstellung hin.</td>
+    </tr>
+
+    <tr>
+        <td class="norm-td-param"><strong>Lambda (&lambda;)</strong></td>
+        <td class="norm-td-meaning">Luftüberschusszahl (Verhältnis Luft zu Gas)</td>
+        <td class="norm-td-range"><strong>1.20 – 1.35</strong></td>
+        <td class="norm-td-alert"><strong>Dein Wert: 1.31 (Optimaler Bereich).</strong><br>Wenn &lt; 1.15: Luftmangel (CO explodiert).<br>Wenn &gt; 1.40: Zu viel Luft, Flamme kühlt ab, Wirkungsgrad sinkt.</td>
+    </tr>
+
+    <tr>
+        <td class="norm-td-param"><strong>ETA (&eta;) (%)</strong></td>
+        <td class="norm-td-meaning">Abgasbezogener Wirkungsgrad (nach Siegert-Formel)</td>
+        <td class="norm-td-range"><strong>&gt; 98 %</strong> (bei Brennwert)</td>
+        <td class="norm-td-alert"><strong>Dein Wert: 99.6 % (Exzellent).</strong><br>Berechnet ohne die latente Kondensationswärme. Sinkt drastisch bei zu hoher Abgastemperatur.</td>
+    </tr>
+
+
+    <tr>
+        <td class="norm-td-param"><strong>T-Gas (&deg;C)</strong></td>
+        <td class="norm-td-meaning">Abgastemperatur im Kernstrom</td>
+        <td class="norm-td-range"><strong>35 &deg;C – 60 &deg;C</strong> (bei Rücklauf ~30&deg;C)</td>
+        <td class="norm-td-alert"><strong>Dein Wert: 29.5 &deg;C (Hervorragende Kondensation).</strong><br>Wenn &gt; 80-90&deg;C: Keine Kondensation mehr. Wärmetauscher verkalkt oder abgasseitig blockiert.</td>
+    </tr>
+
+    <tr>
+        <td class="norm-td-param"><strong>T-Luft (&deg;C)</strong></td>
+        <td class="norm-td-meaning">Temperatur der angesaugten Verbrennungsluft</td>
+        <td class="norm-td-range"><strong>Raumtemp. oder Außenluft</strong></td>
+        <td class="norm-td-alert"><strong>Dein Wert: 22.0 &deg;C (Normal).</strong><br>Wichtig für die Berechnung der Verluste. Bei raumluftunabhängigen Systemen prüft man hier, ob die Zuluft im LAS-Rohr vorgewärmt wird.</td>
+    </tr>
+
+    <tr>
+        <td class="norm-td-param"><strong>CO2 (%)</strong></td>
+        <td class="norm-td-meaning">Kohlendioxidkonzentration (Erdgas H)</td>
+        <td class="norm-td-range"><strong>8.8 % – 10.0 %</strong></td>
+        <td class="norm-td-alert"><strong>Dein Wert: 9.6 % (Perfekt eingestellt).</strong><br>Hängt direkt mit O2 zusammen. Wenn &lt; 8.5%: Gemisch zu mager (zu viel Luft). Gasventil muss nachjustiert werden.</td>
+    </tr>
+
+    <tr>
+        <td class="norm-td-param"><strong>Verluste qA (%)</strong></td>
+        <td class="norm-td-meaning">Abgasverlust (Siegert-Wert)</td>
+        <td class="norm-td-range"><strong>&lt; 1.0 %</strong> (Gesetzlich bis 11%)</td>
+        <td class="norm-td-alert"><strong>Dein Wert: 0.4 % (Maximale Effizienz).</strong><br>Je kleiner, desto besser. Wenn &gt; 3%: Kessel verliert zu viel Wärme über den Schornstein.</td>
+    </tr>
+
+    <tr>
+        <td class="norm-td-param"><strong>O2 (%)</strong></td>
+        <td class="norm-td-meaning">Restsauerstoffgehalt im trockenen Abgas</td>
+        <td class="norm-td-range"><strong>4.0 % – 5.5 %</strong></td>
+        <td class="norm-td-alert"><strong>Dein Wert: 4.4 % (Optimal).</strong><br>Wenn &lt; 3%: Zu fette Verbrennung (Russgefahr).<br>Wenn &gt; 6%: Zu magere Verbrennung (Falschluft im Abgassystem oder LAS undicht).</td>
+    </tr>
+
+    <tr>
+        <td class="norm-td-param"><strong>Zug (hPa)</strong></td>
+        <td class="norm-td-meaning">Abgaszug / Förderdruck im Messstutzen</td>
+        <td class="norm-td-range"><strong>0.05 – 0.30 hPa</strong> (Überdruck)</td>
+        <td class="norm-td-alert"><strong>Dein Wert: 0.19 hPa (Normaler Gebläsedruck).</strong><br>Wenn 0 oder Unterdruck: Gebläsedefekt, LAS-System verstopft, Kondensatstau oder Eis auf der Mündung.</td>
+    </tr>
+</tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <button id="backToTop" title="Nach oben">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
